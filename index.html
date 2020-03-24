@@ -1,0 +1,944 @@
+<doctype HTML>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Oswald:200,300,400,500,600,700&display=swap&subset=latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/site.css">
+
+ <script src="libs/d3.v4.min.js"></script>
+	<script src="libs/d3.v4.jetpack.min.js"></script>
+  	<script src="libs/d3-annotation.js"></script>
+	<script src="libs/d3-scale-chromatic.v1.min.js"></script>
+	<script src="libs/topojson.v1.min.js"></script>
+	<script src="libs/d3-queue.v3.min.js"></script>
+	<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+</head>
+
+<body>
+	<Br />
+	<div id="aboutMap"></div>
+	<Br/>
+
+
+	<Br/>
+	<div id="modedemploi">Mouse over countries and click for more information   
+				<div id="selCountry">
+					<div class="dropdown_text">Or select a country: </div>
+					<select id="country_dropdown"
+						onchange="updateCard(value)">
+						<option value="-" selected="selected"> - </option>
+						<option value="Argentina">Argentina</option>
+						<option value="Australia" >Australia</option>
+						<option value="Austria">Austria</option>
+						<option value="Belgium">Belgium</option>
+						<option value="Bulgaria">Bulgaria</option>
+						<option value="Brazil">Brazil</option>
+						<option value="Canada">Canada</option>
+						<option value="Chile">Chile</option>
+						<option value="China">China</option>
+						<option value="Colombia">Colombia</option>
+						<option value="Costa Rica">Costa Rica</option>
+						<option value="Czech Republic">Czech Republic</option>
+						<option value="Denmark">Denmark</option>
+						<!--<option value="Estonia">Estonia</option>-->
+						<option value="European Union">European Union</option>
+						<option value="Finland">Finland</option>
+						<option value="France">France</option>
+						<option value="Germany">Germany</option>
+						<option value="Greece">Greece</option>
+						<option value="Hungary">Hungary</option>
+						<option value="Indonesia">Indonesia</option>
+						<option value="India">India</option>
+						<option value="Ireland">Ireland</option>
+						<option value="Iceland">Iceland</option>
+						<option value="Israel">Israel</option>
+						<option value="Italy">Italy</option>
+						<option value="Japan">Japan</option>
+						<option value="Korea">Korea</option>
+						<option value="Latvia">Latvia</option>
+						<option value="Lithuania">Lithuania</option>
+						<option value="Luxembourg">Luxembourg</option>
+						<option value="Mexico">Mexico</option>
+						<option value="Netherlands">Netherlands</option>
+						<option value="New Zealand">New Zealand</option>
+						<option value="Norway">Norway</option>
+						<option value="Poland">Poland</option>
+						<option value="Portugal">Portugal</option>
+						<option value="Romania">Romania</option>
+						<option value="Russia">Russia</option>
+						<option value="Saudi Arabia">Saudi Arabia</option>
+						<option value="Slovak Republic">Slovak Republic</option>
+						<option value="Slovenia">Slovenia</option>
+						<option value="South Africa">South Africa</option>
+						<option value="Spain">Spain</option>
+						<option value="Sweden">Sweden</option>
+						<option value="Switzerland">Switzerland</option>
+						<option value="Turkey">Turkey</option>
+						<option value="United Kingdom">United Kingdom</option>
+						<option value="United States">United States</option>
+						<!--</optgroup>-->
+					</select>
+				</div>
+	</div>
+	<div id="CountryCard">
+		<div id="shutterholder" >
+			<img id="shutter" src="img/cross.svg">
+		
+			<div id="countrySel"></div>
+			<div id="betaTag">&nbsp;Beta</div>
+			<div id="updateTime"></div>
+		</div>
+		<Br />
+		<div id="containment_Text">
+			<div class="border">
+			<span id="containement_Title" class="SectionTitle"></span>
+			</div>
+			<div id="quarantine_Text" class="SectionText"></div>
+			<div id="travel_Bans_Text" class="SectionText"></div>
+			<div id="schools_closure_Text" class="SectionText"></div>
+			<div id="public_events_cancel_Text" class="SectionText"></div>
+		</div>
+		<Br/>
+		<div id="supportText">
+
+			<div class="border">
+				<span id="support_Title" class="SectionTitle"></span>
+			</div>
+			<div id="Health_Text" class="SectionText"></div>
+			<div id="Overall_fiscal_measures_Text" class="SectionText"></div>
+			<div id="Fiscal_people_Text" class="SectionText"></div>
+			<div id="Fiscal_firm_Text" class="SectionText"></div>
+			<div id="Monetary_Prudential_Text" class="SectionText"></div>
+		</div>
+		<Br/>	
+		<div id="supportViz">
+			<div class="border">
+				<span id="supportViz_Title" class="SectionTitle">Country support</span>
+			</div>
+			<div class="sectionText">as % of GDP</div>
+			<Br/>
+			<div id="vizDesc"></div>
+		</div>
+	</div>
+	<Br /><a id="source" href="https://github.com/gitvfd/OECD-covid-action-map/blob/CoronavirusUpdate_AllCountries_Public.xlsx"
+		target="_blank">Download the data</a>
+
+</body>
+<script type="text/javascript">
+
+
+	var popupWidth;
+	var heightChart ;
+	var margin_chart
+	var xScale;
+	var yScale ;
+
+	var allData;
+
+
+
+
+
+
+	var tabCoord=[];
+
+	var genderData=[];
+  	var counter=0;
+  	var counter2=0;
+	var labels = [];
+  	
+ 	var countryData=[];
+
+  	d3.tsv("data/coord_country.tsv", function(error, coudata){
+   	 	coudata.forEach(function(d){
+        	countryData.push(d);
+  		})
+   	})
+  
+
+
+	var urls = {
+	    world: "data/world.json",
+	    country:"data/coord_country.tsv",
+		actions:"data/actions.tsv"
+	};
+
+	var divMap = d3.select("body").append("div") 
+	    .attr("class", "tooltip")       
+	    .style("opacity", 0);
+
+    var format = d3.format(",.1f");
+    var margin = 20,centered;
+
+	var mapRatio=0.5;
+    
+    var width = document.getElementById("aboutMap").offsetWidth,
+    	height= width*mapRatio;
+
+
+  	var projection = d3.geoRobinson()
+	    		.scale(width/6.3)
+	    		.translate([width / 2, 6*height / 10])
+  	        	.precision(.01);
+	
+	
+
+
+  	var path = d3.geoPath()
+                     .projection(projection);
+
+  	var svg = d3.select("#aboutMap").append("svg")
+  	    .attr("width", width)
+  	    .attr("height", height)
+  	    //.on("click", stopped, true);
+
+
+
+    var worldMap=svg.append("g")
+    var annotationLayer=svg.append("g")
+
+	var voronoiLayer = svg.append("g");
+
+	var voronoi = d3.voronoi()
+			.x(function (d) { return projection([d.lng, d.lat])[0]; })
+			.y(function (d) { return projection([d.lng, d.lat])[1]; })
+		.extent([[-1, -1], [width + 1, height + 1]]);
+	
+	var polygons;
+	var polygonData;
+
+	d3.queue()
+	    .defer(d3.json, urls.world)
+	    .defer(d3.tsv, urls.country)
+		.defer(d3.tsv, urls.actions)
+	    .await(render);
+
+
+
+	function render(err,world,country, actions){
+		allData=actions;
+		compChart(actions)
+		//Container for the gradients //https://www.visualcinnamon.com/2016/06/glow-filter-d3-visualization.html
+		var defs = worldMap.append("defs");
+
+		//Filter for the outside glow
+		var filter = defs.append("filter")
+		    .attr("id","glow");
+		filter.append("feGaussianBlur")
+		    .attr("stdDeviation","1.75")
+		    .attr("result","coloredBlur");
+		var feMerge = filter.append("feMerge");
+		feMerge.append("feMergeNode")
+		    .attr("in","coloredBlur");
+		feMerge.append("feMergeNode")
+		    .attr("in","SourceGraphic");
+
+	    worldMap
+	    	.attr("id","world")
+	    	.selectAll("path")
+	        .data(world.features)
+	      	.enter().append("path")
+	        .attr("class","world")
+					.attr('fill', "#c0c7c9")
+				.attr('stroke', "#c0c7c9")
+			.attr("d", path)
+			
+		worldMap
+	    	.selectAll(".couCircle")
+	        .data(actions)
+	      	.enter().append("circle").attr("class","couCircle")
+	      	.attr("id",function(d){return d.ISO3+"circle";})
+	      	.attr("cx",function(d){
+					return projection([d.lng, d.lat])[0];
+	      	})
+	      	.attr("cy",function(d){
+		        	return projection([d.lng,d.lat])[1];
+	      	})
+	      	.attr("r", function (d) {
+				if (d.ISO3 == "EU" || d.ISO3 == "SEA")
+					return width / 220;
+				else
+					return width / 300;
+			})
+	      	.attr("fill",function(d){
+				  if(d.ISO3=="EU"|| d.ISO3 == "SEA")
+				 	 return "#000875";
+				  else
+				  	return "#04629a";
+			  })
+	  		
+
+
+
+		polygonData=actions;
+		polygons = voronoi(polygonData).polygons();
+
+		voronoiLayer.selectAll(".cell")
+			.data(polygons)
+			.enter()
+			.append("path")
+			.attr("class", "cell")
+			.attr("fill", "none")
+			.style("pointer-events", "all")
+			.attr("stroke", "none")
+			.attr("d", function (d) { return "M" + d.join("L") + "Z"; })
+			.on('mouseover', function (d) {
+
+				var element = d3.select("#" + d.data.ISO3+"circle")
+				
+
+				divMap.transition()
+					.duration(250)
+					.style("opacity", 1);
+
+				var icuText;
+				if (d.data.available_ICU=="")
+					icuText=""
+				else
+					icuText= "</b><Br/><i>Intensive care unit Spots available</i>: <b>" + d.data.available_ICU + "</b>"
+				
+				var htmlText = "<b>" + d.data.Country + "</b>"/**+ "<Br/><i>Confirmed cases</i>: <b>"+ d.data.Confirmed_cases +"</b><Br/><i>Confirmed deaths</i>: <b>"+ d.data.Confirmed_deaths   icuText+ **/;
+				
+				divMap.html(htmlText)
+					.style("left", element.attr('cx') + "px")
+					.style("top", element.attr('cy') + "px");
+			})
+			.on('mouseout', function (d) {
+
+				divMap.transition()
+					.duration(250)
+					.style("opacity", 0);
+			})
+			.on('click',function(d){
+
+				document.getElementById("CountryCard").style.display = 'block';
+				document.getElementById("modedemploi").style.display = 'none';
+				
+				highlight(d.data.Country, actions.filter(function (d) { return d.share_gdp != "" }).length)
+
+				document.getElementById("countrySel").innerHTML=d.data.Country;
+
+				document.getElementById("updateTime").innerHTML = "updated on " + d.data.update	;
+
+				if(d.data.quarantines=="" && d.data.travel_Bans == "" && d.data.schools_closure == "" && d.data.public_events_cancel == "")
+					document.getElementById("containement_Title").innerHTML = ""
+				else
+					document.getElementById("containement_Title").innerHTML = "Containment measures"
+				
+				if(d.data.quarantines == "")
+					document.getElementById("quarantine_Text").innerHTML =""
+				else
+					document.getElementById("quarantine_Text").innerHTML = "<b>Quarantines</b><Br/>" + d.data.quarantines
+
+				if (d.data.travel_Bans == "")
+					document.getElementById("travel_Bans_Text").innerHTML = ""
+				else
+					document.getElementById("travel_Bans_Text").innerHTML = "<b>Travel bans/restrictions</b><Br/>"+ d.data.travel_Bans
+
+				if (d.data.schools_closure == "")
+					document.getElementById("schools_closure_Text").innerHTML = ""
+				else
+					document.getElementById("schools_closure_Text").innerHTML = "<b>Closure of schools</b><Br/>"+ d.data.schools_closure
+
+				if (d.data.public_events_cancel == "")
+					document.getElementById("public_events_cancel_Text").innerHTML =""
+				else
+					document.getElementById("public_events_cancel_Text").innerHTML = "<b>Cancellation of public events/Closure of public places</b><Br/>"+ d.data.public_events_cancel
+
+
+				if(d.data.Health == "" && d.data.Overall_fiscal_measures == "" && d.data.Fiscal_people == "" && d.data.Fiscal_firm == "" && d.data.Monetary_Prudential == "")
+					document.getElementById("support_Title").innerHTML = ""
+				else
+					document.getElementById("support_Title").innerHTML = "Support measures"
+
+				if (d.data.Health == "")
+					document.getElementById("Health_Text").innerHTML = ""
+
+				else
+					document.getElementById("Health_Text").innerHTML = "<b>Health</b><Br/>"+ d.data.Health
+
+				if (d.data.Overall_fiscal_measures == "")
+					document.getElementById("Overall_fiscal_measures_Text").innerHTML = ""
+
+				else
+					document.getElementById("Overall_fiscal_measures_Text").innerHTML = "<b>Overall fiscal measures</b><Br/>"+ d.data.Overall_fiscal_measures
+
+				if (d.data.Fiscal_people == "")
+					document.getElementById("Fiscal_people_Text").innerHTML = ""
+
+				else
+					document.getElementById("Fiscal_people_Text").innerHTML = "<b>Fiscal - people specific</b><Br/>"+ d.data.Fiscal_people
+
+				if (d.data.Fiscal_firm == "")
+					document.getElementById("Fiscal_firm_Text").innerHTML = ""
+				else
+					document.getElementById("Fiscal_firm_Text").innerHTML = "<b>Fiscal - firm specific</b><Br/>"+ d.data.Fiscal_firm
+
+				if (d.data.Monetary_Prudential=="")
+					document.getElementById("Monetary_Prudential_Text").innerHTML = ""
+
+				else
+					document.getElementById("Monetary_Prudential_Text").innerHTML = "<b>Monetary/Macro Prudential</b><Br/>"+ d.data.Monetary_Prudential
+
+				
+			});
+			
+
+
+
+
+
+	};
+      
+
+
+	d3.select(window).on('resize', resize);
+
+	function resize() {
+	    // adjust things when the window size changes
+	    width = document.getElementById("aboutMap").offsetWidth,
+	    height = width * mapRatio;
+
+	    // update projection
+	    projection
+	        .translate([width / 2, height / 2])
+	        .scale(width/6.3);
+
+	
+
+
+	    // resize the map container
+	    svg.attr('width', width + 'px')
+	        .attr('height', height + 'px');
+
+	    // resize the map
+	    worldMap.selectAll('.world').attr('d', path);
+	    //world.selectAll('.state').attr('d', path);
+	    
+
+	    worldMap.selectAll('circle')
+			.attr("cx", function (d) {
+				return projection([d.lng, d.lat])[0];
+			})
+			.attr("cy", function (d) {
+				return projection([d.lng, d.lat])[1];
+			})
+	      	.attr("r",width/300);
+
+		
+		//	  voronoiLayer.selectAll(".cell").remove();
+
+		voronoi
+			.extent([[-1, -1], [width + 1, height + 1]]);
+
+
+		
+		polygons = voronoi(polygonData.filter(function (d) { return d.isOnMap != ""; })).polygons();
+
+
+
+		voronoiLayer.selectAll(".cell")
+			.data(polygons)
+			.attr("fill", "none")
+			.style("pointer-events", "all")
+			.attr("stroke", "none")
+			.attr("d", function (d) { return "M" + d.join("L") + "Z"; })
+
+
+	}
+	
+
+		function compChart(data) {
+		
+			var colorChart="#662D91"
+
+			if(window.innerWidth>=1140)
+				 popupWidth= 0.95* 1140;
+			else
+				popupWidth = 0.95 * window.innerWidth;
+
+
+			var lollipopRadius;
+			if (popupWidth > 1200) lollipopRadius = 10; else if (popupWidth > 700) lollipopRadius = 8; else lollipopRadius = 5; 
+			
+			
+
+			margin_chart=100;
+			var padding=0;
+			var guides= ["←  less support", " more support  →"]
+			
+
+			var mousemove = function () {
+				return divMap.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+			}
+
+			var mouseout = function () { return 
+				divMap.transition()
+					.duration(250)
+					.style("opacity", 0); } 
+
+
+			
+
+
+			if (popupWidth > 800) {
+
+				heightChart = 0.5 * window.innerHeight;
+
+				xScale = d3.scaleBand()
+					.domain(data.filter(function (d) { return d.share_gdp != "" }).sort(function (a, b) { return parseFloat(a.share_gdp) - parseFloat(b.share_gdp); }).map(function (d) { return d.Country }))
+					.range([margin_chart, popupWidth - margin_chart / 2])
+					.padding(padding);
+
+				yScale = d3.scaleLinear()
+					.domain([0, 1])
+					.range([heightChart - margin_chart, margin_chart / 3]);
+
+				var dimDescChart = d3.select('#vizDesc').html('')
+					.append('svg')
+					.attrs({ width: popupWidth, height: heightChart,id:"compareChart" })
+
+
+				var dimDescGuide = dimDescChart.append("text")
+					.attr("x", 0)
+					.attr("y", 0)
+					.append("tspan")
+					.attr("id", "chartGuideDimDesc")
+					.attr("x", margin_chart)
+					.attr("y", heightChart - margin_chart / 10)
+					.html(guides[0])
+				//.call(wrap,0.25*width);
+
+				var dimDescGuideEnd = dimDescChart.append("text")
+					.attr("x", 0)
+					.attr("y", 0)
+					.append("tspan")
+					.attr("id", "chartGuideDimDescEnd")
+					.attr("x", popupWidth - margin_chart / 2)
+					.attr("y", heightChart - margin_chart / 10)
+					.html(guides[1])
+					.style("text-anchor", "end")
+
+
+				//Create Y axis
+				dimDescChart.append("g")
+					.attr("class", "axis y yAxis")
+					.attr("transform", "translate(" + margin_chart + ",0)")
+					.call(d3.axisLeft(yScale)
+						.tickSize( -(popupWidth - margin_chart / 2- margin_chart)).ticks(null, "%"));
+
+
+				///Lollipop dimDesc
+				var lollipopsCircle = dimDescChart.selectAll("circle")
+					.data(data)
+					.enter().append("circle")
+					.attr("class", "lollipopCircle")
+					.attr("r", lollipopRadius)
+					.attr("cx", function (d) {
+						if (d.share_gdp === "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("cy", function (d) {
+						if (d.share_gdp === "NA")
+							return "-10";
+						else
+							return yScale(d.share_gdp);
+					})
+					.attr("fill", colorChart)
+					.on("mouseover", function (d) {
+						divMap.transition()
+							.duration(250)
+							.style("opacity", 1);
+					
+						var htmlText = "<b>" + d.Country + "</b><br> " + d3.format(".0%")(d.share_gdp) + "<br> " + d3.format(",")(d.amount_effort) + "$"
+						
+							divMap.html(htmlText).style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+
+					})
+					.on("mousemove", mousemove)
+					.on("mouseout", mouseout)
+					.on("click",function(d){ return updateCard(d.Country)});
+
+
+				var lollipopsText = dimDescChart.selectAll("circleText")
+					.data(data)
+					.enter().append("text")
+					.attr("class", "lollipopText")
+
+					.attr("transform", "translate(-3,15)rotate(-90)")
+					.attr("dy", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("dx", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return -yScale(d.share_gdp);
+					})
+					.text(function (d) {
+						return d.Country;
+					})
+					.attr("text-anchor", "end")
+					.attr("fill", colorChart)
+					.on("mouseover", function (d) {
+						divMap.transition()
+						.duration(250)
+						.style("opacity", 1);
+
+						var htmlText = "<b>" + d.Country + "</b><br> " + d3.format(".0%")(d.share_gdp) + "<br> " + d3.format(",")(d.amount_effort) + "$"
+
+						divMap.html(htmlText).style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+					})
+					.on("mousemove", mousemove)
+					.on("mouseout", mouseout)
+					.on("click",function(d){ return updateCard(d.Country)});;;
+
+				var lollipopsLine = dimDescChart.selectAll("circleLine")
+					.data(data)
+					.enter().append("line")
+					.attr("class", "lollipopLine")
+					.attr("x1", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("x2", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("y1", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return yScale(0);
+					})
+					.attr("y2", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return yScale(d.share_gdp);
+					})
+					.attr("stroke", colorChart)
+					.attr("stroke-width", "1")
+					.on("mouseover", function (d) {
+						divMap.transition()
+						.duration(250)
+						.style("opacity", 1);
+
+						var htmlText = "<b>" + d.Country + "</b><br> " + d3.format(".0%")(d.share_gdp) + "<br> " + d3.format(",")(d.amount_effort) + "$"
+
+						divMap.html(htmlText).style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+					})
+					.on("mousemove", mousemove)
+					.on("mouseout", mouseout)
+					.on("click",function(d){ return updateCard(d.Country)});
+
+
+			}
+			else {
+				heightChart = window.innerHeight ;
+
+				xScale = d3.scaleBand()
+					.domain(data.filter(function (d) { return d.share_gdp != "NA" }).sort(function (a, b) { return parseFloat(a.share_gdp) - parseFloat(b.share_gdp); }).map(function (d) { return d.Country }))
+					.range([heightChart - margin_chart/2, margin_chart / 2])
+					.padding(padding);
+
+
+				yScale = d3.scaleLinear()
+					.domain([0, 1])
+					.range([margin_chart/2, popupWidth - margin_chart ]);
+
+
+				var dimDescChart = d3.select('#vizDesc').html('')
+					.append('svg')
+					.attrs({ width: popupWidth, height: heightChart , id: "compareChart" })
+
+
+
+				var dimDescGuide = dimDescChart.append("text")
+					.attr("x", 0)
+					.attr("y", 0)
+					.append("tspan")
+					.attr("id", "chartGuideDimDesc")
+					.attr("x", margin_chart)
+					.attr("y", heightChart - margin_chart / 4)
+					.html(guides[0])
+				//.call(wrap,0.25*width);
+
+				var dimDescGuideEnd = dimDescChart.append("text")
+					.attr("x", 0)
+					.attr("y", 0)
+					.append("tspan")
+					.attr("id", "chartGuideDimDescEnd")
+					.attr("x", popupWidth - margin_chart )
+					.attr("y", margin_chart / 8)
+					.html(guides[1])
+					.style("text-anchor", "end")
+
+
+				//Create Y axis
+				dimDescChart.append("g")
+					.attr("class", "axis y yAxis")
+					.attr("transform", "translate(" + 0 + ","+ margin_chart / 2+")")
+					.call(d3.axisTop(yScale).tickSize(-(heightChart - margin_chart / 2 - margin_chart / 2)).ticks(null, "%"));
+
+
+				///Lollipop dimDesc
+				var lollipopsCircle = dimDescChart.selectAll("circle")
+					.data(data)
+					.enter().append("circle")
+					.attr("class", "lollipopCircle")
+					.attr("r", lollipopRadius)
+					.attr("cy", function (d) {
+						if (d.share_gdp === "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("cx", function (d) {
+						if (d.share_gdp === "NA")
+							return "-10";
+						else
+							return yScale(d.share_gdp);
+					})
+					.attr("fill", colorChart)
+					.on("mouseover", function (d) {
+						divMap.transition()
+						.duration(250)
+						.style("opacity", 1);
+
+						var htmlText = "<b>" + d.Country + "</b><br> " + d3.format(".0%")(d.share_gdp) + "<br> " + d3.format(",")(d.amount_effort) + "$"
+
+						divMap.html(htmlText).style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+					})
+					.on("mousemove", mousemove)
+					.on("mouseout", mouseout)
+					.on("click",function(d){ return updateCard(d.Country)});
+
+
+				var lollipopsText = dimDescChart.selectAll("circleText")
+					.data(data)
+					.enter().append("text")
+					.attr("class", "lollipopText")
+
+					.attr("transform", "translate(-10,-3)")
+					.attr("dy", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("dx", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return yScale(d.share_gdp);
+					})
+					.text(function (d) {
+						return d.Country;
+					})
+					.attr("text-anchor", "end")
+					.attr("fill", colorChart)
+					.on("mouseover", function (d) {
+						divMap.transition()
+						.duration(250)
+						.style("opacity", 1);
+
+						var htmlText = "<b>" + d.Country + "</b><br> " + d3.format(".0%")(d.share_gdp) + "<br> " + d3.format(",")(d.amount_effort) + "$"
+
+						divMap.html(htmlText).style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+					})
+					.on("mousemove", mousemove)
+					.on("mouseout", mouseout)
+					.on("click",function(d){ return updateCard(d.Country)});;;
+
+				var lollipopsLine = dimDescChart.selectAll("circleLine")
+					.data(data)
+					.enter().append("line")
+					.attr("class", "lollipopLine")
+					.attr("y1", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("y2", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return xScale(d.Country) + xScale.bandwidth() / 2;
+					})
+					.attr("x1", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return yScale(0);
+					})
+					.attr("x2", function (d) {
+						if (d.share_gdp == "NA")
+							return "-10";
+						else
+							return yScale(d.share_gdp);
+					})
+					.attr("stroke", colorChart)
+					.attr("stroke-width", "1")
+					.on("mouseover", function (d) {
+						divMap.transition()
+						.duration(250)
+						.style("opacity", 1);
+
+						var htmlText = "<b>" + d.Country + "</b><br> " + d3.format(".0%")(d.share_gdp) + "<br> " + d3.format(",")(d.amount_effort) + "$"
+
+						divMap.html(htmlText).style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+					})
+					.on("mousemove", mousemove)
+					.on("mouseout", mouseout)
+					.on("click",function(d){ return updateCard(d.Country)});;;
+
+			}
+
+
+
+		}	
+	
+		function highlight(countryName,couNum){
+			d3.selectAll(".highlightBar").remove();
+			
+			if (popupWidth > 800){
+				d3.select("#compareChart").append("rect")
+					.attr("class","highlightBar")
+					.attr("x", xScale(countryName)-0.5* (popupWidth - margin_chart / 2 - margin_chart) / couNum)
+					.attr("y", 0)
+					.attr("width", 1.5*(popupWidth - margin_chart / 2 - margin_chart) / couNum)
+					.attr("height", heightChart)
+					.attr("fill","white")
+					.attr("opacity", 0.5);
+			}
+			else{
+
+				d3.select("#compareChart").append("rect")
+					.attr("class", "highlightBar")
+					.attr("x", 0)
+					.attr("y", xScale(countryName)- 0.3*(heightChart - margin_chart / 2 - margin_chart) / couNum)
+					.attr("width", popupWidth)
+					.attr("height", 1.5*(heightChart - margin_chart / 2 - margin_chart) / couNum)
+					.attr("fill", "white")
+					.attr("opacity",0.5);
+			}
+
+		}
+
+		function updateCard(couName){
+console.log(allData)
+console.log(couName)
+var temp= allData.filter(function (d) { return d.Country == couName })
+
+			console.log(temp)
+			document.getElementById("CountryCard").style.display = 'block';
+			document.getElementById("modedemploi").style.display = 'none';
+
+			highlight(couName, allData.filter(function (d) { return d.share_gdp != "" }).length)
+
+			document.getElementById("countrySel").innerHTML = temp[0].Country;
+
+			document.getElementById("updateTime").innerHTML = "updated on " + temp[0].update;
+
+			if (temp[0].quarantines == "" && temp[0].travel_Bans == "" && temp[0].schools_closure == "" && temp[0].public_events_cancel == "")
+				document.getElementById("containement_Title").innerHTML = ""
+			else
+				document.getElementById("containement_Title").innerHTML = "Containment measures"
+
+			if (temp[0].quarantines == "")
+				document.getElementById("quarantine_Text").innerHTML = ""
+			else
+				document.getElementById("quarantine_Text").innerHTML = "<b>Quarantines</b><Br/>" + temp[0].quarantines
+
+			if (temp[0].travel_Bans == "")
+				document.getElementById("travel_Bans_Text").innerHTML = ""
+			else
+				document.getElementById("travel_Bans_Text").innerHTML = "<b>Travel bans/restrictions</b><Br/>" + temp[0].travel_Bans
+
+			if (temp[0].schools_closure == "")
+				document.getElementById("schools_closure_Text").innerHTML = ""
+			else
+				document.getElementById("schools_closure_Text").innerHTML = "<b>Closure of schools</b><Br/>" + temp[0].schools_closure
+
+			if (temp[0].public_events_cancel == "")
+				document.getElementById("public_events_cancel_Text").innerHTML = ""
+			else
+				document.getElementById("public_events_cancel_Text").innerHTML = "<b>Cancellation of public events/Closure of public places</b><Br/>" + temp[0].public_events_cancel
+
+
+			if (temp[0].Health == "" && temp[0].Overall_fiscal_measures == "" && temp[0].Fiscal_people == "" && temp[0].Fiscal_firm == "" && temp[0].Monetary_Prudential == "")
+				document.getElementById("support_Title").innerHTML = ""
+			else
+				document.getElementById("support_Title").innerHTML = "Support measures"
+
+			if (temp[0].Health == "")
+				document.getElementById("Health_Text").innerHTML = ""
+
+			else
+				document.getElementById("Health_Text").innerHTML = "<b>Health</b><Br/>" + temp[0].Health
+
+			if (temp[0].Overall_fiscal_measures == "")
+				document.getElementById("Overall_fiscal_measures_Text").innerHTML = ""
+
+			else
+				document.getElementById("Overall_fiscal_measures_Text").innerHTML = "<b>Overall fiscal measures</b><Br/>" + temp[0].Overall_fiscal_measures
+
+			if (temp[0].Fiscal_people == "")
+				document.getElementById("Fiscal_people_Text").innerHTML = ""
+
+			else
+				document.getElementById("Fiscal_people_Text").innerHTML = "<b>Fiscal - people specific</b><Br/>" + temp[0].Fiscal_people
+
+			if (temp[0].Fiscal_firm == "")
+				document.getElementById("Fiscal_firm_Text").innerHTML = ""
+			else
+				document.getElementById("Fiscal_firm_Text").innerHTML = "<b>Fiscal - firm specific</b><Br/>" + temp[0].Fiscal_firm
+
+			if (temp[0].Monetary_Prudential == "")
+				document.getElementById("Monetary_Prudential_Text").innerHTML = ""
+
+			else
+				document.getElementById("Monetary_Prudential_Text").innerHTML = "<b>Monetary/Macro Prudential</b><Br/>" + temp[0].Monetary_Prudential
+
+		}
+	
+	d3.select("#shutter")
+	.on("mouseover",function(){
+		d3.select(this).style("opacity",0.5);
+	})
+	.on("mouseout", function () {
+			d3.select(this).style("opacity", 1);
+	})
+	.on("click",function(){
+		document.getElementById("CountryCard").style.display = 'none';
+
+		//d3.select("#CountryCard").transition(1000).style("display","none")
+	})
+
+
+    
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51983915-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
