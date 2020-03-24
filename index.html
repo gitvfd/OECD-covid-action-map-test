@@ -122,8 +122,8 @@
 			<div id="vizDesc"></div>
 		</div>
 	</div>
-	<Br /><a id="source" href="https://github.com/gitvfd/OECD-covid-action-map/blob/CoronavirusUpdate_AllCountries_Public.xlsx"
-		target="_blank">Download the data</a>
+	<Br />
+	<a id="source" href="https://github.com/gitvfd/OECD-covid-action-map/blob/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Download the data</a>
 
 </body>
 <script type="text/javascript">
@@ -323,61 +323,61 @@
 				document.getElementById("updateTime").innerHTML = "updated on " + d.data.update	;
 
 				if(d.data.quarantines=="" && d.data.travel_Bans == "" && d.data.schools_closure == "" && d.data.public_events_cancel == "")
-					document.getElementById("containement_Title").innerHTML = ""
+					document.getElementById("containement_Title").innerHTML = "Containment measures"
 				else
 					document.getElementById("containement_Title").innerHTML = "Containment measures"
 				
 				if(d.data.quarantines == "")
-					document.getElementById("quarantine_Text").innerHTML =""
+					document.getElementById("quarantine_Text").innerHTML ="<b>Quarantines</b><Br/>"
 				else
 					document.getElementById("quarantine_Text").innerHTML = "<b>Quarantines</b><Br/>" + d.data.quarantines
 
 				if (d.data.travel_Bans == "")
-					document.getElementById("travel_Bans_Text").innerHTML = ""
+					document.getElementById("travel_Bans_Text").innerHTML = "<b>Travel bans/restrictions</b><Br/>"
 				else
 					document.getElementById("travel_Bans_Text").innerHTML = "<b>Travel bans/restrictions</b><Br/>"+ d.data.travel_Bans
 
 				if (d.data.schools_closure == "")
-					document.getElementById("schools_closure_Text").innerHTML = ""
+					document.getElementById("schools_closure_Text").innerHTML = "<b>Closure of schools</b><Br/>"
 				else
 					document.getElementById("schools_closure_Text").innerHTML = "<b>Closure of schools</b><Br/>"+ d.data.schools_closure
 
 				if (d.data.public_events_cancel == "")
-					document.getElementById("public_events_cancel_Text").innerHTML =""
+					document.getElementById("public_events_cancel_Text").innerHTML ="<b>Cancellation of public events/Closure of public places</b><Br/>"
 				else
 					document.getElementById("public_events_cancel_Text").innerHTML = "<b>Cancellation of public events/Closure of public places</b><Br/>"+ d.data.public_events_cancel
 
 
 				if(d.data.Health == "" && d.data.Overall_fiscal_measures == "" && d.data.Fiscal_people == "" && d.data.Fiscal_firm == "" && d.data.Monetary_Prudential == "")
-					document.getElementById("support_Title").innerHTML = ""
+					document.getElementById("support_Title").innerHTML = "Support measures"
 				else
 					document.getElementById("support_Title").innerHTML = "Support measures"
 
 				if (d.data.Health == "")
-					document.getElementById("Health_Text").innerHTML = ""
+					document.getElementById("Health_Text").innerHTML = "<b>Health</b><Br/>"
 
 				else
 					document.getElementById("Health_Text").innerHTML = "<b>Health</b><Br/>"+ d.data.Health
 
 				if (d.data.Overall_fiscal_measures == "")
-					document.getElementById("Overall_fiscal_measures_Text").innerHTML = ""
+					document.getElementById("Overall_fiscal_measures_Text").innerHTML = "<b>Overall fiscal measures</b><Br/>"
 
 				else
 					document.getElementById("Overall_fiscal_measures_Text").innerHTML = "<b>Overall fiscal measures</b><Br/>"+ d.data.Overall_fiscal_measures
 
 				if (d.data.Fiscal_people == "")
-					document.getElementById("Fiscal_people_Text").innerHTML = ""
+					document.getElementById("Fiscal_people_Text").innerHTML = "<b>Fiscal - people specific</b><Br/>"
 
 				else
 					document.getElementById("Fiscal_people_Text").innerHTML = "<b>Fiscal - people specific</b><Br/>"+ d.data.Fiscal_people
 
 				if (d.data.Fiscal_firm == "")
-					document.getElementById("Fiscal_firm_Text").innerHTML = ""
+					document.getElementById("Fiscal_firm_Text").innerHTML = "<b>Fiscal - firm specific</b><Br/>"
 				else
 					document.getElementById("Fiscal_firm_Text").innerHTML = "<b>Fiscal - firm specific</b><Br/>"+ d.data.Fiscal_firm
 
 				if (d.data.Monetary_Prudential=="")
-					document.getElementById("Monetary_Prudential_Text").innerHTML = ""
+					document.getElementById("Monetary_Prudential_Text").innerHTML = "<b>Monetary/Macro Prudential</b><Br/>"
 
 				else
 					document.getElementById("Monetary_Prudential_Text").innerHTML = "<b>Monetary/Macro Prudential</b><Br/>"+ d.data.Monetary_Prudential
@@ -839,9 +839,8 @@
 		}
 
 		function updateCard(couName){
-console.log(allData)
-console.log(couName)
-var temp= allData.filter(function (d) { return d.Country == couName })
+
+			var temp= allData.filter(function (d) { return d.Country == couName })
 
 			console.log(temp)
 			document.getElementById("CountryCard").style.display = 'block';
@@ -854,61 +853,61 @@ var temp= allData.filter(function (d) { return d.Country == couName })
 			document.getElementById("updateTime").innerHTML = "updated on " + temp[0].update;
 
 			if (temp[0].quarantines == "" && temp[0].travel_Bans == "" && temp[0].schools_closure == "" && temp[0].public_events_cancel == "")
-				document.getElementById("containement_Title").innerHTML = ""
+				document.getElementById("containement_Title").innerHTML = "Containment measures"
 			else
 				document.getElementById("containement_Title").innerHTML = "Containment measures"
 
 			if (temp[0].quarantines == "")
-				document.getElementById("quarantine_Text").innerHTML = ""
+				document.getElementById("quarantine_Text").innerHTML = "<b>Quarantines</b><Br/>"
 			else
 				document.getElementById("quarantine_Text").innerHTML = "<b>Quarantines</b><Br/>" + temp[0].quarantines
 
 			if (temp[0].travel_Bans == "")
-				document.getElementById("travel_Bans_Text").innerHTML = ""
+				document.getElementById("travel_Bans_Text").innerHTML = "<b>Travel bans/restrictions</b><Br/>"
 			else
 				document.getElementById("travel_Bans_Text").innerHTML = "<b>Travel bans/restrictions</b><Br/>" + temp[0].travel_Bans
 
 			if (temp[0].schools_closure == "")
-				document.getElementById("schools_closure_Text").innerHTML = ""
+				document.getElementById("schools_closure_Text").innerHTML = "<b>Closure of schools</b><Br/>"
 			else
 				document.getElementById("schools_closure_Text").innerHTML = "<b>Closure of schools</b><Br/>" + temp[0].schools_closure
 
 			if (temp[0].public_events_cancel == "")
-				document.getElementById("public_events_cancel_Text").innerHTML = ""
+				document.getElementById("public_events_cancel_Text").innerHTML = "<b>Cancellation of public events/Closure of public places</b><Br/>"
 			else
 				document.getElementById("public_events_cancel_Text").innerHTML = "<b>Cancellation of public events/Closure of public places</b><Br/>" + temp[0].public_events_cancel
 
 
 			if (temp[0].Health == "" && temp[0].Overall_fiscal_measures == "" && temp[0].Fiscal_people == "" && temp[0].Fiscal_firm == "" && temp[0].Monetary_Prudential == "")
-				document.getElementById("support_Title").innerHTML = ""
+				document.getElementById("support_Title").innerHTML = "Support measures"
 			else
 				document.getElementById("support_Title").innerHTML = "Support measures"
 
 			if (temp[0].Health == "")
-				document.getElementById("Health_Text").innerHTML = ""
+				document.getElementById("Health_Text").innerHTML = "<b>Health</b><Br/>"
 
 			else
 				document.getElementById("Health_Text").innerHTML = "<b>Health</b><Br/>" + temp[0].Health
 
 			if (temp[0].Overall_fiscal_measures == "")
-				document.getElementById("Overall_fiscal_measures_Text").innerHTML = ""
+				document.getElementById("Overall_fiscal_measures_Text").innerHTML = "<b>Overall fiscal measures</b><Br/>"
 
 			else
 				document.getElementById("Overall_fiscal_measures_Text").innerHTML = "<b>Overall fiscal measures</b><Br/>" + temp[0].Overall_fiscal_measures
 
 			if (temp[0].Fiscal_people == "")
-				document.getElementById("Fiscal_people_Text").innerHTML = ""
+				document.getElementById("Fiscal_people_Text").innerHTML = "<b>Fiscal - people specific</b><Br/>"
 
 			else
 				document.getElementById("Fiscal_people_Text").innerHTML = "<b>Fiscal - people specific</b><Br/>" + temp[0].Fiscal_people
 
 			if (temp[0].Fiscal_firm == "")
-				document.getElementById("Fiscal_firm_Text").innerHTML = ""
+				document.getElementById("Fiscal_firm_Text").innerHTML = "<b>Fiscal - firm specific</b><Br/>"
 			else
 				document.getElementById("Fiscal_firm_Text").innerHTML = "<b>Fiscal - firm specific</b><Br/>" + temp[0].Fiscal_firm
 
 			if (temp[0].Monetary_Prudential == "")
-				document.getElementById("Monetary_Prudential_Text").innerHTML = ""
+				document.getElementById("Monetary_Prudential_Text").innerHTML = "<b>Monetary/Macro Prudential</b><Br/>"
 
 			else
 				document.getElementById("Monetary_Prudential_Text").innerHTML = "<b>Monetary/Macro Prudential</b><Br/>" + temp[0].Monetary_Prudential
@@ -924,8 +923,6 @@ var temp= allData.filter(function (d) { return d.Country == couName })
 	})
 	.on("click",function(){
 		document.getElementById("CountryCard").style.display = 'none';
-
-		//d3.select("#CountryCard").transition(1000).style("display","none")
 	})
 
 
