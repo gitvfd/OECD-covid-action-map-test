@@ -1,0 +1,19 @@
+code	level	title	unit
+	SectionTitle	Fiscal measures	
+Fiscal-measures__Overall-fiscal-measures__Description	SectionText	Overall fiscal measures	
+Fiscal-measures__Health-system-measures__Description	SectionText	Health system measures		
+Fiscal-measures__Income-support-measures-for-individuals-and-households-excluding-tax-and-contribution-changes__Description	SectionText	Income support measures for individuals and households excluding tax and contribution changes	
+Fiscal-measures__Tax-and-contribution-policy-changes__Description	SectionText	Tax and contribution policy changes	
+Fiscal-measures__Public-sector-subsidies-to-businesses__Description	SectionText	Public sector subsidies to businesses	
+Fiscal-measures__Deferral-of-taxes-and-social-security-contributions-and-bringing-forward-expenditures-within-current-fiscal-year__Description	SectionText	Deferral of taxes and social security contributions and bringing forward expenditures within current fiscal year	
+Fiscal-measures__Public-sector-loans-or-capital-injections-to-businesses__Description	SectionText	Public sector loans or capital injections to businesses	
+Fiscal-measures__Loan-guarantees-by-the-state-benefiting-private-borrowers__Description	SectionText	Loan guarantees by the state benefiting private borrowers	
+	SectionTitle	Monetary policy and prudential regulation	
+Monetary-policy-and-prudential-regulation__Monetary-policy__Description	SectionText	Monetary policy	
+Monetary-policy-and-prudential-regulation__Prudential-regulation__Description	SectionText	Prudential regulation	
+	SectionTitle	Measures to promote burden sharing within the private sector	
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-individuals-and-households__Description	SectionText	Support to individuals and households	
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-firms__Description	SectionText	Support to firms	
+	SectionTitle	Other measures including structural policy measures	
+Other-measures-including-structural-policy-measures__Description	SectionText		
+Sources__Links-to-Sources	SectionText	Sources	
