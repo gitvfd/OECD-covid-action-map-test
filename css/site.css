@@ -26,13 +26,18 @@ h3 {
 
 
 
-
+.mySlides {
+  display:none;
+}
+#aboutMap{
+  display:block;
+}
 
 div.tooltip {
     position:absolute;
     width: auto;
     height: auto;
-    max-width: 250px;
+    max-width: 40%;
     margin-top: -1.25em;
     padding: 0.75em 1em;
     font-family: 'Oswald', sans-serif;
@@ -51,19 +56,21 @@ div.tooltip {
       -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
       pointer-events: none;
-    transform: translate(-50%,-75%);
+    /*transform: translate(-5%,-5%);*/
 }
-
+/**
 div.tooltip::after {
   content: " ";
   position: absolute;
-  top: 100%;  /* At the top of the tooltip */
+  top: 100%;  
   left: 50%;
   margin-left: -10px;
   border-width: 10px;
   border-style: solid;
   border-color: #fff transparent transparent transparent;
-}
+}**/
+
+
 
 #world {
   /**stroke: #deeaf1;**/
@@ -73,10 +80,6 @@ div.tooltip::after {
   opacity: 1;
 }
 
-#genderBudgetingMap{
-
-  background-image:linear-gradient(rgba(221,233,239,.3), rgba(248,250,252,.1));
-}
 
 
 #state-borders {
@@ -97,15 +100,17 @@ div.tooltip::after {
 }
 
 #modedemploi{
-      position:absolute;
+      /*position:absolute;
       top:2.5%;
       left: 0; 
       right: 0; 
       margin-left: auto; 
       margin-right: auto;
-      max-width:500px;
+      max-width:200px;*/
+      display: inline-block;
+      width:80%;
       
-      padding:1rem;
+      padding:0.5rem;
       background: #FFFFFF;
       -webkit-border-radius: 2px;
       -moz-border-radius: 2px;
@@ -117,21 +122,22 @@ div.tooltip::after {
 
       margin-left: 1.2em;
       font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: #04629a;
 }
 
 #countryCard{
       position:absolute;
-      top:20%;
+      top:1%;
       left: 0; 
      right: 0; 
       margin-left: auto; 
       margin-right: auto;
       width:95%;
+      height:97%;
       max-width: 1140px;
-      max-height:500px;
+      max-height:1000px;
       overflow: scroll;
       /*padding:2rem;*/
       background: #FFFFFF;
@@ -143,9 +149,47 @@ div.tooltip::after {
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
       /*pointer-events: none;*/
       display:none;    
+
+    z-index:2;
 }
 
-#shutterholder{
+
+#navbar{
+
+  padding:2rem;
+  margin-left: 2em;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0b1e2d;
+
+}
+
+.couNav{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 100;
+  font-size: 1.25rem;
+  color: #04629a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#trackersLink{
+  position:absolute;
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 150%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.33); /* Black background with opacity */
+  z-index:1; /* Specify a stack order in case you're using a different order for other elements */
+  /*cursor: pointer;*/ /* Add a pointer on hover */
+  padding:10%;
+      display:none;    
+}
+#shutterholder,#shutterholdertracker{
   padding:2rem;
   position: -webkit-sticky;
   position: sticky;
@@ -156,13 +200,149 @@ div.tooltip::after {
   z-index:3;
 
 }
-#shutter{
+#shutter,#shuttertracker{
   float:right;  
   width:20px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
+.flex-container {position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container > div {
+  align-content: space-between;
+  width: 40%;
+  margin: 0% 5%;
+  text-align: left;
+}
+
+#disclaimer{
+width:87.5%;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 100;
+    font-size: 0.85rem;
+    color: #04629a;
+  margin: 0% 5%;
+  text-align: left;
+}
+.button{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: left;
+   /* position: relative;*/
+    width: 200px;
+    height: 40px;
+    margin: 5px 5px 15px 5px;
+    padding: 10px 10px 10px 10px;
+    background: #FFFFFF;
+    border:none;
+    -webkit-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -o-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #0b1e2d;
+}
    
+.textbtn{
+    font-size: 1.25rem;
+    font-family: "Noto Sans Display", sans-serif;
+    margin:auto;
+}
+
+.green{
+    width: 200px;
+    height: 50px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    background: #548235;
+    color:#ffffff;
+    font-weight: 700;
+}
+
+#allData{
+    background: #0b1e2d;
+}
+#launchTracker{
+    background: #0b1e2d;
+
+}
+
+.navigHeader{
+    text-align: left;
+    margin-left:7%;
+    font-family: 'Oswald', sans-serif;
+    font-style: normal;
+    font-size: 1.5rem;
+    font-weight:600;
+    line-height: 1;
+    color: #0b1e2d;
+
+}
+
+#morebtn{
+    text-align: right;
+    vertical-align: sub;
+    font-family: 'Oswald', sans-serif;
+    font-style: normal;
+    font-size: 2rem;
+    font-weight:600;
+    line-height: 1;
+    color: #0b1e2d;
+}
+
+.toTrackers{
+    display: inline-block;
+    padding: 18px 25px 15px 25px;
+    font-family: "Noto Sans Display",sans-serif;
+    font-size: 15px;
+    /*font-size: 0.75rem;*/
+    font-weight: 700;
+    line-height: 1em;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: #fff;
+    background: #633582;
+    /*border: 1px solid #0b1e2d;*/
+    border-radius: 25px;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+
+.toTrackers:hover{
+text-decoration: underline;
+    background: #0b1e2d;
+}
+
+
+#trackersText{
+    margin-top:0.75em;
+    margin-left: 2em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #0b1e2d;
+}
+
+
 #countrySel{
     padding-top: 10px;
     margin-left: 1.2em;
@@ -184,21 +364,23 @@ div.tooltip::after {
     line-height: 1;
     color: #04629a;
 }
-#updateTime{
-    margin-left: 2.0em;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 100;
-    font-style: italic;
-    line-height: 1;
-    color: #04629a;
-}
 
-#containment_Text,#supportText,#supportViz {
+#containment_Text,#supportText,#supportViz,#singleCountry {
 
   padding:2rem;
     margin-top: 10px;
     margin-left: 2em;
+}
+
+.SectionChart{
+    display: inline-block;
+    width:100%;
+    padding-left:0.5em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    color: #04629a;
+    background: #DDE9EF;
 }
 
 .SectionTitle{
@@ -225,67 +407,16 @@ div.tooltip::after {
     font-size: 1.5rem;
     color: #0b1e2d;
 }
-.annotation path {
-  fill: none;
-  stroke: #F58380;
-  stroke-width: 1
+
+#noteCountry{
+    margin-top:0.75em;
+    margin-left: 2em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 100;
+    font-size: 1rem;
+    color: #0b1e2d;
 }
 
-/**.annotation-note text {
-  fill: #979797;
-  font : 12px Caecilia lt bold; color:#575757;
-}**/
-
-.annotation tspan {
-  font-family: "Arial";
-  font-size: 12px;
-    line-height: 1.1;
-    color: #575757;
-}
-
-.annotation-note-title text{
-  fill: #575757;
-  font : 14px Caecilia lt bold; color:#575757;
-  font-style:bold;
-  font-size: 11px;
-}
-
-.annotation-note-bg {
-  fill: none;
-  fill-opacity: 0.9;
-  filter: url(#blur-effect);
-}
-
-.annotation-tip .annotation path {
-  stroke: white;
-}
-.annotation-tip .annotation text {
- fill: white;
-}
-.handle{
-  display:none;
-}
-
-annotation.badge path.subject-pointer, .annotation.badge path.subject {
-      fill: var(--accent-color);
-      stroke-width: 3px;
-      stroke-linecap: round;
-    } 
-
-    .annotation.badge path.subject-ring {
-      fill: white;
-      stroke-width: 3px;
-    }
-
-    .annotation.badge .badge-text {
-      fill: white;
-      font-size: .7em;
-      max-width: 100px;
-    }
-        
-    rect.annotation-note-bg {
-      fill: rgba(255, 255, 255, 0);
-    }
     .hover{
       max-width: 200px;
     }
@@ -325,10 +456,31 @@ annotation.badge path.subject-pointer, .annotation.badge path.subject {
 
 
 
+#source{
+  margin-left:5%;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  color: #04629a;
+
+}
+
+#copyright{
+  margin-top:7px;
+  margin-left:5%;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  font-style:normal;
+  color: #04629a;
+}
+
+
 #selCountry{
   /*float:left;*/
-  max-width:450px;
-  margin-bottom:7px;
+  max-width:200px;
+  margin-bottom:2px;
   border:solid;
   border-width: 0px;
   border-color:  #575757;
@@ -336,56 +488,147 @@ annotation.badge path.subject-pointer, .annotation.badge path.subject {
   border-radius: 10px;
 }
 
-#selCountry{
-  background-color: none;/** CHange background color for dropdowns**/
-}
 
 #country_dropdown{
-  margin: 2px 0px 5px 10px;
+  margin: 5px 0px 5px 5px;
+  max-width: 180px;
   display:inline;
- font-family: 'Noto Sans', sans-serif;
-    font-weight: 300;
-    font-size: 1.5rem;
-    color: #0b1e2d;
-  
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: #0b1e2d;
   text-align:center;
   letter-spacing:normal;
   vertical-align: baseline;
-  /*color: white;*/
   cursor: pointer;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 0px 0;
   background-color:#fff;/**#c3d1da;**/
   border:none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 .dropdown_text{
+  display: inline-block;
   margin-left:5px;
   font-family: 'Noto Sans', sans-serif;
-    font-weight: 300;
-    font-size: 1.5rem;
-    color: #ffffff;
+  font-weight: 100;
+  font-size: 1.33rem;
+  color: #ffffff;
   text-align:start;
-
-  padding:5px 25px 5px 10px;
+  padding:5px 25px 3px 0px;
 }
+
+
+
 
 #updateTag{
-margin-left:5%;
- font-family: 'Noto Sans', sans-serif;
-    font-weight: 300;
-    font-size: 1.5rem;
-    font-style:normal;
-    color: #04629a;
+  margin-left:5%;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  font-style:normal;
+  color: #04629a;
 }
 
 
-#source{
-margin-left:5%;
- font-family: 'Noto Sans', sans-serif;
-    font-weight: 300;
+#updateTime{
+    margin-left: 2.0em;
+    font-family: 'Oswald', sans-serif;
     font-size: 1.5rem;
-  text-decoration: underline;
+    font-weight: 100;
+    font-style: italic;
+    line-height: 1;
     color: #04629a;
+}
+#comp_Country{
+ /** max-width:200px;**/
+  margin:0.5em 0em 0em 2.0em ;
+  border:solid;
+  border-width: 0px;
+  border-color:  #575757;
+  background-color: #04629a;/** CHange background color for dropdowns**/
+  border-radius: 10px;
+  /**display: none; /** TO REMOVE TO SHOW COMPARISON FEATURE*/
+}
 
+
+#comp_country_dropdown{
+  margin: 5px 5px 5px 0px;
+  max-width: 190px;
+ /* display:inline-block;*/
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  color: #0b1e2d;
+  text-align:center;
+  letter-spacing:normal;
+  vertical-align: baseline;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 0px 0;
+  background-color:#fff;/**#c3d1da;**/
+  border:none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+.comp_dropdown_text{
+  display: inline-block;
+  margin-left:5px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 100;
+  font-size: 1.15rem;
+  color: #ffffff;
+  text-align:start;
+  padding:5px 25px 3px 0px;
+}
+
+
+#countryComparison{
+    margin-left: 2em;
+    padding: 2rem;
+  overflow-x:auto;
+
+      display:none;    
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+
+  table-layout: fixed;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  vertical-align:top;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+.labelCell{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #0b1e2d;
+}
+
+.countryCell{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 100;
+  font-size: 1.25rem;
+  color: #0b1e2d;
+}
+
+
+#highlight {
+  background: linear-gradient(180deg, rgba(255,255,255,0) 65%, #ffc20e 65%);
+
+}
+
+@media only screen and (max-width: 600px) {
+  table {
+  min-width: 500px;  
+  overflow-x:auto;
+  }
 }

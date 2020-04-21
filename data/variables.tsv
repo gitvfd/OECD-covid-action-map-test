@@ -1,0 +1,59 @@
+code	level	title	unit
+src	init		
+update	init		
+xls_saved	init		
+lat	init		
+lng	init		
+Country	init		
+Basic-statistics__Population	init		
+Basic-statistics__Exchange-rate	init		
+Basic-statistics__GDP	init		
+Basic-statistics__GDP-per-capita	init		
+Containment-measures__Confinement-and-lock-downs__Description	choroplethDesc		
+Containment-measures__Confinement-and-lock-downs__Level	choroplethValue		
+Containment-measures__Travel-bans-and-restrictions__Description	choroplethDesc		
+Containment-measures__Travel-bans-and-restrictions__Level	choroplethValue		
+Containment-measures__Closure-of-schools__Description	choroplethDesc		
+Containment-measures__Closure-of-schools__Level	choroplethValue		
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Description	choroplethDesc		
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	choroplethValue		
+Containment-measures__Obligatory-shut-down-of-economic-activities__Description	choroplethDesc		
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	choroplethValue		
+	SectionTitle	Fiscal measures	
+Fiscal-measures__Overall-fiscal-measures__Description	SectionText	Overall fiscal measures	
+Fiscal-measures__Overall-fiscal-measures__Impact-on-budget-balance	SectionChart	Impact on budget balance	balance
+Fiscal-measures__Overall-fiscal-measures__Value-of-impact-on-budget-balance	ChartValue		
+Fiscal-measures__Health-system-measures__Description	SectionText	Health system measures	
+Fiscal-measures__Health-system-measures__Value-percent__GDP	SectionChart	Health system measures	as % of GDP
+Fiscal-measures__Health-system-measures__Value	ChartValue		
+Fiscal-measures__Income-support-measures-for-individuals-and-households-excluding-tax-and-contribution-changes__Description	SectionText	Income support measures for individuals and households excluding tax and contribution changes	
+Fiscal-measures__Income-support-measures-for-individuals-and-households-excluding-tax-and-contribution-changes__Value-percent__GDP	SectionChart	Income support measures for individuals and households excluding tax and contribution changes	as % of GDP
+Fiscal-measures__Income-support-measures-for-individuals-and-households-excluding-tax-and-contribution-changes__Value	ChartValue		
+Fiscal-measures__Tax-and-contribution-policy-changes__Description	SectionText	Tax and contribution policy changes	
+Fiscal-measures__Tax-and-contribution-policy-changes__Value-percent__GDP	SectionChart	Tax and contribution policy changes	as % of GDP
+Fiscal-measures__Tax-and-contribution-policy-changes__Value	ChartValue		
+Fiscal-measures__Public-sector-subsidies-to-businesses__Description	SectionText	Public sector subsidies to businesses	
+Fiscal-measures__Public-sector-subsidies-to-businesses__Value-percent__GDP	SectionChart	Public sector subsidies to businesses	as % of GDP
+Fiscal-measures__Public-sector-subsidies-to-businesses__Value	ChartValue		
+Fiscal-measures__Deferral-of-taxes-and-social-security-contributions-and-bringing-forward-expenditures-within-current-fiscal-year__Description	SectionText	Deferral of taxes and social security contributions and bringing forward expenditures within current fiscal year	
+Fiscal-measures__Deferral-of-taxes-and-social-security-contributions-and-bringing-forward-expenditures-within-current-fiscal-year__Value-percent__GDP	SectionChart	Deferral of taxes and social security contributions and bringing forward expenditures within current fiscal year	as % of GDP
+Fiscal-measures__Deferral-of-taxes-and-social-security-contributions-and-bringing-forward-expenditures-within-current-fiscal-year__Value	ChartValue		
+Fiscal-measures__Public-sector-loans-or-capital-injections-to-businesses__Description	SectionText	Public sector loans or capital injections to businesses	
+Fiscal-measures__Public-sector-loans-or-capital-injections-to-businesses__Value-percent__GDP	SectionChart	Public sector loans or capital injections to businesses	as % of GDP
+Fiscal-measures__Public-sector-loans-or-capital-injections-to-businesses__Value	ChartValue		
+Fiscal-measures__Loan-guarantees-by-the-state-benefiting-private-borrowers__Description	SectionText	Loan guarantees by the state benefiting private borrowers	
+Fiscal-measures__Loan-guarantees-by-the-state-benefiting-private-borrowers__Value	SectionChart	Loan guarantees by the state benefiting private borrowers	value
+Fiscal-measures__Loan-guarantees-by-the-state-benefiting-private-borrowers__Value-of-loans-guaranteed	ChartValue		
+	SectionTitle	Monetary policy and prudential regulation	
+Monetary-policy-and-prudential-regulation__Monetary-policy__Description	SectionText	Monetary policy	
+Monetary-policy-and-prudential-regulation__Prudential-regulation__Description	SectionText	Prudential regulation	
+	SectionTitle	Measures to promote burden sharing within the private sector	
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-individuals-and-households__Description	SectionText	Support to individuals and households	
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-individuals-and-households__Value-percent__GDP	SectionChart	Support to individuals and households	as % of GDP
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-individuals-and-households__Value	ChartValue		
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-firms__Description	SectionText	Support to firms	
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-firms__Value-percent__GDP	SectionChart	Support to firms	as % of GDP
+Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-firms__Value	ChartValue		
+	SectionTitle	Other measures including structural policy measures	
+Other-measures-including-structural-policy-measures__Description	SectionText		
+Sources__Links-to-Sources	SectionText	Sources	
