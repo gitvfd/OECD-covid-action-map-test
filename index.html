@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/site.css">
 
 
- <script src="libs/d3.v4.min.js"></script>
+ 	<script src="libs/d3.v4.min.js"></script>
 	<script src="libs/d3.v4.jetpack.min.js"></script>
 	<script src="libs/d3-scale-chromatic.v1.min.js"></script>
 	<script src="libs/topojson.v1.min.js"></script>
@@ -68,104 +68,118 @@
 			style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<!--End Google Tag Manager (noscript) -->
-	<Br />
+	
 	<!--<div id="warning">The country policy tracker will be available here <u>on March 30</u><Br/> <span id="warningtext">In the meantime, you can find OECD information on the impacts and consequences of the coronavirus pandemic on our lives and our societies at <a href="https://www.oecd.org/coronavirus">oecd.org/coronavirus</a></span></div>-->
 	
 
-	<div id="modedemploi">Click on the countries to access policy responses or look at the options to see the confinement levels and measures. 
-				<div id="selCountry">
-					<!--<div class="dropdown_text">Or select one directly: </div>-->
-					<select id="country_dropdown"
-						onchange="updateCard(value)">
-						<option value="-" selected="selected"> - </option>
-					</select>
-				</div>
-	</div>
+	<!--</div>-->
 
-	<div class="mySlides" id="aboutMap"></div>
-
-	<div id="CountryCard">
-		<div id="shutterholder" >
-			<img id="shutter" src="img/cross.svg">
-			<div id="countrySel"></div>
-			<div id="betaTag">&nbsp;Beta</div>
-			<div id="flex-container_comp">
-				<div id="updateTime"></div>
-				
-			</div>
-		</div>
-		<div id="navbar"></div>
-		<Br />
-		<div id="singleCountry"></div>
-		<Br />
-		<div id="noteCountry"></div>
-	</div>
-	<Br />
-	</div>
-	<div id="trackersLink">
-		<div id="shutterholdertracker">
-		<img id="shuttertracker" src="img/cross.svg">
-
-		<div id="trackersText"><b>Find more country policy responses in these policy tracking initiatives:</b><Br />
-			<ul>
-				<li>
-					<a href="http://www.oecd.org/tax/covid-19-tax-policy-and-other-measures.xlsm" target="_blank">Tax policy responses by country</a></li>
-				<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
-				target="_blank">Employment and social policy responses by country</a></li>
-				<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx" target="_blank">Health policy responses by country</a></li>
-			<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses by country</a></li>			
-			</ul>
-		</div>
-		</div>
-	</div>
-	<div class="navigHeader">Confinement level:</div>
+	<h1>Tracking policy responses</h1>
 	<div class="flex-container">
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
-					class="textbtn">Confinement and lock downs</span></button>
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Travel-bans-and-restrictions__Level" title="Housing"
-				onclick="updateMap(value)"><span class="textbtn">Travel bans and restrictions</span></button>
-			<button class="button grey" id="Dimension" type="submit" value="Containment-measures__Closure-of-schools__Level"
-				title="Housing" onclick="updateMap(value)"><span class="textbtn">Closure of schools</span></button>
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level" title="Housing"
-				onclick="updateMap(value)"><span class="textbtn">Cancellation of public events/Closure of public
-					places</span></button>
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
-				onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
+				class="textbtn">Confinement and lock downs</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Travel-bans-and-restrictions__Level" title="Housing"
+			onclick="updateMap(value)"><span class="textbtn">Travel bans and restrictions</span></button>
+		<button class="button grey" id="Dimension" type="submit" value="Containment-measures__Closure-of-schools__Level"
+			title="Housing" onclick="updateMap(value)"><span class="textbtn">Closure of schools</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level" title="Housing"
+			onclick="updateMap(value)"><span class="textbtn">Cancellation of public events/Closure of public
+				places</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
+			onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
 	</div>
-	<div class="navigHeader">Policy responses by subject:</div>
 	<div class="flex-container">
-			<button class="button green" id="allData" type="submit" value="allData" onclick="updateSelector(value),updateCircle(allData)"><span class="textbtn">Fiscal and monetary policy responses</span></button>
-			<button class="button green" id="" type="submit" value="alljobs" onclick="updateSelector(value),updateCircle(alljobs)"><span class="textbtn">Employment and social policy responses</span></button>
-			<!--<button class="button green" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn">Health policy responses</span></button>
-			<button class="button green" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn">Tax policy responses</span></button>-->
+		<div class="navigHeader">Confinement level:</div>
+		<div id="scaleLegend"></div>
+	
 	</div>
-	<Br />
+	<div id="aboutMap"></div>
+
+	<div id="modedemploi">
+		<div id="#intromodedemploi">Select directly a country:
+		</div>
+		<div id="selCountry">
+			<select id="country_dropdown" onchange="updateCard(value)">
+				<option value="-" selected="selected"> - </option>
+			</select>
+		</div>
+	</div>
+	
+	<!--<div class="navigHeader">Policy responses by subject:</div>-->
+	<div class="flex-container" id="switchtracker">
+		<button class="button green" id="allData" type="submit" value="allData"
+			onclick="updateSelector(value),updateCircle(allData)"><span class="textbtn"><span class="greenbold">Visualise</span><br/>fiscal and monetary policy
+				responses</span></button>
+		<button class="button green" id="" type="submit" value="alljobs"
+			onclick="updateSelector(value),updateCircle(alljobs)"><span class="textbtn"><span class="greenbold">Visualise</span><br />employment and social policy
+				responses</span></button>
+		<!--<button class="button green" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn"><b>Visualise</b><br />health policy responses</span></button>
+				<button class="button green" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn"><b>Visualise</b><br />tax policy responses</span></button>-->
+	</div>
+	
 	<div class="flex-container">
 		<div id="trackersNotes">
 			<div id="updateTag">Beta version - Updated every day</div>
-			<a id="source" href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Download the data</a>
+			<a id="source"
+				href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx"
+				target="_blank">Download the data</a>
 			<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
-
+	
 		</div>
-
+	
 		<div id="morebtn">
-		<div class="toTrackers" id="toTrackersBtn">More policy responses</div>
+			<div class="toTrackers" id="toTrackersBtn">Download more policy responses</div>
 		</div>
 	</div>
-	<Br/>
+	<Br />
 	<div class="flex-container">
-		<div id="disclaimer">This document, as well as any data and map included herein, are without prejudice to the status of
-					or sovereignty over any territory, to the delimitation of international frontiers and boundaries and to the name of any territory, city
-					or area.
+		<div id="disclaimer">This document, as well as any data and map included herein, are without prejudice to the status of or sovereignty over any territory, to the delimitation of international frontiers and boundaries and to the name of any territory, city or area.
 		</div>
 	</div>
+		<div id="trackersLink">
+			<div id="shutterholdertracker">
+				<img id="shuttertracker" src="img/cross.svg">
+		
+				<div id="trackersText"><b>Find more country policy responses in these policy tracking initiatives:</b><Br />
+					<ul>
+						<li>
+							<a href="http://www.oecd.org/tax/covid-19-tax-policy-and-other-measures.xlsm" target="_blank">Tax
+								policy responses by country</a></li>
+						<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
+								target="_blank">Employment and social policy responses by country</a></li>
+						<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx"
+								target="_blank">Health policy responses by country</a></li>
+						<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses
+								by country</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<div id="CountryCard">
+			<div id="shutterholder" >
+				<img id="shutter" src="img/cross.svg">
+				<div id="countrySel"></div>
+				<div id="betaTag">&nbsp;Beta</div>
+				<div id="flex-container_comp">
+					<div id="updateTime"></div>
+					
+				</div>
+			</div>
+			<div id="themebar"></div>
+			<div id="navbar"></div>
+			<Br />
+			<div id="singleCountry"></div>
+			<Br />
+			<div id="noteCountry"></div>
+	</div>
+
+
 </body>
 <script type="text/javascript">
-
 
 	var popupWidth;
 	var heightChart ;
@@ -173,7 +187,7 @@
 	var xScale;
 	var yScale ;
 
-	var worldData,allData,allVariables,alljobs,alljobsvariables;
+	var worldData, confinementdef, allcontext, allData, allVariables, alljobs, alljobsvariables;
 
 	var selector="allData";
 
@@ -193,21 +207,21 @@
     var format = d3.format(",.1f");
     var margin = 20,centered;
 
-	var mapRatio=0.4;
+	var mapRatio=0.375;
     
     var width = document.getElementById("aboutMap").offsetWidth,
     	height= width*mapRatio;
 
 	var quarantinecolor= d3.scaleOrdinal()
-			.domain([0, 1, 2, 3, 4, 5])
-			.range(['#d6e1e1', '#b0c4ca', '#8ba8b3', '#658c9c', '#3e7286', '#005870'])
+			.domain([-1,0, 1, 2, 3, 4, 5])
+			.range(['#c0c7c9','#76fab7', '#73ce9e', '#6da485', '#647b6d', '#575456', '#482e40'])
 
 	var circleColor=d3.scaleOrdinal()
 			.domain(["alldata", "jobsdata", "healthdata", "taxdata"])
 			.range(['#39617D', '#8cc841', '#8cc841', '#8cc841'])
 			
   	var projection = d3.geoRobinson()
-	    		.scale(width/7.5)
+	    		.scale(width/7.75)
 	    		.translate([width / 2, 6*height / 10])
   	        	.precision(.01);
 
@@ -239,7 +253,30 @@
 		.defer(d3.tsv, urls.jobsvariables)
 	    .await(render);
 
-function setDropdown(data){
+	var scalesvg = d3.select("#scaleLegend").append("svg")
+		.attr("width", 300)
+		.attr("height", 40)
+	
+		scalesvg.selectAll("rect").data([-1,0, 1, 2, 3, 4, 5])
+				.enter().append("rect")
+				.attr("class","legend")
+				.attr("height", 20)
+				.attr("x", function (d) { return 5+(d+1)*35; })
+				.attr("width", function (d) { return 30; })
+				.style("fill", function (d) { return quarantinecolor(d); });
+		scalesvg.selectAll("text").data([0, 1, 2, 3, 4, 5])
+				.enter().append("text")
+				.attr("class", "legendtext")
+				.attr("y", 35)
+				.attr("x", function (d) { return 5 + (d + 1)* 35; })
+				//.attr("width", function (d) { return 10; })
+				.text( function (d) { return d; });
+
+	d3.tsv("data/confinement.tsv",function(data){
+		confinementdef=data;
+	})		
+
+	function setDropdown(data){
 		document.getElementById("country_dropdown").innerHTML = "<option value=\"-\" selected=\"selected\"> - </option>";
 	data.forEach(function(d){
 		var x = document.getElementById("country_dropdown");
@@ -330,9 +367,9 @@ function setDropdown(data){
 				if (d.ISO3 == "EU" || d.ISO3 == "SEA")
 					return width / 250;
 				else
-					return width / 350;
+					return width / 375;
 			})
-			.attr("fill", function (d) {console.log(selector)
+			.attr("fill", function (d) {
 				if (d.ISO3 == "EU" || d.ISO3 == "SEA")
 					return "#17a2b8";
 				else
@@ -364,6 +401,14 @@ function setDropdown(data){
 					.style("top", event.pageY - document.body.scrollTop + "px");
 
 				})
+			
+			.on("mousemove", function (d) {
+
+				divMap
+					.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
+					.style("top", event.pageY - document.body.scrollTop + "px");
+
+			})
 			.on('mouseout', function (d) {
 				
 				if (d.data.ISO3 == "EU" || d.data.ISO3 == "SEA")
@@ -381,51 +426,6 @@ function setDropdown(data){
 			
 	};
       
-
-
-	d3.select(window).on('resize', resize);
-
-	function resize() {
-	    // adjust things when the window size changes
-	    width = document.getElementById("aboutMap").offsetWidth,
-	    height = width * mapRatio;
-
-	    // update projection
-	    projection
-	        .translate([width / 2, 6 * height / 10])
-	        .scale(width/7.5);
-
-	    // resize the map container
-	    svg.attr('width', width + 'px')
-	        .attr('height', height + 'px');
-
-	    // resize the map
-	    worldMap.selectAll('.world').attr('d', path);
-	    //world.selectAll('.state').attr('d', path);
-	    
-
-	    worldMap.selectAll('circle')
-			.attr("cx", function (d) {
-				return projection([d.lng, d.lat])[0];
-			})
-			.attr("cy", function (d) {
-				return projection([d.lng, d.lat])[1];
-			})
-	      	.attr("r",width/300);
-
-		voronoi
-			.extent([[-1, -1], [width + 1, height + 1]]);
-		
-		polygons = voronoi(polygonData).polygons();
-
-		voronoiLayer.selectAll(".cell")
-			.data(polygons)
-			.attr("fill", "none")
-			.style("pointer-events", "all")
-			.attr("stroke", "none")
-			.attr("d", function (d) { return "M" + d.join("L") + "Z"; })
-	}
-	
 
 	function updateCard(couName){
 		
@@ -448,26 +448,62 @@ function setDropdown(data){
 		}
 
 		var temp= selData.filter(function (d) { return d.Country == couName })
-
+		
 		document.getElementById("CountryCard").style.display = 'block';
-			//document.getElementById("modedemploi").style.display = 'none';
 
 		document.getElementById("countrySel").innerHTML = temp[0].Country;
 
 		document.getElementById("updateTime").innerHTML = "Updated on " + temp[0].update;
-		var navText="Table of content <Br/>";
+		
+		var navText="Quicklinks <Br/>";
+		
 		var countryText="";
+		var themenav="<button class=\"button menuCard\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(allData),updateCard(couName)\" >Context</button >";
+
+		function isPresent(fruit) {
+			return fruit.Country === couName;
+		}
+
+		if(allData.find(isPresent))
+		var themenav = themenav + "<button class=\"button menuCard\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(couName)\" >Fiscal and Monetary</button >";
+
+		if (alljobs.find(isPresent))
+			var themenav = themenav + "<button class=\"button menuCard\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(couName)\" >employment and social</button >";
+
+
+
 		selVariables.forEach(function(d){
 				if (d.level== "SectionTitle"){
-					countryText= countryText+ "<div class=\"border\" id=\"" + d.title.replace(/ /g, "") +"\" ><span class=\"SectionTitle\">"+d.title+"</span></div><Br/>"
-					navText= navText + "<a class=\"couNav\" href=\"#" + d.title.replace(/ /g,"") + "\">" + d.title + "</a><Br/>"
-				}else if(d.level=="SectionText"){
-					countryText = countryText + "<div  class=\"SectionText\"><b>"+d.title+"</b><br/>"+ temp[0][d.code]+"</div><Br/>";
-				} else if (d.level == "SectionChart") {
-					countryText = countryText + "<div class=\"SectionChart\"><b>"+ d.title+"</b> - <i>" + d.unit +"</i></div><br/><div class=\"SectionChart\" id=\""+ d.code+"\"></div><Br/>" ;
-				}
-		})
+					var count = 0;
+					selVariables.filter(function (k) { return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
+						console.log(temp[0][k.code])
+						
+							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")) {
+								count++;
+							}
+						
 
+					})
+
+					if (count >0){
+						
+						countryText = countryText + "<div class=\"border\" id=\"" + d.title.replace(/ /g, "") + "\" ><span class=\"SectionTitle\">" + d.title + "</span></div><Br/>"
+						navText = navText + "<a class=\"couNav\" href=\"#" + d.title.replace(/ /g, "") + "\">" + d.title + "</a><Br/>"
+						
+						selVariables.filter(function (k) { return (k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0]) && k.hierarchy.split("-")[1]!= undefined }).forEach(function (k) {
+							if (k.level == "SectionText" || k.level == "choroplethDesc") {
+								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
+									countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
+							} else if (k.level == "SectionChart") {
+								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
+									countryText = countryText + "<div class=\"SectionChart\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
+							}
+						})
+					}
+				}	
+				
+		})
+		document.getElementById("themebar").innerHTML = themenav;
 		document.getElementById("navbar").innerHTML = navText;
 		document.getElementById("singleCountry").innerHTML= countryText
 
@@ -487,16 +523,77 @@ function setDropdown(data){
 	}
 
 
-function 	updateSelector(string){
-	selector=string;
-}
+	function updateSelector(string){
+		selector=string;
+	}
 
-function updateMap(value){
+	function updateMap(value){
+
+	scalesvg.selectAll("rect")
+		.on("mouseover",function(d){
+			for(i=-1;i<=5;i++){
+				if(i!=d){
+					var cathighlight=".cat"+i;
+					worldMap
+						.selectAll(cathighlight)
+						.style("opacity", 0.1)
+				}
+				
+			}
+			
+			var htmlText;
+			
+			confinementdef.forEach(function(k){
+				
+				if(k.level==d && k.code==value)
+					htmlText = k.definition
+		
+			});
+			if (d=="-1")
+			htmlText="Not available";
+			divMap.html(htmlText)
+				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
+				.style("top", event.pageY - document.body.scrollTop + "px");
+
+			divMap.transition()
+				.duration(250)
+				.style("opacity", 1);
+
+		})
+		.on("mousemove",function(d){
+
+			divMap
+				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
+				.style("top", event.pageY - document.body.scrollTop + "px");
+
+		})
+		.on("mouseout",function(d){
+			worldMap
+				.selectAll("path")
+				.style("opacity", 0.75)
+			
+			divMap.transition()
+				.duration(250)
+				.style("opacity", 0);
+
+		}) 
+
+	document.getElementById("scaleLegend").style.visibility = 'visible';
+	
 	worldMap
 		.selectAll("path")
 		.data(worldData.features)
-
 		.transition().duration(500)
+		.attr("class", function (k) {
+			var catvalue = "-1";
+			allData.forEach(function (j) {
+				if (j.ISO3 == k.properties.ISO3_CODE) {
+					if (j[value] != 'Information not available' && j[value] != '')
+						catvalue = j[value] 
+				}
+			})
+			return "cat"+ catvalue;
+		})
 		
 		.attr('fill', function (d) {
 			
@@ -537,6 +634,14 @@ function updateMap(value){
 				.style("top", event.pageY - document.body.scrollTop + "px");
 
 		})
+
+		.on("mousemove", function (d) {
+
+			divMap
+				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
+				.style("top", event.pageY - document.body.scrollTop + "px");
+
+		})
 		.on('mouseout', function (d) {
 
 			if (d.data.ISO3 == "EU" || d.data.ISO3 == "SEA")
@@ -554,6 +659,51 @@ function updateMap(value){
 		
 }
 
+
+
+	d3.select(window).on('resize', resize);
+
+
+	function resize() {
+		// adjust things when the window size changes
+		width = document.getElementById("aboutMap").offsetWidth,
+			height = width * mapRatio;
+
+		// update projection
+		projection
+			.translate([width / 2, 6 * height / 10])
+			.scale(width / 7.75);
+
+		// resize the map container
+		svg.attr('width', width + 'px')
+			.attr('height', height + 'px');
+
+		// resize the map
+		worldMap.selectAll('.world').attr('d', path);
+		//world.selectAll('.state').attr('d', path);
+
+
+		worldMap.selectAll('circle')
+			.attr("cx", function (d) {
+				return projection([d.lng, d.lat])[0];
+			})
+			.attr("cy", function (d) {
+				return projection([d.lng, d.lat])[1];
+			})
+			.attr("r", width / 300);
+
+		voronoi
+			.extent([[-1, -1], [width + 1, height + 1]]);
+
+		polygons = voronoi(polygonData).polygons();
+
+		voronoiLayer.selectAll(".cell")
+			.data(polygons)
+			.attr("fill", "none")
+			.style("pointer-events", "all")
+			.attr("stroke", "none")
+			.attr("d", function (d) { return "M" + d.join("L") + "Z"; })
+	}
 
 	d3.select("#shutter")
 	.on("mouseover",function(){
@@ -602,6 +752,7 @@ function updateMap(value){
 			d3.select(this)
 				.style("background-color", "#0b1e2d")
 		})
+
 </script>
 
 

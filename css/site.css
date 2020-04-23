@@ -2,13 +2,13 @@ body{
   background:#e6ebe9;
 }
 h1{
-  float:left;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding-bottom: 5px;
-  font : 24px Caecilia lt bold; color:#0297C9;
-  padding: 5px 5px 5px 5px;
-  display: inline-block;
+      width:100%;
+      display:inline-block;
+      padding-left: 5%;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #04629a;
 }
 
 h2{
@@ -99,33 +99,6 @@ div.tooltip::after {
   pointer-events: all;
 }
 
-#modedemploi{
-      /*position:absolute;
-      top:2.5%;
-      left: 0; 
-      right: 0; 
-      margin-left: auto; 
-      margin-right: auto;
-      max-width:200px;*/
-      display: inline-block;
-      width:80%;
-      
-      padding:0.5rem;
-      background: #FFFFFF;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px;
-      -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-      -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-      /*pointer-events: none;*/  
-
-      margin-left: 1.2em;
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: #04629a;
-}
 
 #countryCard{
       position:absolute;
@@ -136,8 +109,8 @@ div.tooltip::after {
       margin-right: auto;
       width:95%;
       height:97%;
-      max-width: 1140px;
-      max-height:1000px;
+     /** max-width: 1140px;
+      max-height:1000px;**/
       overflow: scroll;
       /*padding:2rem;*/
       background: #FFFFFF;
@@ -153,9 +126,14 @@ div.tooltip::after {
     z-index:2;
 }
 
+#themebar{
+
+    clear: both;
+}
 
 #navbar{
 
+    clear: both;
   padding:2rem;
   margin-left: 2em;
   font-family: 'Noto Sans', sans-serif;
@@ -207,7 +185,9 @@ div.tooltip::after {
   cursor: pointer;
 }
 
+
 .flex-container {position: relative;
+  
   display: flex;
   flex-wrap: wrap;
   
@@ -220,6 +200,11 @@ div.tooltip::after {
   width: 40%;
   margin: 0% 5%;
   text-align: left;
+}
+
+#switchtracker{
+  background:#006f81;
+  margin:10px 0px 10px 0px;
 }
 
 #disclaimer{
@@ -263,12 +248,33 @@ width:87.5%;
 
 .green{
     width: 200px;
-    height: 50px;
+    height: 60px;
     margin: 10px 10px 10px 10px;
     padding: 10px 10px 10px 10px;
     background: #548235;
     color:#ffffff;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-family: "Noto Sans Display", sans-serif;
+    font-weight: 600;
+}
+.greenbold{
+    font-weight: 900;
+
+}
+
+.menuCard{
+    width: 150px;
+    /**height: 60px;**/
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    background: #04629a;
+    color:#ffffff;
+
+    font-size: 1.15rem;
+    font-family: "Noto Sans Display", sans-serif;
+    
+    font-weight: 600;
+
 }
 
 #allData{
@@ -291,6 +297,18 @@ width:87.5%;
 
 }
 
+#scaleLegend{
+
+      visibility: hidden;   
+  
+}
+
+.legendtext{
+  font-family: 'Oswald', sans-serif;
+    font-style: normal;
+    font-size: 1.0rem;
+    font-weight:600;
+}
 #morebtn{
     text-align: right;
     vertical-align: sub;
@@ -306,7 +324,7 @@ width:87.5%;
     display: inline-block;
     padding: 18px 25px 15px 25px;
     font-family: "Noto Sans Display",sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     /*font-size: 0.75rem;*/
     font-weight: 700;
     line-height: 1em;
@@ -477,10 +495,49 @@ text-decoration: underline;
 }
 
 
+#modedemploi{
+      /*position:absolute;
+      top:2.5%;
+      left: 0; 
+      right: 0; 
+      margin-left: auto; 
+      margin-right: auto;
+      max-width:200px;*/
+      /*display: inline-block;*/
+      margin-left: 1.2em;
+      margin-right: 1.2em;
+      padding:0.5rem;
+      background: #FFFFFF;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      /*pointer-events: none;*/  
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #04629a;
+
+display: flex;
+
+     min-width:50%;
+     /** height:100px;*/
+     
+}
+
+#intromodedemploi{
+    margin-left: 1.2em;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #04629a;
+}
+
 #selCountry{
-  /*float:left;*/
-  max-width:200px;
   margin-bottom:2px;
+  margin-left:25px;
   border:solid;
   border-width: 0px;
   border-color:  #575757;
@@ -490,7 +547,7 @@ text-decoration: underline;
 
 
 #country_dropdown{
-  margin: 5px 0px 5px 5px;
+  margin: 5px 5px 5px 5px;
   max-width: 180px;
   display:inline;
   font-family: 'Noto Sans', sans-serif;

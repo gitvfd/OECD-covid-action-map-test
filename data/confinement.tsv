@@ -1,0 +1,31 @@
+code	level	definition
+Containment-measures__Confinement-and-lock-downs__Level	0	None
+Containment-measures__Confinement-and-lock-downs__Level	1	Heavy restrictions on movement and activities in limited areas.
+Containment-measures__Confinement-and-lock-downs__Level	2	Broad areas or population groups are locked-down.
+Containment-measures__Confinement-and-lock-downs__Level	3	Restrictions in many areas or population groups, with broad exceptions e.g., based on health or behavioural conditions
+Containment-measures__Confinement-and-lock-downs__Level	4	Nation-wide lock-down, affecting many but not all groups or regions, or with many exceptions
+Containment-measures__Confinement-and-lock-downs__Level	5	Nation-wide lock down, with very limited exceptions.
+Containment-measures__Travel-bans-and-restrictions__Level	0	None
+Containment-measures__Travel-bans-and-restrictions__Level	1	Restrictions and obligations imposed on arrivals from selected countries for non-nationals or non-residents.\
+Containment-measures__Travel-bans-and-restrictions__Level	2	Restrictions and obligations imposed on all arrivals from selected countries.
+Containment-measures__Travel-bans-and-restrictions__Level	3	 Restrictions and obligations imposed on all arrivals (e.g., compulsory isolation periods).
+Containment-measures__Travel-bans-and-restrictions__Level	4	Movements restricted in and out of several regions within country.
+Containment-measures__Travel-bans-and-restrictions__Level	5	In addition to international restrictions, movements restricted in and out of several regions within country.
+Containment-measures__Closure-of-schools__Level	0	None  (all schools and universities operating normally)
+Containment-measures__Closure-of-schools__Level	1	Schools/ universities closed in localised areas.
+Containment-measures__Closure-of-schools__Level	2	Physical sites closed in most areas for most but not all levels of education.
+Containment-measures__Closure-of-schools__Level	3	Physical sites closed, except for targeted groups of students (e.g., children of essential service workers); online schooling at most levels.
+Containment-measures__Closure-of-schools__Level	4	Physical sites closed for all, but online schooling at most levels.
+Containment-measures__Closure-of-schools__Level	5	Complete closure.
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	0	None
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	1	All events in limited areas.
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	2	Larger events nation-wide.
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	3	All, nation-wide.
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	4	
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	5	
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	0	None
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	1	Most activities permitted apart from those that bring many people together, such as entertainment, accommodation, large discretionary retail and services.
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	2	Most manufacturing & construction permitted plus selected discretionary services if they comply with enhanced sanitary standards; remote working permitted; other activities are closed.
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	3	Businesses closed except for "essential" production and service activities (e.g., utilities and some food shops) plus other production businesses that meet enhanced sanitary standards; remote work permitted.
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	4	Closure of all physical sites except for very limited "essential" production and service activities (e.g., food, utilities); remote work permitted. 
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	5	Complete closure of all but very limited "essential" firms (e.g., food distribution, utilities).';

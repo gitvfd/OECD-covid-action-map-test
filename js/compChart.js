@@ -37,7 +37,7 @@ function compChart(data_temp, idChart) {
 
 			if (popupWidth > 800) {
 
-				heightChart = 0.5 * window.innerHeight;
+				heightChart = 0.4 * window.innerHeight;
 				
 				xScale = d3.scaleBand()
 					.domain(data.sort(function (a, b) { return parseFloat(a[idChart]) - parseFloat(b[idChart]); }).map(function (d) { return d.Country }))
