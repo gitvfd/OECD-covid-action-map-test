@@ -92,9 +92,10 @@
 			value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
 			onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
 	</div>
-	<div class="flex-container">
+	<div class="flex-container-legend">
 		<div id="navigHeader">Confinement level:</div>
 		<div id="scaleLegend"></div>
+		<div id="resetButton"><img id="resetcross" src="img/cross.svg"> <span id= resetText>Reset map &nbsp;</span></div>
 	
 	</div>
 	<div id="aboutMap"></div>
@@ -259,7 +260,7 @@
 	    .await(render);
 
 	var scalesvg = d3.select("#scaleLegend").append("svg")
-		.attr("width", 300)
+		.attr("width", 250)
 		.attr("height", 40)
 	
 		scalesvg.selectAll("rect").data([-1,0, 1, 2, 3, 4, 5])
@@ -423,7 +424,7 @@
 					d3.select("#" + d.data.ISO3 + "circle").attr("fill",  circleColor(selector));
 			
 				divMap.transition()
-					.duration(250)
+					.duration(100)
 					.style("opacity", 0);
 			})
 			.on('click',function(d){
@@ -638,12 +639,13 @@
 				.style("opacity", 0.75)
 			
 			divMap.transition()
-				.duration(250)
+				.duration(100)
 				.style("opacity", 0);
 
 		}) 
 
 	document.getElementById("scaleLegend").style.visibility = 'visible';
+	document.getElementById("resetButton").style.visibility = 'visible';
 	
 	worldMap
 		.selectAll("path")
@@ -657,7 +659,7 @@
 						catvalue = j[value] 
 				}
 			})
-			return "cat"+ catvalue;
+			return "world cat"+ catvalue;
 		})
 		
 		.attr('fill', function (d) {
@@ -715,7 +717,7 @@
 				d3.select("#" + d.data.ISO3 + "circle").attr("fill", circleColor(selector));
 
 			divMap.transition()
-				.duration(250)
+				.duration(100)
 				.style("opacity", 0);
 		})
 		.on('click', function (d) {
@@ -775,6 +777,63 @@
 				.style("background-color", "#0b1e2d")
 		})
 
+
+	d3.select("#resetButton")
+	.on('click',function(){
+		worldMap
+			.selectAll("path")
+			.attr('fill', "#c0c7c9")
+			.style("opacity", 0.75)
+
+		document.getElementById("scaleLegend").style.visibility = 'hidden';
+		document.getElementById("resetButton").style.visibility = 'hidden';
+
+		d3.selectAll(".grey")
+			.style("background-color", "#ffffff").style("color", "#0b1e2d")
+	
+			
+
+		voronoiLayer.selectAll(".cell")
+
+			.on('mouseover', function (d) {
+
+				
+				d3.select("#" + d.data.ISO3 + "circle").attr("fill", "#e73741")
+
+				divMap.transition()
+					.duration(250)
+					.style("opacity", 1);
+
+				var htmlText = "<b>" + d.data.Country + "</b>" 
+
+				divMap.html(htmlText)
+					.style("left", event.pageX - document.body.scrollLeft + "px")
+					.style("top", event.pageY - document.body.scrollTop + "px");
+
+			})
+
+			.on("mousemove", function (d) {
+
+				divMap
+					.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
+					.style("top", event.pageY - document.body.scrollTop + "px");
+
+			})
+			.on('mouseout', function (d) {
+
+				if (d.data.ISO3 == "EU" || d.data.ISO3 == "SEA")
+					d3.select("#" + d.data.ISO3 + "circle").attr("fill", "#17a2b8");
+				else
+					d3.select("#" + d.data.ISO3 + "circle").attr("fill", circleColor(selector));
+
+				divMap.transition()
+					.duration(100)
+					.style("opacity", 0);
+			})
+			.on('click', function (d) {
+				updateCard(d.data.Country)
+			});
+	})
 </script>
 
 
