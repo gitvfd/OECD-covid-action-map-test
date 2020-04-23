@@ -136,8 +136,8 @@ div.tooltip::after {
       margin-right: auto;
       width:95%;
       height:97%;
-      max-width: 1140px;
-      max-height:1000px;
+     /** max-width: 1140px;
+      max-height:1000px;**/
       overflow: scroll;
       /*padding:2rem;*/
       background: #FFFFFF;
@@ -152,7 +152,6 @@ div.tooltip::after {
 
     z-index:2;
 }
-
 
 #navbar{
 
@@ -207,6 +206,7 @@ div.tooltip::after {
   cursor: pointer;
 }
 
+
 .flex-container {position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -220,6 +220,11 @@ div.tooltip::after {
   width: 40%;
   margin: 0% 5%;
   text-align: left;
+}
+
+#switchtracker{
+  background:#006f81;
+  margin:10px 0px 10px 0px;
 }
 
 #disclaimer{
@@ -291,6 +296,18 @@ width:87.5%;
 
 }
 
+#scaleLegend{
+
+      visibility: hidden;   
+  
+}
+
+.legendtext{
+  font-family: 'Oswald', sans-serif;
+    font-style: normal;
+    font-size: 1.0rem;
+    font-weight:600;
+}
 #morebtn{
     text-align: right;
     vertical-align: sub;
@@ -306,7 +323,7 @@ width:87.5%;
     display: inline-block;
     padding: 18px 25px 15px 25px;
     font-family: "Noto Sans Display",sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     /*font-size: 0.75rem;*/
     font-weight: 700;
     line-height: 1em;
