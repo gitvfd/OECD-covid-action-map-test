@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/site.css">
 
 
- <script src="libs/d3.v4.min.js"></script>
+ 	<script src="libs/d3.v4.min.js"></script>
 	<script src="libs/d3.v4.jetpack.min.js"></script>
 	<script src="libs/d3-scale-chromatic.v1.min.js"></script>
 	<script src="libs/topojson.v1.min.js"></script>
@@ -72,20 +72,94 @@
 	<!--<div id="warning">The country policy tracker will be available here <u>on March 30</u><Br/> <span id="warningtext">In the meantime, you can find OECD information on the impacts and consequences of the coronavirus pandemic on our lives and our societies at <a href="https://www.oecd.org/coronavirus">oecd.org/coronavirus</a></span></div>-->
 	
 
-	<div id="modedemploi">Click on the countries to access policy responses or look at the options to see the confinement levels and measures. 
-				<div id="selCountry">
-					<!--<div class="dropdown_text">Or select one directly: </div>-->
-					<select id="country_dropdown"
-						onchange="updateCard(value)">
-						<option value="-" selected="selected"> - </option>
-					</select>
-				</div>
-	</div>
+	<!--</div>-->
 
+	<h1>Tracking policy responses</h1>
+	<div class="flex-container">
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
+				class="textbtn">Confinement and lock downs</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Travel-bans-and-restrictions__Level" title="Housing"
+			onclick="updateMap(value)"><span class="textbtn">Travel bans and restrictions</span></button>
+		<button class="button grey" id="Dimension" type="submit" value="Containment-measures__Closure-of-schools__Level"
+			title="Housing" onclick="updateMap(value)"><span class="textbtn">Closure of schools</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level" title="Housing"
+			onclick="updateMap(value)"><span class="textbtn">Cancellation of public events/Closure of public
+				places</span></button>
+		<button class="button grey" id="Dimension" type="submit"
+			value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
+			onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
+	</div>
+	<div class="flex-container">
+		<div class="navigHeader">Confinement level:</div>
+		<div id="scaleLegend"></div>
+	
+	</div>
 	<div id="aboutMap"></div>
 
+	<div id="modedemploi">
+		<div id="#intromodedemploi">Select directly a country:
+		</div>
+		<div id="selCountry">
+			<select id="country_dropdown" onchange="updateCard(value)">
+				<option value="-" selected="selected"> - </option>
+			</select>
+		</div>
+	</div>
+	
+	<!--<div class="navigHeader">Policy responses by subject:</div>-->
+	<div class="flex-container" id="switchtracker">
+		<button class="button green" id="allData" type="submit" value="allData"
+			onclick="updateSelector(value),updateCircle(allData)"><span class="textbtn"><span class="greenbold">Visualise</span><br/>fiscal and monetary policy
+				responses</span></button>
+		<button class="button green" id="" type="submit" value="alljobs"
+			onclick="updateSelector(value),updateCircle(alljobs)"><span class="textbtn"><span class="greenbold">Visualise</span><br />employment and social policy
+				responses</span></button>
+		<!--<button class="button green" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn"><b>Visualise</b><br />health policy responses</span></button>
+				<button class="button green" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn"><b>Visualise</b><br />tax policy responses</span></button>-->
+	</div>
+	
+	<div class="flex-container">
+		<div id="trackersNotes">
+			<div id="updateTag">Beta version - Updated every day</div>
+			<a id="source"
+				href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx"
+				target="_blank">Download the data</a>
+			<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
+	
+		</div>
+	
+		<div id="morebtn">
+			<div class="toTrackers" id="toTrackersBtn">Download more policy responses</div>
+		</div>
+	</div>
+	<Br />
+	<div class="flex-container">
+		<div id="disclaimer">This document, as well as any data and map included herein, are without prejudice to the status of or sovereignty over any territory, to the delimitation of international frontiers and boundaries and to the name of any territory, city or area.
+		</div>
+	</div>
+		<div id="trackersLink">
+			<div id="shutterholdertracker">
+				<img id="shuttertracker" src="img/cross.svg">
+		
+				<div id="trackersText"><b>Find more country policy responses in these policy tracking initiatives:</b><Br />
+					<ul>
+						<li>
+							<a href="http://www.oecd.org/tax/covid-19-tax-policy-and-other-measures.xlsm" target="_blank">Tax
+								policy responses by country</a></li>
+						<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
+								target="_blank">Employment and social policy responses by country</a></li>
+						<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx"
+								target="_blank">Health policy responses by country</a></li>
+						<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses
+								by country</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	<div id="CountryCard">
-		<div id="innerCountryCard">
 			<div id="shutterholder" >
 				<img id="shutter" src="img/cross.svg">
 				<div id="countrySel"></div>
@@ -95,79 +169,15 @@
 					
 				</div>
 			</div>
+			<div id="themebar"></div>
 			<div id="navbar"></div>
 			<Br />
 			<div id="singleCountry"></div>
 			<Br />
 			<div id="noteCountry"></div>
-		</div>
 	</div>
 
-	<!--</div>-->
-	<div id="trackersLink">
-		<div id="shutterholdertracker">
-		<img id="shuttertracker" src="img/cross.svg">
 
-		<div id="trackersText"><b>Find more country policy responses in these policy tracking initiatives:</b><Br />
-			<ul>
-				<li>
-					<a href="http://www.oecd.org/tax/covid-19-tax-policy-and-other-measures.xlsm" target="_blank">Tax policy responses by country</a></li>
-				<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
-				target="_blank">Employment and social policy responses by country</a></li>
-				<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx" target="_blank">Health policy responses by country</a></li>
-			<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses by country</a></li>			
-			</ul>
-		</div>
-		</div>
-	</div><div class="flex-container"
-	><div class="navigHeader">Confinement level:</div>
-	<div id="scaleLegend"></div>
-
-	</div>
-	<div class="flex-container">
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
-					class="textbtn">Confinement and lock downs</span></button>
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Travel-bans-and-restrictions__Level" title="Housing"
-				onclick="updateMap(value)"><span class="textbtn">Travel bans and restrictions</span></button>
-			<button class="button grey" id="Dimension" type="submit" value="Containment-measures__Closure-of-schools__Level"
-				title="Housing" onclick="updateMap(value)"><span class="textbtn">Closure of schools</span></button>
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level" title="Housing"
-				onclick="updateMap(value)"><span class="textbtn">Cancellation of public events/Closure of public
-					places</span></button>
-			<button class="button grey" id="Dimension" type="submit"
-				value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
-				onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
-	</div>
-	<!--<div class="navigHeader">Policy responses by subject:</div>-->
-	<div class="flex-container" id="switchtracker">
-			<button class="button green" id="allData" type="submit" value="allData" onclick="updateSelector(value),updateCircle(allData)"><span class="textbtn">Fiscal and monetary policy responses</span></button>
-			<button class="button green" id="" type="submit" value="alljobs" onclick="updateSelector(value),updateCircle(alljobs)"><span class="textbtn">Employment and social policy responses</span></button>
-			<!--<button class="button green" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn">Health policy responses</span></button>
-			<button class="button green" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn">Tax policy responses</span></button>-->
-	</div>
-	
-	<div class="flex-container">
-		<div id="trackersNotes">
-			<div id="updateTag">Beta version - Updated every day</div>
-			<a id="source" href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Download the data</a>
-			<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
-
-		</div>
-
-		<div id="morebtn">
-		<div class="toTrackers" id="toTrackersBtn">More policy responses</div>
-		</div>
-	</div>
-	<Br/>
-	<div class="flex-container">
-		<div id="disclaimer">This document, as well as any data and map included herein, are without prejudice to the status of
-					or sovereignty over any territory, to the delimitation of international frontiers and boundaries and to the name of any territory, city
-					or area.
-		</div>
-	</div>
 </body>
 <script type="text/javascript">
 
@@ -177,7 +187,7 @@
 	var xScale;
 	var yScale ;
 
-	var worldData, confinementdef, allData, allVariables, alljobs, alljobsvariables;
+	var worldData, confinementdef, allcontext, allData, allVariables, alljobs, alljobsvariables;
 
 	var selector="allData";
 
@@ -203,8 +213,8 @@
     	height= width*mapRatio;
 
 	var quarantinecolor= d3.scaleOrdinal()
-			.domain([0, 1, 2, 3, 4, 5])
-			.range(['#76fab7', '#73ce9e', '#6da485', '#647b6d', '#575456', '#482e40'])
+			.domain([-1,0, 1, 2, 3, 4, 5])
+			.range(['#c0c7c9','#76fab7', '#73ce9e', '#6da485', '#647b6d', '#575456', '#482e40'])
 
 	var circleColor=d3.scaleOrdinal()
 			.domain(["alldata", "jobsdata", "healthdata", "taxdata"])
@@ -247,18 +257,18 @@
 		.attr("width", 300)
 		.attr("height", 40)
 	
-		scalesvg.selectAll("rect").data([0, 1, 2, 3, 4, 5])
+		scalesvg.selectAll("rect").data([-1,0, 1, 2, 3, 4, 5])
 				.enter().append("rect")
 				.attr("class","legend")
 				.attr("height", 20)
-				.attr("x", function (d) { return 20+d*35; })
+				.attr("x", function (d) { return 5+(d+1)*35; })
 				.attr("width", function (d) { return 30; })
 				.style("fill", function (d) { return quarantinecolor(d); });
 		scalesvg.selectAll("text").data([0, 1, 2, 3, 4, 5])
 				.enter().append("text")
 				.attr("class", "legendtext")
 				.attr("y", 35)
-				.attr("x", function (d) { return 30 + d * 35; })
+				.attr("x", function (d) { return 5 + (d + 1)* 35; })
 				//.attr("width", function (d) { return 10; })
 				.text( function (d) { return d; });
 
@@ -448,6 +458,20 @@
 		var navText="Quicklinks <Br/>";
 		
 		var countryText="";
+		var themenav="<button class=\"button menuCard\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(allData),updateCard(couName)\" >Context</button >";
+
+		function isPresent(fruit) {
+			return fruit.Country === couName;
+		}
+
+		if(allData.find(isPresent))
+		var themenav = themenav + "<button class=\"button menuCard\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(couName)\" >Fiscal and Monetary</button >";
+
+		if (alljobs.find(isPresent))
+			var themenav = themenav + "<button class=\"button menuCard\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(couName)\" >employment and social</button >";
+
+
+
 		selVariables.forEach(function(d){
 				if (d.level== "SectionTitle"){
 					var count = 0;
@@ -467,7 +491,7 @@
 						navText = navText + "<a class=\"couNav\" href=\"#" + d.title.replace(/ /g, "") + "\">" + d.title + "</a><Br/>"
 						
 						selVariables.filter(function (k) { return (k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0]) && k.hierarchy.split("-")[1]!= undefined }).forEach(function (k) {
-							if (k.level == "SectionText") {
+							if (k.level == "SectionText" || k.level == "choroplethDesc") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 									countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
 							} else if (k.level == "SectionChart") {
@@ -479,7 +503,7 @@
 				}	
 				
 		})
-
+		document.getElementById("themebar").innerHTML = themenav;
 		document.getElementById("navbar").innerHTML = navText;
 		document.getElementById("singleCountry").innerHTML= countryText
 
@@ -525,8 +549,8 @@
 					htmlText = k.definition
 		
 			});
-			
-			
+			if (d=="-1")
+			htmlText="Not available";
 			divMap.html(htmlText)
 				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
 				.style("top", event.pageY - document.body.scrollTop + "px");

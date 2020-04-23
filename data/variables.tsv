@@ -9,16 +9,17 @@ Basic-statistics__Population	init
 Basic-statistics__Exchange-rate	init			
 Basic-statistics__GDP	init			
 Basic-statistics__GDP-per-capita	init			
-Containment-measures__Confinement-and-lock-downs__Description	choroplethDesc			
-Containment-measures__Confinement-and-lock-downs__Level	choroplethValue			
-Containment-measures__Travel-bans-and-restrictions__Description	choroplethDesc			
-Containment-measures__Travel-bans-and-restrictions__Level	choroplethValue			
-Containment-measures__Closure-of-schools__Description	choroplethDesc			
-Containment-measures__Closure-of-schools__Level	choroplethValue			
-Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Description	choroplethDesc			
-Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	choroplethValue			
-Containment-measures__Obligatory-shut-down-of-economic-activities__Description	choroplethDesc			
-Containment-measures__Obligatory-shut-down-of-economic-activities__Level	choroplethValue			
+	SectionTitle	0	Containment measures	
+Containment-measures__Confinement-and-lock-downs__Description	choroplethDesc	0-I-text	Quarantine/Confinement	
+Containment-measures__Confinement-and-lock-downs__Level	choroplethValue	0-I-value		
+Containment-measures__Travel-bans-and-restrictions__Description	choroplethDesc	0-II-text	Travel bans/restrictions	
+Containment-measures__Travel-bans-and-restrictions__Level	choroplethValue	0-I-value		
+Containment-measures__Closure-of-schools__Description	choroplethDesc	0-II-text	Closure of schools/universities	
+Containment-measures__Closure-of-schools__Level	choroplethValue	0-I-value		
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Description	choroplethDesc	0-II-text	Cancellation of public events / Closure of public places	
+Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level	choroplethValue	0-I-value		
+Containment-measures__Obligatory-shut-down-of-economic-activities__Description	choroplethDesc	0-II-text	Obligatory shut down of economic activities	
+Containment-measures__Obligatory-shut-down-of-economic-activities__Level	choroplethValue	0-I-value		
 	SectionTitle	I	Fiscal measures	
 Fiscal-measures__Overall-fiscal-measures__Description	SectionText	I-I-text	Overall fiscal measures	
 Fiscal-measures__Overall-fiscal-measures__Impact-on-budget-balance	SectionChart	I-I-chart	Impact on budget balance	balance
