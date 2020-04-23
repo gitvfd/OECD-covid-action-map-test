@@ -285,8 +285,7 @@ width:87.5%;
 
 }
 
-.navigHeader{
-    text-align: left;
+#navigHeader{
     margin-left:7%;
     font-family: 'Oswald', sans-serif;
     font-style: normal;
@@ -294,6 +293,7 @@ width:87.5%;
     font-weight:600;
     line-height: 1;
     color: #0b1e2d;
+    width:20%;
 
 }
 
