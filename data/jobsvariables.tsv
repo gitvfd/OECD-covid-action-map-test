@@ -1,19 +1,15 @@
-code	level	title	unit
-	SectionTitle	Fiscal measures	
-Fiscal-measures__Overall-fiscal-measures__Description	SectionText	Overall fiscal measures	
-Fiscal-measures__Health-system-measures__Description	SectionText	Health system measures		
-Fiscal-measures__Income-support-measures-for-individuals-and-households-excluding-tax-and-contribution-changes__Description	SectionText	Income support measures for individuals and households excluding tax and contribution changes	
-Fiscal-measures__Tax-and-contribution-policy-changes__Description	SectionText	Tax and contribution policy changes	
-Fiscal-measures__Public-sector-subsidies-to-businesses__Description	SectionText	Public sector subsidies to businesses	
-Fiscal-measures__Deferral-of-taxes-and-social-security-contributions-and-bringing-forward-expenditures-within-current-fiscal-year__Description	SectionText	Deferral of taxes and social security contributions and bringing forward expenditures within current fiscal year	
-Fiscal-measures__Public-sector-loans-or-capital-injections-to-businesses__Description	SectionText	Public sector loans or capital injections to businesses	
-Fiscal-measures__Loan-guarantees-by-the-state-benefiting-private-borrowers__Description	SectionText	Loan guarantees by the state benefiting private borrowers	
-	SectionTitle	Monetary policy and prudential regulation	
-Monetary-policy-and-prudential-regulation__Monetary-policy__Description	SectionText	Monetary policy	
-Monetary-policy-and-prudential-regulation__Prudential-regulation__Description	SectionText	Prudential regulation	
-	SectionTitle	Measures to promote burden sharing within the private sector	
-Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-individuals-and-households__Description	SectionText	Support to individuals and households	
-Measures-to-promote-burden-sharing-within-the-private-sector__Support-to-firms__Description	SectionText	Support to firms	
-	SectionTitle	Other measures including structural policy measures	
-Other-measures-including-structural-policy-measures__Description	SectionText		
-Sources__Links-to-Sources	SectionText	Sources	
+code	level	hierarchy	title	unit
+	SectionTitle	I	Confinement	
+Confinement__Confinement-measures	SectionText	I-I-text	Confinement measures	
+	SectionTitle	II	Employment and social measures	
+Social-Measures__Reducing-workers-exposure-to-Covid-19-in-the-workplace	SectionText	II-I-text	Reducing workers’ exposure to Covid-19 in the workplace	
+Social-Measures__Income-support-to-sick-workers-and-their-families	SectionText	II-II-text	Income support to sick workers and their families	
+Social-Measures__Income-support-to-quarantined-workers-who-cannot-work-from-home	SectionText	II-III-text	Income support to quarantined workers who cannot work from home 	
+Social-Measures__Helping-dealing-with-unforeseen-care-needs	SectionText	II-IV-text	Helping dealing with unforeseen care needs	
+Social-Measures__Income-support-to-persons-losing-their-jobs-or-self-employment-income	SectionText	II-V-text	Income support to persons losing their jobs or self-employment income	
+Social-Measures__Helping-firms-to-adjust-working-time-and-preserve-jobs	SectionText	II-VI-text	Helping firms to adjust working time and preserve jobs	
+Social-Measures__Financial-support-to-firms-affected-by-a-drop-in-demand	SectionText	II-VII-text	Financial support to firms affected by a drop in demand	
+Social-Measures__Changes-to-dismissal-regulation	SectionText	II-VIII-text	Changes to dismissal regulation	
+Social-Measures__Helping-economically-insecure-workers-stay-in-their-homes	SectionText	II-IX-text	Helping economically insecure workers stay in their homes 	
+	SectionTitle	III	More information	
+More__Government-links-for-more-details	SectionText	III-I-text	Government links for more details	

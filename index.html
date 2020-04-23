@@ -111,14 +111,14 @@
 	
 	<!--<div class="navigHeader">Policy responses by subject:</div>-->
 	<div class="flex-container" id="switchtracker">
-		<button class="button green" id="allData" type="submit" value="allData"
+		<button class="button green allData" id="allData" type="submit" value="allData"
 			onclick="updateSelector(value),updateCircle(allData)"><span class="textbtn"><span class="greenbold">Visualise</span><br/>fiscal and monetary policy
 				responses</span></button>
-		<button class="button green" id="" type="submit" value="alljobs"
+		<button class="button green alljobs" id="" type="submit" value="alljobs"
 			onclick="updateSelector(value),updateCircle(alljobs)"><span class="textbtn"><span class="greenbold">Visualise</span><br />employment and social policy
 				responses</span></button>
-		<!--<button class="button green" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn"><b>Visualise</b><br />health policy responses</span></button>
-				<button class="button green" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn"><b>Visualise</b><br />tax policy responses</span></button>-->
+		<!--<button class="button green allhealth" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn"><b>Visualise</b><br />health policy responses</span></button>
+				<button class="button green alltax" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn"><b>Visualise</b><br />tax policy responses</span></button>-->
 	</div>
 	
 	<div class="flex-container">
@@ -187,13 +187,16 @@
 	var xScale;
 	var yScale ;
 
-	var worldData, confinementdef, allcontext, allData, allVariables, alljobs, alljobsvariables;
+	var worldData, confinementdef, allcontext, allcontextvariables, allData, allVariables, alljobs, alljobsvariables;
 
 	var selector="allData";
+	var country4card;
 
 	var urls = {
 	    world: "data/world.json",
 	    country:"data/coord_country.tsv",
+		context: "data/context.tsv",
+		contextvariables: "data/contextvariables.tsv",
 		actions:"data/actions.tsv",
 		variables: "data/variables.tsv",
 		jobs: "data/jobs.tsv",
@@ -247,6 +250,8 @@
 	d3.queue()
 	    .defer(d3.json, urls.world)
 	    .defer(d3.tsv, urls.country)
+		.defer(d3.tsv, urls.context)
+		.defer(d3.tsv, urls.contextvariables)
 		.defer(d3.tsv, urls.actions)
 		.defer(d3.tsv, urls.variables)
 		.defer(d3.tsv, urls.jobs)
@@ -293,15 +298,16 @@
 	})
 }
 
-	function render(err,world,country, actions,variables,jobs,jobsvariables){
+	function render(err,world,country, context, contextvariables, actions,variables,jobs,jobsvariables){
 
 		worldData=world;
+		allcontext= context;
+		allcontextvariables= contextvariables;
 		allData=actions;
 		allVariables=variables;
 		alljobs= jobs;
 		alljobsvariables= jobsvariables;
 
-		//compChart(actions)
 		//Container for the gradients //https://www.visualcinnamon.com/2016/06/glow-filter-d3-visualization.html
 		var defs = worldMap.append("defs");
 
@@ -434,6 +440,10 @@
 			selData=allData;
 			selVariables=allVariables;
 		}
+		else if (selector == "allcontext") {
+			selData = allcontext;
+			selVariables = allcontextvariables;
+		}
 		else if (selector == "alljobs") {
 			selData =alljobs;
 			selVariables =alljobsvariables;
@@ -458,25 +468,28 @@
 		var navText="Quicklinks <Br/>";
 		
 		var countryText="";
-		var themenav="<button class=\"button menuCard\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(allData),updateCard(couName)\" >Context</button >";
+		var themenav="";
 
 		function isPresent(fruit) {
 			return fruit.Country === couName;
 		}
 
+		country4card=couName;
+
+		if(allcontext.find(isPresent))
+			var themenav = "<button class=\"button menuCard allcontext\"  type=\"submit\" value=\"allcontext\" onclick = \"updateSelector(value),updateCircle(allcontext),updateCard(country4card)\" >Context</button >";
+
 		if(allData.find(isPresent))
-		var themenav = themenav + "<button class=\"button menuCard\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(couName)\" >Fiscal and Monetary</button >";
+			var themenav = themenav + "<button class=\"button menuCard allData\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(allData),updateCard(country4card)\" >Fiscal and Monetary</button >";
 
 		if (alljobs.find(isPresent))
-			var themenav = themenav + "<button class=\"button menuCard\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(couName)\" >employment and social</button >";
-
+			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(country4card)\" >employment and social</button >";
 
 
 		selVariables.forEach(function(d){
 				if (d.level== "SectionTitle"){
-					var count = 0;
-					selVariables.filter(function (k) { return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
-						console.log(temp[0][k.code])
+					var count = 0; console.log(selVariables); console.log(d);
+					selVariables.filter(function (k) { /*console.log(k); console.log(d);*/return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
 						
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")) {
 								count++;
@@ -497,15 +510,23 @@
 							} else if (k.level == "SectionChart") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 									countryText = countryText + "<div class=\"SectionChart\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
+							} else if (k.level == "SectionEmbed") {
+							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
+								countryText = countryText + "<div class=\"SectionEmbed\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/>" + temp[0][k.code] + "<Br/>";
 							}
 						})
 					}
 				}	
 				
 		})
+
 		document.getElementById("themebar").innerHTML = themenav;
 		document.getElementById("navbar").innerHTML = navText;
 		document.getElementById("singleCountry").innerHTML= countryText
+
+		var button2update="."+selector;
+		d3.selectAll(".green").style("background","#548235")
+		d3.selectAll(button2update).style("background","#0b1e2d")
 
 		if (couName == "Kosovo**")
 				document.getElementById("noteCountry").innerHTML = "<b>Note on Kosovo</b>: This designation is without prejudice to positions on status, and is in line with United Nations Security Council Resolution 1244/99 and the Advisory Opinion of the International Court of Justice on Kosovo's declaration of independence."

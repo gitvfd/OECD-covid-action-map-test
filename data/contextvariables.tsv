@@ -1,0 +1,11 @@
+code	level	hierarchy	title	unit
+	SectionTitle	I	Section 1	
+Indicator1__Description	SectionText	I-I-text	Indicator 1	
+Indicator1__Chart	SectionEmbed	I-I-chart	Indicator 1	unit	
+Indicator2__Description	SectionText	I-I-text	Indicator 2	
+Indicator2__Chart	SectionEmbed	I-I-chart	Indicator 2	unit	
+Indicator3__Description	SectionText	I-I-text	Indicator 3	
+Indicator3__Chart	SectionEmbed	I-I-chart	Indicator 3	unit	
+	SectionTitle	II	Section 2	
+Indicator4__Description	SectionText	II-I-text	Indicator 4	
+Indicator4__Chart	SectionEmbed	II-I-chart	Indicator 4	unit	
