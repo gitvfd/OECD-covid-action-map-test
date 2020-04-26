@@ -124,7 +124,7 @@
 	
 	<div class="flex-container">
 		<div id="trackersNotes">
-			<div id="updateTag">Beta version - Updated every day</div>
+			<div id="updateTag">Beta version - last updated on <span id="date"></span></div>
 			<a id="source"
 				href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx"
 				target="_blank">Download the data</a>
@@ -181,7 +181,12 @@
 
 </body>
 <script type="text/javascript">
-
+	n = new Date();
+	y = n.getFullYear();
+	m = n.getMonth() + 1;
+	d = n.getDate();
+	document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+	
 	var popupWidth;
 	var heightChart ;
 	var margin_chart
@@ -221,7 +226,7 @@
 			.range(['#c0c7c9','#76fab7', '#73ce9e', '#6da485', '#647b6d', '#575456', '#482e40'])
 
 	var circleColor=d3.scaleOrdinal()
-			.domain(["alldata", "jobsdata", "healthdata", "taxdata"])
+			.domain(["alldata", "alljobs", "allhealth", "alltax"])
 			.range(['#39617D', '#8cc841', '#8cc841', '#8cc841'])
 			
   	var projection = d3.geoRobinson()
@@ -265,14 +270,14 @@
 	
 		scalesvg.selectAll("rect").data([-1,0, 1, 2, 3, 4, 5])
 				.enter().append("rect")
-				.attr("class","legend")
+				.attr("class", function (d) { return "legend" + " value"+d;})
 				.attr("height", 20)
 				.attr("x", function (d) { return 5+(d+1)*35; })
 				.attr("width", function (d) { return 30; })
 				.style("fill", function (d) { return quarantinecolor(d); });
 		scalesvg.selectAll("text").data([0, 1, 2, 3, 4, 5])
 				.enter().append("text")
-				.attr("class", "legendtext")
+				.attr("class", function (d) { return "legendtext" + " textvalue"+d;})
 				.attr("y", 35)
 				.attr("x", function (d) { return 5 + (d + 1)* 35; })
 				//.attr("width", function (d) { return 10; })
@@ -342,7 +347,39 @@
 			.attr('stroke', "#c0c7c9")
 			.attr("d", path)
 			
-	  		updateCircle(allData);
+		var currentURL = window.location.href;
+
+			if(currentURL.split("?")[1]=="alljobs"){
+				updateSelector(currentURL.split("?")[1]);
+				updateCircle(alljobs)
+
+				var button2update = "." + currentURL.split("?")[1];
+				d3.selectAll(".green").style("background", "#548235")
+				d3.selectAll(button2update).style("background", "#0b1e2d")
+
+			}
+			else if (currentURL.split("?")[1] == "allhealth") {
+
+				updateSelector(currentURL.split("?")[1]);
+				updateCircle(allhealth)
+
+				var button2update = "." + currentURL.split("?")[1];
+				d3.selectAll(".green").style("background", "#548235")
+				d3.selectAll(button2update).style("background", "#0b1e2d")
+			}
+			else if (currentURL.split("?")[1] == "alltax") {
+
+				updateSelector(currentURL.split("?")[1]);
+				updateCircle(alltax)
+
+				var button2update = "." + currentURL.split("?")[1];
+				d3.selectAll(".green").style("background", "#548235")
+				d3.selectAll(button2update).style("background", "#0b1e2d")
+			
+			}else{
+				
+				updateCircle(allData);
+			}
 	};	  
 
 	function updateCircle(selData){
@@ -358,7 +395,7 @@
 		worldMap.selectAll(".couCircle").remove();
 
 		voronoiLayer.selectAll(".cell").remove();
-		
+		console.log(selector)
 		worldMap
 			.selectAll(".couCircle")
 			.data(selData)
@@ -533,7 +570,7 @@
 
 		selVariables.forEach(function(d){
 				if (d.level== "SectionTitle"){
-					var count = 0; console.log(selVariables); console.log(d);
+					var count = 0; 
 					selVariables.filter(function (k) { /*console.log(k); console.log(d);*/return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
 						
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")) {
@@ -594,6 +631,31 @@
 	}
 
 	function updateMap(value){
+		if (value=="Containment-measures__Cancellation-of-public-events-Closure-of-public-places__Level"){
+			scalesvg.select(".value4")
+				.style("opacity", 0)
+
+			scalesvg.select(".value5")
+				.style("opacity", 0)
+
+			scalesvg.select(".textvalue4")
+				.style("opacity", 0)
+
+			scalesvg.select(".textvalue5")
+				.style("opacity", 0)
+		} else {
+			scalesvg.select(".value4")
+				.style("opacity", 1)
+
+			scalesvg.select(".value5")
+				.style("opacity", 1)
+			
+			scalesvg.select(".textvalue4")
+				.style("opacity", 1)
+
+			scalesvg.select(".textvalue5")
+				.style("opacity", 1)
+		}
 
 	scalesvg.selectAll("rect")
 		.on("mouseover",function(d){
@@ -834,6 +896,11 @@
 				updateCard(d.data.Country)
 			});
 	})
+
+
+
+
+
 </script>
 
 
