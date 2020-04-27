@@ -92,8 +92,8 @@
 			value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
 			onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
 	</div>
-	<div class="flex-container-legend">
-		<div id="navigHeader">Confinement level:</div>
+	<div class="flex-container-legend" id="legendChoropleth">
+		<div id="navigHeader">Level:</div>
 		<div id="scaleLegend"></div>
 		<div id="resetButton"><img id="resetcross" src="img/cross.svg"> <span id= resetText>Reset map &nbsp;</span></div>
 	
@@ -101,7 +101,7 @@
 	<div id="aboutMap"></div>
 
 	<div id="modedemploi">
-		<div id="#intromodedemploi">Select directly a country:
+		<div id="#intromodedemploi">Select a country:
 		</div>
 		<div id="selCountry">
 			<select id="country_dropdown" onchange="updateCard(value)">
@@ -186,7 +186,11 @@
 	m = n.getMonth() + 1;
 	d = n.getDate();
 	document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
-	
+
+
+	var limCouChart =15 //minimum number of countries to display on charts.
+
+
 	var popupWidth;
 	var heightChart ;
 	var margin_chart
@@ -395,7 +399,7 @@
 		worldMap.selectAll(".couCircle").remove();
 
 		voronoiLayer.selectAll(".cell").remove();
-		console.log(selector)
+		
 		worldMap
 			.selectAll(".couCircle")
 			.data(selData)
@@ -516,7 +520,8 @@
 
 
 	function updateCard(couName){
-		
+
+
 		var selData,selVariables;
 		if(selector=="allData"){
 			selData=allData;
@@ -571,7 +576,7 @@
 		selVariables.forEach(function(d){
 				if (d.level== "SectionTitle"){
 					var count = 0; 
-					selVariables.filter(function (k) { /*console.log(k); console.log(d);*/return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
+					selVariables.filter(function (k) { return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
 						
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")) {
 								count++;
@@ -590,8 +595,8 @@
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 									countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
 							} else if (k.level == "SectionChart") {
-								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
-									countryText = countryText + "<div class=\"SectionChart\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
+								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available" ))
+									countryText = countryText + "<div class=\"SectionChart\" id =\"" + k.code + "_Label\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
 							} else if (k.level == "SectionEmbed") {
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 								countryText = countryText + "<div class=\"SectionEmbed\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/>" + temp[0][k.code] + "<Br/>";
@@ -606,6 +611,10 @@
 		document.getElementById("navbar").innerHTML = navText;
 		document.getElementById("singleCountry").innerHTML= countryText
 
+
+		var elmnt = document.getElementById("themebar");
+		elmnt.scrollIntoView();
+
 		var button2update="."+selector;
 		d3.selectAll(".green").style("background","#548235")
 		d3.selectAll(button2update).style("background","#0b1e2d")
@@ -618,11 +627,14 @@
 				document.getElementById("noteCountry").innerHTML = ""
 
 		allVariables.forEach(function (d) {
-			if (d.level == "SectionChart") {
+			if (d.level == "SectionChart" && selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length> limCouChart) {
 				compChart(selData,d.code)	
 				highlight(couName, selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code]) )}).length,d.code)				
-			} 
+			} else if(d.level == "SectionChart" && selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length <= limCouChart) {
+				var div2hide=d.code+"_Label"
+				document.getElementById(div2hide).innerHTML = "";} 
 		})
+
 	}
 
 
@@ -706,7 +718,7 @@
 
 		}) 
 
-	document.getElementById("scaleLegend").style.visibility = 'visible';
+	document.getElementById("legendChoropleth").style.visibility = 'visible';
 	document.getElementById("resetButton").style.visibility = 'visible';
 	
 	worldMap
@@ -751,10 +763,11 @@
 				.style("opacity", 1);
 
 			var icuText;
+			console.log(d)
 			if (d.data[value] == 'Information not available' || d.data[value] == '')
 				icuText = ""
 			else
-				icuText = "<br/><b>confinement Level: " + d.data[value] + "</b><Br/>"+ d.data[variable];
+				icuText = "<br/><b>Level: " + d.data[value] + "</b><Br/>"+ d.data[variable];
 
 			var htmlText = "<b>" + d.data.Country + "</b>"+   icuText;
 
@@ -847,7 +860,7 @@
 			.attr('fill', "#c0c7c9")
 			.style("opacity", 0.75)
 
-		document.getElementById("scaleLegend").style.visibility = 'hidden';
+		document.getElementById("legendChoropleth").style.visibility = 'hidden';
 		document.getElementById("resetButton").style.visibility = 'hidden';
 
 		d3.selectAll(".grey")

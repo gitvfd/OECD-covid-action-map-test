@@ -57,6 +57,8 @@ div.tooltip {
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
       pointer-events: none;
     /*transform: translate(-5%,-5%);*/
+
+    z-index:2;
 }
 /**
 div.tooltip::after {
@@ -123,7 +125,7 @@ div.tooltip::after {
       /*pointer-events: none;*/
       display:none;    
 
-    z-index:2;
+    z-index:3;
 }
 
 #themebar{
@@ -162,7 +164,7 @@ div.tooltip::after {
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.33); /* Black background with opacity */
-  z-index:1; /* Specify a stack order in case you're using a different order for other elements */
+  z-index:5; /* Specify a stack order in case you're using a different order for other elements */
   /*cursor: pointer;*/ /* Add a pointer on hover */
   padding:10%;
       display:none;    
@@ -175,7 +177,7 @@ div.tooltip::after {
   background-color: white;
   width:100%;
   border-bottom: 0.5px  solid #04629a;
-  z-index:3;
+  z-index:5;
 
 }
 #shutter,#shuttertracker{
@@ -305,7 +307,7 @@ width:87.5%;
 
 
 #navigHeader{
-    margin-left:2%;
+    margin-left:10%;
     font-family: 'Oswald', sans-serif;
     font-style: normal;
     font-size: 1.5rem;
@@ -316,9 +318,14 @@ width:87.5%;
 
 }
 
-#scaleLegend{
+#legendChoropleth{
 
       visibility: hidden;   
+  
+}
+#scaleLegend{
+
+     /* visibility: vihiddensible; */  
   
 }
 
@@ -453,7 +460,7 @@ text-decoration: underline;
     bottom: -1rem;
     background: #fff;
     padding-right: 10px;
-    z-index:2;
+    z-index:4;
 
 }
 .border{

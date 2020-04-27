@@ -5,9 +5,9 @@ function compChart(data_temp, idChart) {
 	var chartLoc = "#" + idChart;
 	var colorChart = "#662D91"
 
-			if(window.innerWidth>=1140)
+			/*if(window.innerWidth>=1140)
 				 popupWidth= 0.95* 1140;
-			else
+			else*/
 				popupWidth = 0.95 * window.innerWidth;
 
 
