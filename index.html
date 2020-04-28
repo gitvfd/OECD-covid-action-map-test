@@ -111,18 +111,18 @@
 	</div>
 	
 	<!--<div class="navigHeader">Policy responses by subject:</div>-->
-	<div class="flex-container" id="switchtracker">
+	<!--<div class="flex-container" id="switchtracker">
 		<button class="button green allData" id="allData" type="submit" value="allData"
 			onclick="updateSelector(value),updateCircle(allData)"><span class="textbtn"><span class="greenbold">Visualise</span><br/>fiscal and monetary policy
 				responses</span></button>
 		<button class="button green alljobs" id="" type="submit" value="alljobs"
 			onclick="updateSelector(value),updateCircle(alljobs)"><span class="textbtn"><span class="greenbold">Visualise</span><br />employment and social policy
-				responses</span></button>
+				responses</span></button>-->
 		<!--<button class="button green allhealth" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn"><b>Visualise</b><br />health policy responses</span></button>
 				<button class="button green alltax" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn"><b>Visualise</b><br />tax policy responses</span></button>-->
 	</div>
 	
-	<div class="flex-container">
+	<div class="flex-container" id="switchtracker">
 		<div id="trackersNotes">
 			<div id="updateTag">Beta version - last updated on <span id="date"></span></div>
 			<a id="source"
@@ -136,7 +136,6 @@
 			<div class="toTrackers" id="toTrackersBtn">Download more policy responses</div>
 		</div>
 	</div>
-	<Br />
 	<div class="flex-container">
 		<div id="disclaimer">This document, as well as any data and map included herein, are without prejudice to the status of or sovereignty over any territory, to the delimitation of international frontiers and boundaries and to the name of any territory, city or area.
 		</div>
@@ -199,6 +198,7 @@
 
 	var worldData, confinementdef, allcontext, allcontextvariables, allData, allVariables, alljobs, alljobsvariables;
 
+	var allcircles=[];
 	var selector="allData";
 	var country4card;
 
@@ -283,7 +283,7 @@
 				.enter().append("text")
 				.attr("class", function (d) { return "legendtext" + " textvalue"+d;})
 				.attr("y", 35)
-				.attr("x", function (d) { return 5 + (d + 1)* 35; })
+				.attr("x", function (d) { return 17.5 + (d + 1)* 35; })
 				//.attr("width", function (d) { return 10; })
 				.text( function (d) { return d; });
 
@@ -294,10 +294,11 @@
 	function setDropdown(data){
 		document.getElementById("country_dropdown").innerHTML = "<option value=\"-\" selected=\"selected\"> - </option>";
 	data.forEach(function(d){
+		
 		var x = document.getElementById("country_dropdown");
 		
 		var option = document.createElement("option");
-		option.value = d.key;
+		option.value = d.values[0].ISO3;
 		option.innerHTML = d.key;
 
 		x.appendChild(option);
@@ -356,11 +357,15 @@
 			if(currentURL.split("?")[1]=="alljobs"){
 				updateSelector(currentURL.split("?")[1]);
 				updateCircle(alljobs)
+				
 
 				var button2update = "." + currentURL.split("?")[1];
 				d3.selectAll(".green").style("background", "#548235")
 				d3.selectAll(button2update).style("background", "#0b1e2d")
 
+				if (currentURL.split("?")[2] != "")
+					updateCard(currentURL.split("?")[2])
+					
 			}
 			else if (currentURL.split("?")[1] == "allhealth") {
 
@@ -381,14 +386,42 @@
 				d3.selectAll(button2update).style("background", "#0b1e2d")
 			
 			}else{
-				
-				updateCircle(allData);
+				///////////////////////////////
+				///////////////////////////////
+				//TO COMPLETE WITHTRACKERS/////
+				///////////////////////////////
+				///////////////////////////////
+				actions.forEach(function(d){
+					var circles2add=true;
+					allcircles.forEach(function (k){
+						if(k.ISO3==d.ISO3)
+							circles2add=false;
+					})
+					if(circles2add)
+						allcircles.push({ "ISO3":d.ISO3	,"lat": d.lat	,"lng":	d.lng,"Country": d.Country	})
+				})
+
+				actions.forEach(function (d) {
+					var circles2add=true;
+					allcircles.forEach(function (k) {
+						if (k.ISO3 == d.ISO3)
+							circles2add = false;
+					})
+					if (circles2add)
+						allcircles.push({ "ISO3": d.ISO3, "lat": d.lat, "lng": d.lng, "Country": d.Country })
+				})
+
+
+				//updateCircle(allData);
+				updateCircle(allcircles);
 			}
 	};	  
 
 	function updateCircle(selData){
 
-		if (selData===undefined){}else{
+		if (selData===undefined){
+
+		}else{
 				var countryList = d3.nest()
 					.key(function (d) { return d.Country; }).sortKeys(d3.ascending)
 					.entries(selData);
@@ -421,7 +454,7 @@
 				if (d.ISO3 == "EU" || d.ISO3 == "SEA")
 					return "#17a2b8";
 				else
-					return circleColor(selector);//"#04629a";
+					return "#04629a";//circleColor(selector);//;
 			})
 
 		polygonData=selData;
@@ -462,14 +495,14 @@
 				if (d.data.ISO3 == "EU" || d.data.ISO3 == "SEA")
 					d3.select("#" + d.data.ISO3 + "circle").attr("fill",  "#17a2b8");
 				else
-					d3.select("#" + d.data.ISO3 + "circle").attr("fill",  circleColor(selector));
+					d3.select("#" + d.data.ISO3 + "circle").attr("fill",  "#04629a"/*circleColor(selector)*/);
 			
 				divMap.transition()
 					.duration(100)
 					.style("opacity", 0);
 			})
 			.on('click',function(d){
-				updateCard(d.data.Country)
+				updateCard(d.data.ISO3)
 			});
 			
 	};
@@ -519,7 +552,7 @@
 
 
 
-	function updateCard(couName){
+	function updateCard(couCode){
 
 
 		var selData,selVariables;
@@ -544,7 +577,9 @@
 			selVariables = alltaxvariables;
 		}
 
-		var temp= selData.filter(function (d) { return d.Country == couName })
+		var temp= selData.filter(function (d) { return d.ISO3 == couCode })
+		
+		//var counName=
 		
 		document.getElementById("CountryCard").style.display = 'block';
 
@@ -558,19 +593,19 @@
 		var themenav="";
 
 		function isPresent(fruit) {
-			return fruit.Country === couName;
+			return fruit.ISO3 === couCode;
 		}
 
-		country4card=couName;
+		country4card=couCode;
 
 		if(allcontext.find(isPresent))
-			var themenav = "<button class=\"button menuCard allcontext\"  type=\"submit\" value=\"allcontext\" onclick = \"updateSelector(value),updateCircle(allcontext),updateCard(country4card)\" >Context</button >";
+			var themenav = "<button class=\"button menuCard allcontext\"  type=\"submit\" value=\"allcontext\" onclick = \"updateSelector(value),/*updateCircle(allcontext),*\/updateCard(country4card)\" >Context</button >";
 
 		if(allData.find(isPresent))
-			var themenav = themenav + "<button class=\"button menuCard allData\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),updateCircle(allData),updateCard(country4card)\" >Fiscal and Monetary</button >";
+			var themenav = themenav + "<button class=\"button menuCard allData\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),/*updateCircle(allData),*\/updateCard(country4card)\" >Fiscal and Monetary</button >";
 
 		if (alljobs.find(isPresent))
-			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),updateCircle(alljobs),updateCard(country4card)\" >employment and social</button >";
+			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),/*updateCircle(alljobs),*\/updateCard(country4card)\" >employment and social</button >";
 
 
 		selVariables.forEach(function(d){
@@ -619,9 +654,9 @@
 		d3.selectAll(".green").style("background","#548235")
 		d3.selectAll(button2update).style("background","#0b1e2d")
 
-		if (couName == "Kosovo**")
+		if (couCode == "XKX")
 				document.getElementById("noteCountry").innerHTML = "<b>Note on Kosovo</b>: This designation is without prejudice to positions on status, and is in line with United Nations Security Council Resolution 1244/99 and the Advisory Opinion of the International Court of Justice on Kosovo's declaration of independence."
-		else if (couName == "Israel*")
+		else if (couCode == "ISR")
 				document.getElementById("noteCountry").innerHTML = "<b>Note on Israel</b>: The statistical data for Israel are supplied by and under the responsibility of the relevant Israeli authorities. The use of such data by the OECD is without prejudice to the status of the Golan Heights, East Jerusalem and Israeli settlements in the West Bank under the terms of international law."
 		else
 				document.getElementById("noteCountry").innerHTML = ""
@@ -629,7 +664,7 @@
 		allVariables.forEach(function (d) {
 			if (d.level == "SectionChart" && selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length> limCouChart) {
 				compChart(selData,d.code)	
-				highlight(couName, selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code]) )}).length,d.code)				
+				highlight(couCode, selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code]) )}).length,d.code)				
 			} else if(d.level == "SectionChart" && selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length <= limCouChart) {
 				var div2hide=d.code+"_Label"
 				document.getElementById(div2hide).innerHTML = "";} 
@@ -676,7 +711,7 @@
 					var cathighlight=".cat"+i;
 					worldMap
 						.selectAll(cathighlight)
-						.style("opacity", 0.1)
+						.style("opacity", 0.2)
 				}
 				
 			}
@@ -763,13 +798,18 @@
 				.style("opacity", 1);
 
 			var icuText;
-			console.log(d)
-			if (d.data[value] == 'Information not available' || d.data[value] == '')
+			var tempVariable
+			allData.forEach(function(k){
+				if(d.data.ISO3==k.ISO3)
+					tempVariable=k;
+			})
+			console.log(tempVariable)
+			if (tempVariable[value] == 'Information not available' || tempVariable[value] == '')
 				icuText = ""
 			else
-				icuText = "<br/><b>Level: " + d.data[value] + "</b><Br/>"+ d.data[variable];
+				icuText = "<br/><b>Level: " + tempVariable[value] + "</b><Br/>"+ tempVariable[variable];
 
-			var htmlText = "<b>" + d.data.Country + "</b>"+   icuText;
+			var htmlText = "<b>" + tempVariable.Country + "</b>"+   icuText;
 
 			divMap.html(htmlText)
 				.style("left", event.pageX - document.body.scrollLeft + "px")
@@ -789,14 +829,14 @@
 			if (d.data.ISO3 == "EU" || d.data.ISO3 == "SEA")
 				d3.select("#" + d.data.ISO3 + "circle").attr("fill", "#17a2b8");
 			else
-				d3.select("#" + d.data.ISO3 + "circle").attr("fill", circleColor(selector));
+				d3.select("#" + d.data.ISO3 + "circle").attr("fill", "#04629a"/*circleColor(selector)*/);
 
 			divMap.transition()
 				.duration(100)
 				.style("opacity", 0);
 		})
 		.on('click', function (d) {
-			updateCard(d.data.Country)
+			updateCard(d.data.ISO3)
 		});
 		
 }
@@ -899,14 +939,14 @@
 				if (d.data.ISO3 == "EU" || d.data.ISO3 == "SEA")
 					d3.select("#" + d.data.ISO3 + "circle").attr("fill", "#17a2b8");
 				else
-					d3.select("#" + d.data.ISO3 + "circle").attr("fill", circleColor(selector));
+					d3.select("#" + d.data.ISO3 + "circle").attr("fill", "#04629a"/*circleColor(selector)*/);
 
 				divMap.transition()
 					.duration(100)
 					.style("opacity", 0);
 			})
 			.on('click', function (d) {
-				updateCard(d.data.Country)
+				updateCard(d.data.ISO3)
 			});
 	})
 

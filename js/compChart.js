@@ -417,15 +417,21 @@ function compChart(data_temp, idChart) {
 
 		}	
 	
-function highlight(countryName, couNum, idChart) {
+function highlight(couCode, couNum, idChart) {
 	idChartref = "#" + idChart + "_chart";
 	d3.select(idChartref).selectAll(".highlightBar").remove();
 
-	if (!isNaN(xScale(countryName))){	
+	var nameCou;
+	allData.forEach(function(d){
+		if(d.ISO3==couCode)
+			 nameCou=d.Country;
+	})
+
+	if (!isNaN(xScale(nameCou))){	
 			if (popupWidth > 800){
 				d3.select(idChartref).append("rect")
 					.attr("class","highlightBar")
-					.attr("x", xScale(countryName)-0.1* (popupWidth - margin_chart /2 - margin_chart/2) / couNum)
+					.attr("x", xScale(nameCou)-0.1* (popupWidth - margin_chart /2 - margin_chart/2) / couNum)
 					.attr("y", 0)
 					.attr("width", 1*(popupWidth - margin_chart/2  - margin_chart/2) / couNum)
 					.attr("height", heightChart)
@@ -437,7 +443,7 @@ function highlight(countryName, couNum, idChart) {
 				d3.select(idChartref).append("rect")
 					.attr("class", "highlightBar")
 					.attr("x", 0)
-					.attr("y", xScale(countryName)- 0.5*(heightChart - margin_chart/2 - margin_chart/2) / couNum)
+					.attr("y", xScale(nameCou)- 0.5*(heightChart - margin_chart/2 - margin_chart/2) / couNum)
 					.attr("width", popupWidth)
 					.attr("height", 1.5*(heightChart - margin_chart / 2 - margin_chart) / couNum)
 					.attr("fill", "white")

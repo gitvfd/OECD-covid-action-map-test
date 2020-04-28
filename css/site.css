@@ -530,7 +530,9 @@ text-decoration: underline;
   font-weight: 300;
   font-size: 1.25rem;
   text-decoration: underline;
-  color: #04629a;
+  
+  /*color: #04629a;*/
+  color: #ffffff;
 
 }
 
@@ -541,7 +543,9 @@ text-decoration: underline;
   font-weight: 300;
   font-size: 1.25rem;
   font-style:normal;
-  color: #04629a;
+  
+  /*color: #04629a;*/
+  color: #ffffff;
 }
 
 
@@ -634,7 +638,8 @@ display: flex;
   font-weight: 300;
   font-size: 1.25rem;
   font-style:normal;
-  color: #04629a;
+  /*color: #04629a;*/
+  color: #ffffff;
 }
 
 
@@ -645,8 +650,9 @@ display: flex;
     font-weight: 100;
     font-style: italic;
     line-height: 1;
-    color: #04629a;
-}
+
+  /*color: #04629a;*/
+  color: #ffffff;}
 #comp_Country{
  /** max-width:200px;**/
   margin:0.5em 0em 0em 2.0em ;
