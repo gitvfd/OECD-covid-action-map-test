@@ -673,7 +673,7 @@
 			var themenav = themenav + "<button class=\"button menuCard allData\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),/*updateCircle(allData),*\/updateCard(country4card)\" >Fiscal and Monetary</button >";
 
 		if (alljobs.find(isPresent))
-			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),/*updateCircle(alljobs),*\/updateCard(country4card)\" >employment and social</button >";
+			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),/*updateCircle(alljobs),*\/updateCard(country4card)\" >Employment and Social</button >";
 
 
 		selVariables.forEach(function(d){
@@ -716,7 +716,7 @@
 
 
 		var elmnt = document.getElementById("themebar");
-		elmnt.scrollIntoView();
+		elmnt.scrollIntoView(false);
 
 		var button2update="."+selector;
 		d3.selectAll(".green").style("background","#548235")
