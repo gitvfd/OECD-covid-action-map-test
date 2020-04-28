@@ -196,10 +196,11 @@
 	var xScale;
 	var yScale ;
 
+	var selector = "allData";
+	var selectorArray, selectorVariables; 
 	var worldData, confinementdef, allcontext, allcontextvariables, allData, allVariables, alljobs, alljobsvariables;
 
 	var allcircles=[];
-	var selector="allData";
 	var country4card;
 
 	var urls = {
@@ -365,7 +366,7 @@
 
 				if (currentURL.split("?")[2] != "")
 					updateCard(currentURL.split("?")[2])
-					
+
 			}
 			else if (currentURL.split("?")[1] == "allhealth") {
 
@@ -554,27 +555,94 @@
 
 	function updateCard(couCode){
 
-
+				///////////////////////////////
+				///////////////////////////////
+				//TO COMPLETE WITHTRACKERS/////
+				///////////////////////////////
+				///////////////////////////////
+		selectorArray=[allData, alljobs, allcontext]	
+		selectorVariables = [allVariables, alljobsvariables, allcontextvariables]	
+	
 		var selData,selVariables;
 		if(selector=="allData"){
-			selData=allData;
-			selVariables=allVariables;
+			if(allData.map(function (d) { return d.ISO3 }).includes(couCode)){
+				selData = allData;
+				selVariables = allVariables;
+			}
+			else{
+				for (i=0;i<selectorArray.length;i++){
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+						selData = selectorArray[i];
+						selVariables = selectorVariables[i];
+
+						break
+					}
+				}
+			}
 		}
 		else if (selector == "allcontext") {
-			selData = allcontext;
-			selVariables = allcontextvariables;
+			if (allcontext.map(function (d) { return d.ISO3 }).includes(couCode)) {
+				selData = allcontext;
+				selVariables = allcontextvariables;
+			}
+			else {
+				for (i = 0; i < selectorArray.length; i++) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+						selData = selectorArray[i];
+						selVariables = selectorVariables[i];
+
+						break
+					}
+				}
+			}
 		}
 		else if (selector == "alljobs") {
-			selData =alljobs;
-			selVariables =alljobsvariables;
+			if (alljobs.map(function (d) { return d.ISO3 }).includes(couCode)) {
+				selData =alljobs;
+				selVariables =alljobsvariables;
+			}
+			else {
+				for (i = 0; i < selectorArray.length; i++) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+						selData = selectorArray[i];
+						selVariables = selectorVariables[i];
+
+						break
+					}
+				}
+			}
 		}
 		else if (selector == "allhealth"){
-			selData = allhealth;
-			selVariables = allhealthvariables;
+			if (allhealth.map(function (d) { return d.ISO3 }).includes(couCode)) {
+				selData = allhealth;
+				selVariables = allhealthvariables;
+			}
+			else {
+				for (i = 0; i < selectorArray.length; i++) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+						selData = selectorArray[i];
+						selVariables = selectorVariables[i];
+
+						break
+					}
+				}
+			}
 		}
 		else if (selector == "alltax"){
-			selData = alltax;
-			selVariables = alltaxvariables;
+			if (alltax.map(function (d) { return d.ISO3 }).includes(couCode)) {
+				selData = alltax;
+				selVariables = alltaxvariables;
+			}
+			else {
+				for (i = 0; i < selectorArray.length; i++) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+						selData = selectorArray[i];
+						selVariables = selectorVariables[i];
+
+						break
+					}
+				}
+			}
 		}
 
 		var temp= selData.filter(function (d) { return d.ISO3 == couCode })
