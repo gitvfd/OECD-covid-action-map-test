@@ -651,8 +651,8 @@ display: flex;
     font-style: italic;
     line-height: 1;
 
-  /*color: #04629a;*/
-  color: #ffffff;}
+  color: #04629a;
+  /*color: #ffffff;*/}
 #comp_Country{
  /** max-width:200px;**/
   margin:0.5em 0em 0em 2.0em ;

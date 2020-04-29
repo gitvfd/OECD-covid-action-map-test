@@ -164,8 +164,8 @@
 				<img id="shutter" src="img/cross.svg">
 				<div id="countrySel"></div>
 				<div id="betaTag">&nbsp;Beta</div>
-				<div id="flex-container_comp">
 					<div id="updateTime"></div>
+				<div id="flex-container_comp">
 					
 				</div>
 			</div>
@@ -357,7 +357,7 @@
 
 			if(currentURL.split("?")[1]=="alljobs"){
 				updateSelector(currentURL.split("?")[1]);
-				updateCircle(alljobs)
+//				updateCircle(alljobs)
 				
 
 				var button2update = "." + currentURL.split("?")[1];
@@ -371,7 +371,7 @@
 			else if (currentURL.split("?")[1] == "allhealth") {
 
 				updateSelector(currentURL.split("?")[1]);
-				updateCircle(allhealth)
+//				updateCircle(allhealth)
 
 				var button2update = "." + currentURL.split("?")[1];
 				d3.selectAll(".green").style("background", "#548235")
@@ -380,13 +380,13 @@
 			else if (currentURL.split("?")[1] == "alltax") {
 
 				updateSelector(currentURL.split("?")[1]);
-				updateCircle(alltax)
+//				updateCircle(alltax)
 
 				var button2update = "." + currentURL.split("?")[1];
 				d3.selectAll(".green").style("background", "#548235")
 				d3.selectAll(button2update).style("background", "#0b1e2d")
 			
-			}else{
+			}//else{
 				///////////////////////////////
 				///////////////////////////////
 				//TO COMPLETE WITHTRACKERS/////
@@ -415,7 +415,7 @@
 
 				//updateCircle(allData);
 				updateCircle(allcircles);
-			}
+			//}
 	};	  
 
 	function updateCircle(selData){
@@ -729,13 +729,14 @@
 		else
 				document.getElementById("noteCountry").innerHTML = ""
 
-		allVariables.forEach(function (d) {
-			if (d.level == "SectionChart" && selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length> limCouChart) {
+		selVariables.forEach(function (d) {
+			if (d.level == "SectionChart" && (selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length> limCouChart)) {
 				compChart(selData,d.code)	
 				highlight(couCode, selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code]) )}).length,d.code)				
-			} else if(d.level == "SectionChart" && selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length <= limCouChart) {
+			} else if(d.level == "SectionChart" && (selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length <= limCouChart)) {
 				var div2hide=d.code+"_Label"
-				document.getElementById(div2hide).innerHTML = "";} 
+				document.getElementById(div2hide).innerHTML = "";
+			} 
 		})
 
 	}
