@@ -1,7 +1,8 @@
 <doctype HTML>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<head>
+<head>L
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Oswald:200,300,400,500,600,700&display=swap&subset=latin-ext" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/site.css">
@@ -650,10 +651,8 @@
 				}
 			}
 		}
-
-		var temp= selData.filter(function (d) { return d.ISO3 == couCode })
 		
-		//var counName=
+		var temp= selData.filter(function (d) { return d.ISO3 == couCode })
 		
 		document.getElementById("CountryCard").style.display = 'block';
 
@@ -701,8 +700,17 @@
 						
 						selVariables.filter(function (k) { return (k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0]) && k.hierarchy.split("-")[1]!= undefined }).forEach(function (k) {
 							if (k.level == "SectionText" || k.level == "choroplethDesc") {
-								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
-									countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
+								if(k.level == "choroplethDesc"){
+									if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")){
+										console.log(k.code.replace("__Description", "__Level"))
+										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><span class=\"levelValue\">(level: "+ temp[0][k.code.replace("__Description", "__Level")]+")</span><br/>" + temp[0][k.code] + "</div><Br/>";
+
+									}
+								}else{
+									if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
+										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
+	
+								}
 							}/* else if (k.level == "SectionChart") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available" ))
 									countryText = countryText + "<div class=\"SectionChart\" id =\"" + k.code + "_Label\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
