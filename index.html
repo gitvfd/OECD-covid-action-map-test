@@ -5,8 +5,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Oswald:200,300,400,500,600,700&display=swap&subset=latin-ext" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/site.css">
-
-
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+	crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
  	<script src="libs/d3.v4.min.js"></script>
 	<script src="libs/d3.v4.jetpack.min.js"></script>
 	<script src="libs/d3-scale-chromatic.v1.min.js"></script>
@@ -14,7 +16,6 @@
 	<script src="libs/d3-queue.v3.min.js"></script>
 	<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 	<script src="js/compChart.js"></script>
-
 <script>
 
 	dataLayer = [{
@@ -57,7 +58,6 @@
 	})(window, document, 'script', 'dataLayer', 'GTM-P5JSM4P');</script>
 
  <!--End Google Tag Manager -->
-
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 
 	<!--</div>-->
 
-	<h1>Tracking policy responses</h1>
+	<h1>Country Policy Tracker</h1>
 	<div class="flex-container">
 		<button class="button grey" id="Dimension" type="submit"
 			value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
@@ -125,12 +125,12 @@
 	<div class="flex-container" id="switchtracker">
 		<div id="trackersNotes">
 			<div id="updateTag">Beta version - last updated on <span id="date"></span></div>
-			<a id="source"
-				href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx"
-				target="_blank">Download the data</a>
-			<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
-	
-		</div>
+			<div id="source">Download underlying data</div>
+				<a class="toData" id="toEcoData" href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Fiscal and Monetary</a>
+				<a class="toData" id="toElsData" href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx" target="_blank">Employment and Social</a>
+		
+	<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
+	</div>
 	
 		<div id="morebtn">
 			<div class="toTrackers" id="toTrackersBtn">Download more policy responses</div>
@@ -149,8 +149,8 @@
 						<li>
 							<a href="http://www.oecd.org/tax/covid-19-tax-policy-and-other-measures.xlsm" target="_blank">Tax
 								policy responses by country</a></li>
-						<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
-								target="_blank">Employment and social policy responses by country</a></li>
+						<!--<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
+								target="_blank">Employment and social policy responses by country</a></li>-->
 						<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx"
 								target="_blank">Health policy responses by country</a></li>
 						<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses
@@ -180,6 +180,12 @@
 
 </body>
 <script type="text/javascript">
+
+
+	$(document).ready(function () {
+		$('#country_dropdown').select2({ width: '180px' });
+	});
+
 	n = new Date();
 	y = n.getFullYear();
 	m = n.getMonth() + 1;
@@ -655,7 +661,7 @@
 
 		document.getElementById("updateTime").innerHTML = "Updated on " + temp[0].update;
 		
-		var navText="Quicklinks <Br/>";
+		var navText="";
 		
 		var countryText="";
 		var themenav="";
@@ -697,13 +703,13 @@
 							if (k.level == "SectionText" || k.level == "choroplethDesc") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 									countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
-							} else if (k.level == "SectionChart") {
+							}/* else if (k.level == "SectionChart") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available" ))
 									countryText = countryText + "<div class=\"SectionChart\" id =\"" + k.code + "_Label\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
 							} else if (k.level == "SectionEmbed") {
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 								countryText = countryText + "<div class=\"SectionEmbed\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/>" + temp[0][k.code] + "<Br/>";
-							}
+							}*/
 						})
 					}
 				}	
@@ -729,7 +735,7 @@
 		else
 				document.getElementById("noteCountry").innerHTML = ""
 
-		selVariables.forEach(function (d) {
+		/*selVariables.forEach(function (d) {
 			if (d.level == "SectionChart" && (selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code])) }).length> limCouChart)) {
 				compChart(selData,d.code)	
 				highlight(couCode, selData.filter(function (k) { return k[d.code] != "--" && k[d.code] != "Information not available" && k[d.code] != "null" && k[d.code] != "" && !(isNaN(k[d.code]) )}).length,d.code)				
@@ -737,7 +743,7 @@
 				var div2hide=d.code+"_Label"
 				document.getElementById(div2hide).innerHTML = "";
 			} 
-		})
+		})*/
 
 	}
 
@@ -923,7 +929,8 @@
 	.on("click",function(){
 		document.getElementById("CountryCard").style.display = 'none';
 
-		document.getElementById("country_dropdown").value = '-';
+	//	document.getElementById("country_dropdown").value = '-';
+		$('#country_dropdown').select2().select2('val', '-');
 		//document.getElementById("modedemploi").style.display = 'block';
 	})
 
@@ -1018,7 +1025,6 @@
 				updateCard(d.data.ISO3)
 			});
 	})
-
 
 
 
