@@ -672,14 +672,17 @@
 		}
 
 		country4card=couCode;
-
-		if(allcontext.find(isPresent))
+		
+		//if(allcontext.find(isPresent)) // replaced as find not read in explorer
+		if (typeof allcontext.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
 			var themenav = "<button class=\"button menuCard allcontext\"  type=\"submit\" value=\"allcontext\" onclick = \"updateSelector(value),/*updateCircle(allcontext),*\/updateCard(country4card)\" >Context</button >";
 
-		if(allData.find(isPresent))
+		//if(allData.find(isPresent))
+		if (typeof allData.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
 			var themenav = themenav + "<button class=\"button menuCard allData\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),/*updateCircle(allData),*\/updateCard(country4card)\" >Fiscal and Monetary</button >";
 
-		if (alljobs.find(isPresent))
+		//if (alljobs.find(isPresent)) // does not work with explorer
+		if (typeof alljobs.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
 			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),/*updateCircle(alljobs),*\/updateCard(country4card)\" >Employment and Social</button >";
 
 
@@ -705,7 +708,7 @@
 								if(k.level == "choroplethDesc"){
 									if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")){
 										console.log(k.code.replace("__Description", "__Level"))
-										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><span class=\"levelValue\">(level: "+ temp[0][k.code.replace("__Description", "__Level")]+")</span><br/>" + temp[0][k.code] + "</div><Br/>";
+										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b>"+/**"<span class=\"levelValue\">(level: "+ temp[0][k.code.replace("__Description", "__Level")]+")</span>"+**/"<br/>" + temp[0][k.code] + "</div><Br/>";
 
 									}
 								}else{
