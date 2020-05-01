@@ -574,13 +574,13 @@
 	
 		var selData,selVariables;
 		if(selector=="allData"){
-			if(allData.map(function (d) { return d.ISO3 }).includes(couCode)){
+			if(allData.map(function (d) { return d.ISO3 }).indexOf(couCode) > -1){
 				selData = allData;
 				selVariables = allVariables;
 			}
 			else{
 				for (i=0;i<selectorArray.length;i++){
-					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 						selData = selectorArray[i];
 						selVariables = selectorVariables[i];
 
@@ -590,13 +590,13 @@
 			}
 		}
 		else if (selector == "allcontext") {
-			if (allcontext.map(function (d) { return d.ISO3 }).includes(couCode)) {
+			if (allcontext.map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 				selData = allcontext;
 				selVariables = allcontextvariables;
 			}
 			else {
 				for (i = 0; i < selectorArray.length; i++) {
-					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 						selData = selectorArray[i];
 						selVariables = selectorVariables[i];
 
@@ -606,13 +606,13 @@
 			}
 		}
 		else if (selector == "alljobs") {
-			if (alljobs.map(function (d) { return d.ISO3 }).includes(couCode)) {
+			if (alljobs.map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 				selData =alljobs;
 				selVariables =alljobsvariables;
 			}
 			else {
 				for (i = 0; i < selectorArray.length; i++) {
-					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 						selData = selectorArray[i];
 						selVariables = selectorVariables[i];
 
@@ -622,13 +622,13 @@
 			}
 		}
 		else if (selector == "allhealth"){
-			if (allhealth.map(function (d) { return d.ISO3 }).includes(couCode)) {
+			if (allhealth.map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 				selData = allhealth;
 				selVariables = allhealthvariables;
 			}
 			else {
 				for (i = 0; i < selectorArray.length; i++) {
-					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 						selData = selectorArray[i];
 						selVariables = selectorVariables[i];
 
@@ -638,13 +638,13 @@
 			}
 		}
 		else if (selector == "alltax"){
-			if (alltax.map(function (d) { return d.ISO3 }).includes(couCode)) {
+			if (alltax.map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 				selData = alltax;
 				selVariables = alltaxvariables;
 			}
 			else {
 				for (i = 0; i < selectorArray.length; i++) {
-					if (selectorArray[i].map(function (d) { return d.ISO3 }).includes(couCode)) {
+					if (selectorArray[i].map(function (d) { return d.ISO3 }).indexOf(couCode) > -1) {
 						selData = selectorArray[i];
 						selVariables = selectorVariables[i];
 
