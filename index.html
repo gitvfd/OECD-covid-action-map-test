@@ -78,7 +78,7 @@
 	<!--</div>-->
 
 	<h1>Country Policy Tracker</h1>
-	<div class="flex-container">
+	<!--<div class="flex-container">
 		<button class="button grey" id="Dimension" type="submit"
 			value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
 				class="textbtn">Confinement and lock downs</span></button>
@@ -100,7 +100,7 @@
 		<div id="scaleLegend"></div>
 		<div id="resetButton"><img id="resetcross" src="img/cross.svg"> <span id= resetText>Reset map &nbsp;</span></div>
 	
-	</div>
+	</div>-->
 	<div id="aboutMap"></div>
 
 	<div id="modedemploi">
@@ -127,7 +127,7 @@
 	
 	<div class="flex-container" id="switchtracker">
 		<div id="trackersNotes">
-			<div id="updateTag">Beta version - last updated on <span id="date"></span></div>
+			<div id="updateTag">Beta version - last database update on <span id="date"></span></div>
 			<div id="source">Download underlying data</div>
 				<a class="toData" id="toEcoData" href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Fiscal and Monetary</a>
 				<a class="toData" id="toElsData" href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx" target="_blank">Employment and Social</a>
@@ -660,7 +660,7 @@
 
 		document.getElementById("countrySel").innerHTML = temp[0].Country;
 
-		document.getElementById("updateTime").innerHTML = "Updated on " + temp[0].update;
+		document.getElementById("updateTime").innerHTML = "Country data updated on " + temp[0].update;
 		
 		var navText="";
 		
