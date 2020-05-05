@@ -385,9 +385,9 @@ width:87.5%;
     text-decoration: none;
     text-transform: uppercase;
 
-    color: #fff;
-    background: #633582;
-    /*border: 1px solid #0b1e2d;*/
+    color: #0b1e2d;
+    background: none;/* #633582;*/
+    border: 1px solid #0b1e2d;
     border-radius: 25px;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
@@ -400,6 +400,7 @@ width:87.5%;
 .toTrackers:hover{
 text-decoration: underline;
     background: #0b1e2d;
+    color:#fff;
 }
 
 
@@ -547,10 +548,8 @@ text-decoration: underline;
 }
 .toData{
     display: inline-block;
-    padding: 5px 10px 5px 10px;
-    margin-left:5px;
-    margin-right:5px;
-    margin-bottom:2px;
+    padding: 7px 10px 7px 10px;
+    margin:5px;
     font-family: "Noto Sans Display",sans-serif;
     font-size: 1rem;
     /*font-size: 0.75rem;*/
@@ -561,9 +560,9 @@ text-decoration: underline;
     text-decoration: none;
     text-transform: uppercase;
 
-    color: #fff;
-    background: #633582;
-    /*border: 1px solid #0b1e2d;*/
+    color: #0b1e2d;
+    background: none;/* #633582;*/
+    border: 1px solid #0b1e2d;
     border-radius: 25px;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
@@ -575,14 +574,15 @@ text-decoration: underline;
 
 .toData:hover{
 text-decoration: underline;
-    background: #0b1e2d;
+  background: #0b1e2d;
+  color:#ffffff
 }
 
 
 #copyright{
   display:block;
-  margin-top:7px;
   margin-left:5%;
+  margin-bottom:5px;
   font-family: 'Noto Sans', sans-serif;
   font-weight: 300;
   font-size: 1.25rem;
