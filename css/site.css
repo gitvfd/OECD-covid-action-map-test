@@ -545,19 +545,14 @@ width:150px;
   float:left;
   margin:20px;
   display: flex;
-  height: 210px;
+ 
   align-items: stretch;
+  flex-direction: column;
 
 }
 
 
-.sectionChartContext_title{
-  float:left;
-  margin:20px;
-  display: flex;
-  height: 210px;
-  align-items: stretch;
-
+.sectionChartContext_title{max-width:250px;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 300;
     font-size: 1.5rem;
@@ -565,11 +560,6 @@ width:150px;
 }
 
 .sectionChartContext_chart{
-  float:left;
-  margin:20px;
-  display: flex;
-  height: 210px;
-  align-items: stretch;
 }
 #noteCountry{
     margin-top:0.75em;
@@ -869,6 +859,23 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 }
 
+.sectionChartContext_chart{
+  background:#DDE9EF;
+  color:#ffffff;
+}
+
+.axisContext line{
+  stroke:#ffffff;
+  stroke-width:0.5px;
+}
+
+.axisContext path{stroke:none;
+
+}
+.axisContext text{
+  color:#575757;
+  stroke:none
+}
 @media only screen and (max-width: 600px) {
   table {
   min-width: 500px;  

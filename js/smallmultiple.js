@@ -10,15 +10,15 @@ function smallMultiples(data,identifier) {
     });
 
     var minAxis ;
-    if (d3.min(data, function (d) { return parseFloat(d.value); })>0)
+   /**  if (d3.min(data, function (d) { return parseFloat(d.value); })>0)
         minAxis=0;
-    else
+    else*/
         minAxis = d3.min(data, function (d) { return parseFloat(d.value); })
     var parseDate = d3.timeParse("%Y-%m")
 
     // set the dimensions and margins of the graph
-    var marginSmall = { top: 30, right: 0, bottom: 30, left: 50 },
-        widthSmall = 210 - marginSmall.left - marginSmall.right,
+    var marginSmall = { top: 10, right: 10, bottom: 30, left: 30 },
+        widthSmall = 310 - marginSmall.left - marginSmall.right,
         heightSmall = 210 - marginSmall.top - marginSmall.bottom;
 
         // group the data: I want to draw one line per group
@@ -39,33 +39,35 @@ function smallMultiples(data,identifier) {
             .range([0, widthSmall]);
         svg
             .append("g")
+            .attr("class", "axisContext")
             .attr("transform", "translate(0," + heightSmall + ")")
-            .call(d3.axisBottom(x).ticks(2)
-                .tickFormat(d3.timeFormat("%Y-%m-%d")));
+            .call(d3.axisBottom(x).ticks(8)
+                .tickFormat(d3.timeFormat("%Y")));
 
         //Add Y axis
         var y = d3.scaleLinear() //or scaleLog
             .domain([minAxis, d3.max(data, function (d) { return parseFloat(d.value); })])
             .range([heightSmall, 0]);
        
-            svg.append("g")
-            .call(d3.axisLeft(y).tickFormat(function (d) {
+    svg.append("g")
+        .attr("class", "axisContext")
+                .call(d3.axisLeft(y).tickFormat(function (d) {
                 return y.tickFormat(10, d3.format(",d"))(d)
-            }));
+            }).tickSize(-(widthSmall)));
 
         // Draw the line
         svg
             .append("path")
-            .attr("fill","#8DCD79" )
-            .attr("stroke", function (d) { return /*color(d.key)*/"#8DCD79" })
+            .attr("fill", "none"/*"#8DCD79"*/ )
+            .attr("stroke", function (d) { return /*color(d.key)*/"#E73741" })
             .attr("stroke-width", 1.9)
-            .attr("class","areaCou")
+            .attr("class","lineContext")
             .attr("id", function (d) { return identifier.split(' ').join('').replace("*", "").replace("\''", "").replace("-", "").replace("(", "").replace(")", "") + "area";})
             .attr("d", function (d) {
-                return d3.area()
+                return d3.line()//area
                     .x(function (d) { return x(parseDate(d.date)); })
-                    .y0(y(0))
-                    .y1(function (d) { return y(parseFloat(d.value)); })
+                   // .y0(y(0))
+                    .y(function (d) { return y(parseFloat(d.value)); })
                     (data)
             })
 
