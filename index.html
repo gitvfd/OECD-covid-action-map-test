@@ -18,6 +18,7 @@
 	<script src="libs/d3-queue.v3.min.js"></script>
 	<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 	<script src="js/compChart.js"></script>
+	<script src="js/smallmultiple.js"></script>
 	<link rel="icon" href="img/favicon.ico" >
 <script>
 
@@ -320,7 +321,6 @@
 }
 
 	function render(err,world,country, context, contextvariables, actions,variables,jobs,jobsvariables){
-
 		worldData=world;
 		allcontext= context;
 		allcontextvariables= contextvariables;
@@ -693,9 +693,7 @@
 						
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")) {
 								count++;
-							}
-						
-
+							}						
 					})
 
 					if (count >0){
@@ -707,7 +705,6 @@
 							if (k.level == "SectionText" || k.level == "choroplethDesc") {
 								if(k.level == "choroplethDesc"){
 									if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")){
-										console.log(k.code.replace("__Description", "__Level"))
 										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b>"+/**"<span class=\"levelValue\">(level: "+ temp[0][k.code.replace("__Description", "__Level")]+")</span>"+**/"<br/>" + temp[0][k.code] + "</div><Br/>";
 
 									}
@@ -723,6 +720,22 @@
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 								countryText = countryText + "<div class=\"SectionEmbed\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/>" + temp[0][k.code] + "<Br/>";
 							}*/
+							else if (k.level == "SectionTable") {
+								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")){
+									countryText = countryText + "<div class=\"SectionTable\" id =\"" + k.code + "_Table\">" + k.title + "</span></div><div class=\"tableCountry\" id=\"" + k.code + "\"><span class=\"tableLabel\">"+ JSON.parse(temp[0][k.code])[0]["country"] +"</span><span class=\"tableValue\">" + JSON.parse(temp[0][k.code])[0]["value"] + "</span> <span class=\"tableUnitValue\">" + k.unit + "</span><span class=\"tableYear\">" + JSON.parse(temp[0][k.code])[0]["year"] + "</span><br><span class=\"tableLabel\">" + JSON.parse(temp[0][k.code])[1]["country"] + "</span><span class=\"tableValue\">" + JSON.parse(temp[0][k.code])[1]["value"] + "</span> <span class=\"tableUnitValue\">" + k.unit + "</span><span class=\"tableYear\">" + JSON.parse(temp[0][k.code])[1]["year"] +"</span></div><Br/>";
+									
+								}
+							} else if (k.level == "sectionChartContext") {
+							//	console.log(JSON.parse(temp[0][k.code]))
+								countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
+							
+								d3.xml(temp[0][k.code],function(data){
+								//	console.log((data))
+								//	console.log((data.documentElement.getElementsByTagName("ObsValue")))
+									smallMultiples(data,k.code)
+								})
+								console.log(k.code)
+							}
 						})
 					}
 				}	

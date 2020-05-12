@@ -478,12 +478,98 @@ text-decoration: underline;
     font-size: 1.5rem;
     color: #0b1e2d;
 }
+
+
 .levelValue{
     margin-left: 1em;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 100;
     font-size: 1.25rem;
     color: #233442;
+}
+
+
+
+.sectionTable{
+    padding-left:1em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #273E50;
+   
+}
+.tableUnit{
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    color: #273E50;
+}
+.tableLabel{
+  display: inline-block;
+width:175px;
+
+    padding-left: 2em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #0f293d;
+}
+
+.tableValue{
+    padding-left: 2em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #3F5363;
+}
+.tableUnitValue{
+      font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    color: #3F5363;
+}
+
+.tableYear{
+  display: inline-block;
+
+width:150px;
+    padding-left: 1em;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 100;
+    font-size: 1rem;
+    color: #979797;
+}
+
+
+.sectionChartContextFlex{
+  float:left;
+  margin:20px;
+  display: flex;
+  height: 210px;
+  align-items: stretch;
+
+}
+
+
+.sectionChartContext_title{
+  float:left;
+  margin:20px;
+  display: flex;
+  height: 210px;
+  align-items: stretch;
+
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #0f293d;
+}
+
+.sectionChartContext_chart{
+  float:left;
+  margin:20px;
+  display: flex;
+  height: 210px;
+  align-items: stretch;
 }
 #noteCountry{
     margin-top:0.75em;

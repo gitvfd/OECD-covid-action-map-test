@@ -1,11 +1,22 @@
 code	level	hierarchy	title	unit
-	SectionTitle	I	Section 1	
-Indicator1__Description	SectionText	I-I-text	Indicator 1	
-Indicator1__Chart	SectionEmbed	I-I-chart	Indicator 1	unit	
-Indicator2__Description	SectionText	I-I-text	Indicator 2	
-Indicator2__Chart	SectionEmbed	I-I-chart	Indicator 2	unit	
-Indicator3__Description	SectionText	I-I-text	Indicator 3	
-Indicator3__Chart	SectionEmbed	I-I-chart	Indicator 3	unit	
-	SectionTitle	II	Section 2	
-Indicator4__Description	SectionText	II-I-text	Indicator 4	
-Indicator4__Chart	SectionEmbed	II-I-chart	Indicator 4	unit	
+	SectionTitle	I	Risk factors for complications from COVID-19	
+share_pop_65	SectionTable	I-I-text	Share of population over age 65	%
+share_smoking	SectionTable	I-II-text	Share of adult population smoking daily	%
+house_air_pol	SectionTable	I-III-text	Ambient and household air pollution attributable death rate	Per 100 000
+share_obese	SectionTable	I-IV-text	Share of adult population who are overweight or obese	%
+	SectionTitle	II	Health system capacity (staff)	
+doctors	SectionTable	II-I-text	Practicing doctors	per 1 000 population
+nurses	SectionTable	II-II-text	Practicing nurses	per 1 000 population
+	SectionTitle	III	Health system capacity (hospital beds)	
+hospital_bed	SectionTable	III-I-text	Total hospital beds	per 100 000 population
+curative_hos_bed	SectionTable	III-II-text	of which curative (or acute) care beds	per 100 000 population
+intensive_hos_bed	SectionTable	III-III-text	of which intensive care beds	per 100 000 population
+	SectionTitle	IV	Economic impact	
+Manufacturing_Production	sectionChartContext	IV-I-text-chart	Manufacturing - Production: tendency sa	
+Manufacturing_Employment	sectionChartContext	IV-II-text-chart	Manufacturing - Employment: future tendency sa	
+Services_Business	sectionChartContext	IV-III-text-chart	Services - Business situation: tendency sa	
+Services_Employment	sectionChartContext	IV-IV-text-chart	Services - Employment: future tendency sa	
+Consumer_conf	sectionChartContext	IV-V-text-chart	Consumer - Confidence indicator sa	
+Manufacturing_Export	sectionChartContext	IV-VI-text-chart	Manufacturing - Export order books: level sa	
+Passenger_car	sectionChartContext	IV-VII-text-chart	Passenger car registrations  sa	
+share_price_index	sectionChartContext	IV-VIII-text-chart	Share prices index	
