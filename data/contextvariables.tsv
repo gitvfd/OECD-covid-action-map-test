@@ -13,12 +13,15 @@ nurses	SectionEmbed	II-II-text	Practicing nurses	per 1 000 population
 hospital_bed	SectionEmbed	III-I-text	Total hospital beds	per 100 000 population
 curative_hos_bed	SectionEmbed	III-II-text	of which curative (or acute) care beds	per 100 000 population
 intensive_hos_bed	SectionTable	III-III-text	of which intensive care beds	per 100 000 population
-	SectionTitle	IV	Economic impact	
-Manufacturing_Production	sectionChartContext	IV-I-text-chart	Manufacturing - Production: tendency sa	
-Manufacturing_Employment	sectionChartContext	IV-II-text-chart	Manufacturing - Employment: future tendency sa	
-Services_Business	sectionChartContext	IV-III-text-chart	Services - Business situation: tendency sa	
-Services_Employment	sectionChartContext	IV-IV-text-chart	Services - Employment: future tendency sa	
-Consumer_conf	sectionChartContext	IV-V-text-chart	Consumer - Confidence indicator sa	
-Manufacturing_Export	sectionChartContext	IV-VI-text-chart	Manufacturing - Export order books: level sa	
-Passenger_car	sectionChartContext	IV-VII-text-chart	Passenger car registrations  sa	
-share_price_index	sectionChartContext	IV-VIII-text-chart	Share prices index	
+	SectionTitle	0	Well-being	
+intro_wellbeing	SectionText	IV-I-text		
+income_poverty	SectionEmbed	IV-I-chart	Population living in relative income poverty	%
+	SectionTitle	V	Economic impact	
+Manufacturing_Production	sectionChartContext	V-I-text-chart	Manufacturing - Production: tendency sa	
+Manufacturing_Employment	sectionChartContext	V-II-text-chart	Manufacturing - Employment: future tendency sa	
+Services_Business	sectionChartContext	V-III-text-chart	Services - Business situation: tendency sa	
+Services_Employment	sectionChartContext	V-IV-text-chart	Services - Employment: future tendency sa	
+Consumer_conf	sectionChartContext	V-V-text-chart	Consumer - Confidence indicator sa	
+Manufacturing_Export	sectionChartContext	V-VI-text-chart	Manufacturing - Export order books: level sa	
+Passenger_car	sectionChartContext	V-VII-text-chart	Passenger car registrations  sa	
+share_price_index	sectionChartContext	V-VIII-text-chart	Share prices index	
