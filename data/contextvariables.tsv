@@ -1,15 +1,17 @@
 code	level	hierarchy	title	unit
+	SectionTitle	0	Health and social context	
+intro_health	SectionText	0-I-text		
 	SectionTitle	I	Risk factors for complications from COVID-19	
-share_pop_65	SectionTable	I-I-text	Share of population over age 65	%
-share_smoking	SectionTable	I-II-text	Share of adult population smoking daily	%
-house_air_pol	SectionTable	I-III-text	Ambient and household air pollution attributable death rate	Per 100 000
-share_obese	SectionTable	I-IV-text	Share of adult population who are overweight or obese	%
+share_pop_65	SectionEmbed	I-I-text	Share of population over age 65	%
+share_smoking	SectionEmbed	I-II-text	Share of adult population smoking daily	%
+house_air_pol	SectionEmbed	I-III-text	Ambient and household air pollution attributable death rate	Per 1 000 000
+share_obese	SectionEmbed	I-IV-text	Share of adult population who are overweight or obese	%
 	SectionTitle	II	Health system capacity (staff)	
-doctors	SectionTable	II-I-text	Practicing doctors	per 1 000 population
-nurses	SectionTable	II-II-text	Practicing nurses	per 1 000 population
+doctors	SectionEmbed	II-I-text	Practicing doctors	per 1 000 population
+nurses	SectionEmbed	II-II-text	Practicing nurses	per 1 000 population
 	SectionTitle	III	Health system capacity (hospital beds)	
-hospital_bed	SectionTable	III-I-text	Total hospital beds	per 100 000 population
-curative_hos_bed	SectionTable	III-II-text	of which curative (or acute) care beds	per 100 000 population
+hospital_bed	SectionEmbed	III-I-text	Total hospital beds	per 100 000 population
+curative_hos_bed	SectionEmbed	III-II-text	of which curative (or acute) care beds	per 100 000 population
 intensive_hos_bed	SectionTable	III-III-text	of which intensive care beds	per 100 000 population
 	SectionTitle	IV	Economic impact	
 Manufacturing_Production	sectionChartContext	IV-I-text-chart	Manufacturing - Production: tendency sa	

@@ -716,10 +716,10 @@
 							}/* else if (k.level == "SectionChart") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available" ))
 									countryText = countryText + "<div class=\"SectionChart\" id =\"" + k.code + "_Label\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"SectionChart\" id=\"" + k.code + "\"></div><Br/>";
-							} else if (k.level == "SectionEmbed") {
+							}*/ else if (k.level == "SectionEmbed") {
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
-								countryText = countryText + "<div class=\"SectionEmbed\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/>" + temp[0][k.code] + "<Br/>";
-							}*/
+								countryText = countryText + "<div class=\"SectionEmbed\">" + temp[0][k.code] + "</div><br>";
+							}
 							else if (k.level == "SectionTable") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")){
 									countryText = countryText + "<div class=\"SectionTable\" id =\"" + k.code + "_Table\">" + k.title + "</span></div><div class=\"tableCountry\" id=\"" + k.code + "\"><span class=\"tableLabel\">"+ JSON.parse(temp[0][k.code])[0]["country"] +"</span><span class=\"tableValue\">" + JSON.parse(temp[0][k.code])[0]["value"] + "</span> <span class=\"tableUnitValue\">" + k.unit + "</span><span class=\"tableYear\">" + JSON.parse(temp[0][k.code])[0]["year"] + "</span><br><span class=\"tableLabel\">" + JSON.parse(temp[0][k.code])[1]["country"] + "</span><span class=\"tableValue\">" + JSON.parse(temp[0][k.code])[1]["value"] + "</span> <span class=\"tableUnitValue\">" + k.unit + "</span><span class=\"tableYear\">" + JSON.parse(temp[0][k.code])[1]["year"] +"</span></div><Br/>";
