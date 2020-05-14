@@ -15,7 +15,7 @@ curative_hos_bed	SectionEmbed	III-II-text	of which curative (or acute) care beds
 intensive_hos_bed	SectionTable	III-III-text	of which intensive care beds	per 100 000 population
 	SectionTitle	0	Well-being	
 intro_wellbeing	SectionText	IV-I-text		
-income_poverty	SectionEmbed	IV-I-chart	Population living in relative income poverty	%
+income_poverty	SectionEmbed	IV-II-chart	Population living in relative income poverty	%
 	SectionTitle	V	Economic impact	
 Manufacturing_Production	sectionChartContext	V-I-text-chart	Manufacturing - Production: tendency sa	
 Manufacturing_Employment	sectionChartContext	V-II-text-chart	Manufacturing - Employment: future tendency sa	
