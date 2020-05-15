@@ -76,8 +76,11 @@
 	<!--<div id="warning">The country policy tracker will be available here <u>on March 30</u><Br/> <span id="warningtext">In the meantime, you can find OECD information on the impacts and consequences of the coronavirus pandemic on our lives and our societies at <a href="https://www.oecd.org/coronavirus">oecd.org/coronavirus</a></span></div>-->
 	
 
-	<!--</div>-->
-
+	<!--<a id="OECDLogoLink" href="https://www.oecd.org/coronavirus"><img id="OECDLogo" src="img/OECD_20cm_w.png"></img></a>
+	<div id="banner">
+			<div id="bannertext">Tackling Coronavirus (COVID-19): <span id="keybanner">contributing to a global effort</span></div>
+			<img id="bannerimg" src="img/Coronavirus_Banner.png"></img>
+	</div>-->
 	<h1>Country Policy Tracker</h1>
 	<div class="flex-container">
 		<button class="button grey" id="Dimension" type="submit"
@@ -131,7 +134,8 @@
 			<div id="updateTag">Last database update on <span id="date"></span></div>
 			<div id="source">Download underlying data</div>
 				<a class="toData" id="toEcoData" href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Fiscal and Monetary</a>
-				<a class="toData" id="toElsData" href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx" target="_blank">Employment and Social</a>
+				<a class="toData" id="toElSData" href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx" target="_blank">Employment and Social</a>
+				<a class="toData" id="toHealthData" href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx" target="_blank">Health</a>
 		
 	<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
 	</div>
@@ -154,9 +158,9 @@
 							<a href="http://www.oecd.org/tax/covid-19-tax-policy-and-other-measures.xlsm" target="_blank">Tax
 								policy responses by country</a></li>
 						<!--<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
-								target="_blank">Employment and social policy responses by country</a></li>-->
+								target="_blank">Employment and social policy responses by country</a></li>
 						<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx"
-								target="_blank">Health policy responses by country</a></li>
+								target="_blank">Health policy responses by country</a></li>-->
 						<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses
 								by country</a></li>
 					</ul>
@@ -208,7 +212,7 @@
 
 	var selector = "allData";
 	var selectorArray, selectorVariables; 
-	var worldData, confinementdef, allcontext, allcontextvariables, allData, allVariables, alljobs, alljobsvariables;
+	var worldData, confinementdef, allcontext, allcontextvariables, allData, allVariables, alljobs, alljobsvariables,allhealth,allhealthvariables;
 
 	var allcircles=[];
 	var country4card;
@@ -222,6 +226,8 @@
 		variables: "data/variables.tsv",
 		jobs: "data/jobs.tsv",
 		jobsvariables:"data/jobsvariables.tsv",
+		health: "data/health.tsv",
+		healthvariables: "data/healthvariables.tsv",
 	};
 
 	var divMap = d3.select("body").append("div") 
@@ -277,6 +283,8 @@
 		.defer(d3.tsv, urls.variables)
 		.defer(d3.tsv, urls.jobs)
 		.defer(d3.tsv, urls.jobsvariables)
+		.defer(d3.tsv, urls.health)
+		.defer(d3.tsv, urls.healthvariables)
 	    .await(render);
 
 	var scalesvg = d3.select("#scaleLegend").append("svg")
@@ -320,7 +328,7 @@
 	})
 }
 
-	function render(err,world,country, context, contextvariables, actions,variables,jobs,jobsvariables){
+	function render(err,world,country, context, contextvariables, actions,variables,jobs,jobsvariables,health, healthvariables){
 		worldData=world;
 		allcontext= context;
 		allcontextvariables= contextvariables;
@@ -328,6 +336,8 @@
 		allVariables=variables;
 		alljobs= jobs;
 		alljobsvariables= jobsvariables;
+		allhealth = health;
+		allhealthvariables = healthvariables;
 
 		//Container for the gradients //https://www.visualcinnamon.com/2016/06/glow-filter-d3-visualization.html
 		var defs = worldMap.append("defs");
@@ -569,8 +579,8 @@
 				//TO COMPLETE WITHTRACKERS/////
 				///////////////////////////////
 				///////////////////////////////
-		selectorArray=[allData, alljobs, allcontext]	
-		selectorVariables = [allVariables, alljobsvariables, allcontextvariables]	
+		selectorArray=[allData, alljobs, allhealth, allcontext]	
+		selectorVariables = [allVariables, alljobsvariables, allhealthvariables, allcontextvariables]	
 	
 		var selData,selVariables;
 		if(selector=="allData"){
@@ -684,6 +694,10 @@
 		//if (alljobs.find(isPresent)) // does not work with explorer
 		if (typeof alljobs.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
 			var themenav = themenav + "<button class=\"button menuCard alljobs\"  type=\"submit\" value=\"alljobs\" onclick = \"updateSelector(value),/*updateCircle(alljobs),*\/updateCard(country4card)\" >Employment and Social</button >";
+
+		//if (allhealth.find(isPresent)) // does not work with explorer
+		if (typeof allhealth.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
+			var themenav = themenav + "<button class=\"button menuCard allhealth\"  type=\"submit\" value=\"allhealth\" onclick = \"updateSelector(value),/*updateCircle(allhealth),*\/updateCard(country4card)\" >Health</button >";
 
 
 		selVariables.forEach(function(d){

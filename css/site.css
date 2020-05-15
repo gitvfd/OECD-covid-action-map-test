@@ -1,6 +1,48 @@
+
 body{
   background:#e6ebe9;
 }
+#OECDLogoLink{
+  display: none;
+}
+#OECDLogo{
+  position: relative;
+  height:40px;
+  top: 50px;
+  left: 10px;
+  cursor: pointer;
+}
+#banner{
+  height:60px;
+  width:100%;
+  background:#0b0064;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#bannercontent{
+  width:100%;
+  margin:  auto;
+}
+#bannertext{
+  float:left;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2vw;
+      font-weight: 700;
+      color: #ffffff;
+}
+#keybanner{
+      font-size: 1.5vw;
+      font-weight: 100;
+      text-transform: uppercase;
+}
+
+#bannerimg{
+  float:left;
+  
+  height:60px;
+}
+
 h1{
       width:100%;
       display:inline-block;
@@ -207,7 +249,7 @@ div.tooltip::after {
 }
 
 #switchtracker{
-  background:#006f81;
+  background: #0b0064/**#006f81**/;
   margin:10px 0px 10px 0px;
 }
 
@@ -385,9 +427,9 @@ width:87.5%;
     text-decoration: none;
     text-transform: uppercase;
 
-    color: #0b1e2d;
+    color: #ffffff/**#0b1e2d**/;
     background: none;/* #633582;*/
-    border: 1px solid #0b1e2d;
+    border: 1px solid #ffffff/**#0b1e2d**/;
     border-radius: 25px;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
@@ -399,8 +441,8 @@ width:87.5%;
 
 .toTrackers:hover{
 text-decoration: underline;
-    background: #0b1e2d;
-    color:#fff;
+    background: #ffffff;
+    color:#0b1e2d;
 }
 
 
@@ -636,9 +678,9 @@ width:150px;
     text-decoration: none;
     text-transform: uppercase;
 
-    color: #0b1e2d;
+    color: #ffffff /**#0b1e2d**/;
     background: none;/* #633582;*/
-    border: 1px solid #0b1e2d;
+    border: 1px solid  #ffffff/*#0b1e2d*/;
     border-radius: 25px;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
@@ -650,8 +692,8 @@ width:150px;
 
 .toData:hover{
 text-decoration: underline;
-  background: #0b1e2d;
-  color:#ffffff
+  background: #ffffff;
+  color:#0b1e2d
 }
 
 
@@ -880,5 +922,23 @@ tr:nth-child(even){background-color: #f2f2f2}
   table {
   min-width: 500px;  
   overflow-x:auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  #OECDLogo{
+    height:20px;
+    top: 20px;
+    left: 5px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  #OECDLogo{
+    height:25px;
+    top: 10px;
+    left: 5px;
   }
 }
