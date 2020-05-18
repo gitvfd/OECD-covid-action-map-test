@@ -10,6 +10,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top:7px;
 }
 
 
@@ -22,8 +23,8 @@ body{
   margin:  auto;
 }
 
-#OECDLogoLink{
-  display: visible;
+#OECDLogoLink:hover{
+  text-decoration: none;
 }
 
 #OECDLogo{

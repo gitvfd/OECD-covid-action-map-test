@@ -76,10 +76,12 @@
 	<!--<div id="warning">The country policy tracker will be available here <u>on March 30</u><Br/> <span id="warningtext">In the meantime, you can find OECD information on the impacts and consequences of the coronavirus pandemic on our lives and our societies at <a href="https://www.oecd.org/coronavirus">oecd.org/coronavirus</a></span></div>-->
 
 
+	<a id="OECDLogoLink" href="https://www.oecd.org/coronavirus">
 	<div id="banner">
-		<p><a id="OECDLogoLink" href="https://www.oecd.org/coronavirus"><img id="OECDLogo" src="img/OECD_20cm_w.png"></img></a></p>
+		<p><img id="OECDLogo" src="img/OECD_20cm_w.png"></img></p>
 		<p id="bannertext">Tackling Coronavirus (COVID-19): <span id="keybanner">contributing to a global effort</span><img id="bannerimg" src="img/Coronavirus_Banner.png"></img></p>
 	</div>
+	</a>
 	<div id="introPara">What are countries doing to contain the spread of the coronavirus? How are countries helping people, small businesses and the economy to weather the crisis and beyond? This Country Policy Tracker helps you to navigate the global response.</div>
 	<!--<h1>Country Policy Tracker</h1>-->
 	<div class="flex-container">
@@ -238,6 +240,7 @@
     var margin = 20,centered;
 
 	var mapRatio=0.375;
+	var mapScale;
     
     var width = document.getElementById("aboutMap").offsetWidth,
     	height= width*mapRatio;
@@ -249,9 +252,14 @@
 	var circleColor=d3.scaleOrdinal()
 			.domain(["alldata", "alljobs", "allhealth", "alltax"])
 			.range(['#39617D', '#8cc841', '#8cc841', '#8cc841'])
-			
+
+	if(width>750)
+		mapScale= 7.75;
+	else
+		mapScale=6.5
+
   	var projection = d3.geoRobinson()
-	    		.scale(width/7.75)
+	    		.scale(width/mapScale)
 	    		.translate([width / 2, 6*height / 10])
   	        	.precision(.01);
 
@@ -534,10 +542,14 @@
 		width = document.getElementById("aboutMap").offsetWidth,
 			height = width * mapRatio;
 
+		if (width > 750)
+			mapScale = 7.5;
+		else
+			mapScale = 6.75
 		// update projection
 		projection
 			.translate([width / 2, 6 * height / 10])
-			.scale(width / 7.75);
+			.scale(width / mapScale);
 
 		// resize the map container
 		svg.attr('width', width + 'px')
