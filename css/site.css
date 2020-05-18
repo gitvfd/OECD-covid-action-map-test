@@ -2,30 +2,36 @@
 body{
   background:#e6ebe9;
 }
-#OECDLogoLink{
-  display: visible;
-}
-#OECDLogo{
-  position: relative;
-  height:40px;
-  top: 50px;
-  left: 10px;
-  cursor: pointer;
-}
+
 #banner{
   height:60px;
   width:100%;
   background:#0b0064;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+
+#banner p:nth-child(2){
+  text-align: center;
+  flex: 1 1 0px;
 }
 #bannercontent{
   width:100%;
   margin:  auto;
 }
+
+#OECDLogoLink{
+  display: visible;
+}
+
+#OECDLogo{
+  height:40px;
+  cursor: pointer;
+}
+
 #bannertext{
-  float:left;
       font-family: 'Oswald', sans-serif;
       font-size: 2vw;
       font-weight: 700;
@@ -38,7 +44,6 @@ body{
 }
 
 #bannerimg{
-  float:left;
   
   height:60px;
 }
@@ -53,6 +58,19 @@ h1{
       color: #04629a;
       margin-top: 2px;
     margin-bottom: 2px;
+}
+
+#introPara{
+
+  font-family: "Noto Sans Display",sans-serif;
+  font-size: 1.2em;
+  font-weight: 300;
+  color: #212529;
+  max-width:990px;
+  margin:auto;
+      margin-top: 10px;
+    margin-bottom: 10px;
+
 }
 
 h2{
