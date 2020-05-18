@@ -16,10 +16,17 @@ function smallMultiples(data,identifier) {
         minAxis = d3.min(data, function (d) { return parseFloat(d.value); })
     var parseDate = d3.timeParse("%Y-%m")
 
+     
     // set the dimensions and margins of the graph
-    var marginSmall = { top: 10, right: 10, bottom: 30, left: 30 },
-        widthSmall = 310 - marginSmall.left - marginSmall.right,
-        heightSmall = 210 - marginSmall.top - marginSmall.bottom;
+    var marginSmall = { top: 10, right: 10, bottom: 30, left: 30 },widthSmall,heightSmall;
+    if(width>500){
+        widthSmall = 0.4 * width - marginSmall.left - marginSmall.right;
+        heightSmall = 250 - marginSmall.top - marginSmall.bottom;
+    }else{
+
+        widthSmall = 0.8*width - marginSmall.left - marginSmall.right;
+        heightSmall = 200 - marginSmall.top - marginSmall.bottom;
+    }
 
         // group the data: I want to draw one line per group
 

@@ -2,26 +2,30 @@ code	level	hierarchy	title	unit
 	SectionTitle	0	Health and social context	
 intro_health	SectionText	0-I-text		
 	SectionTitle	I	Risk factors for complications from COVID-19	
+intro_risk_factor	SectionText	I-0-text		
 share_pop_65	SectionEmbed	I-I-text	Share of population over age 65	%
 share_smoking	SectionEmbed	I-II-text	Share of adult population smoking daily	%
 house_air_pol	SectionEmbed	I-III-text	Ambient and household air pollution attributable death rate	Per 1 000 000
 share_obese	SectionEmbed	I-IV-text	Share of adult population who are overweight or obese	%
 	SectionTitle	II	Health system capacity (staff)	
+intro_system_Capacity_staff	SectionText	II-0-text		
 doctors	SectionEmbed	II-I-text	Practicing doctors	per 1 000 population
 nurses	SectionEmbed	II-II-text	Practicing nurses	per 1 000 population
 	SectionTitle	III	Health system capacity (hospital beds)	
+intro_system_Capacity_beds	SectionText	III-0-text		
 hospital_bed	SectionEmbed	III-I-text	Total hospital beds	per 100 000 population
 curative_hos_bed	SectionEmbed	III-II-text	of which curative (or acute) care beds	per 100 000 population
-intensive_hos_bed	SectionTable	III-III-text	of which intensive care beds	per 100 000 population
+intensive_hos_bed	SectionTable	III-III-text	Intensive care beds	per 100 000 population
 	SectionTitle	IV	Well-being	
 intro_wellbeing	SectionText	IV-I-text		
 income_poverty	SectionEmbed	IV-II-chart	Population living in relative income poverty	%
 	SectionTitle	V	Economic impact	
-Manufacturing_Production	sectionChartContext	V-I-text-chart	Manufacturing - Production: tendency sa	
-Manufacturing_Employment	sectionChartContext	V-II-text-chart	Manufacturing - Employment: future tendency sa	
-Services_Business	sectionChartContext	V-III-text-chart	Services - Business situation: tendency sa	
-Services_Employment	sectionChartContext	V-IV-text-chart	Services - Employment: future tendency sa	
-Consumer_conf	sectionChartContext	V-V-text-chart	Consumer - Confidence indicator sa	
-Manufacturing_Export	sectionChartContext	V-VI-text-chart	Manufacturing - Export order books: level sa	
-Passenger_car	sectionChartContext	V-VII-text-chart	Passenger car registrations  sa	
-share_price_index	sectionChartContext	V-VIII-text-chart	Share prices index	
+intro_eco_impact	SectionText	V-I-text		
+Manufacturing_Production	sectionChartContext	V-I-text-chart	Manufacturing - Production: tendency	% balance
+Manufacturing_Employment	sectionChartContext	V-II-text-chart	Manufacturing - Employment: future tendency	% balance
+Services_Business	sectionChartContext	V-III-text-chart	Services - Business situation: tendency	% balance
+Services_Employment	sectionChartContext	V-IV-text-chart	Services - Employment: future tendency	% balance
+Consumer_conf	sectionChartContext	V-V-text-chart	Consumer - Confidence indicator 	% balance
+Manufacturing_Export	sectionChartContext	V-VI-text-chart	Manufacturing - Export order books: level 	% balance
+Passenger_car	sectionChartContext	V-VII-text-chart	Passenger car registrations  	Index (2015=100)
+share_price_index	sectionChartContext	V-VIII-text-chart	Share prices index	Index (2015=100)

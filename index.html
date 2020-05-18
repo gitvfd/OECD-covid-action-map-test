@@ -239,7 +239,7 @@
     var format = d3.format(",.1f");
     var margin = 20,centered;
 
-	var mapRatio=0.375;
+	var mapRatio=0.41;
 	var mapScale;
     
     var width = document.getElementById("aboutMap").offsetWidth,
@@ -254,13 +254,13 @@
 			.range(['#39617D', '#8cc841', '#8cc841', '#8cc841'])
 
 	if(width>750)
-		mapScale= 7.75;
+		mapScale= 6.7;
 	else
-		mapScale=6.5
+		mapScale=6.3
 
   	var projection = d3.geoRobinson()
 	    		.scale(width/mapScale)
-	    		.translate([width / 2, 6*height / 10])
+	    		.translate([width / 2, 5.7*height / 10])
   	        	.precision(.01);
 
   	var path = d3.geoPath()
@@ -543,9 +543,9 @@
 			height = width * mapRatio;
 
 		if (width > 750)
-			mapScale = 7.5;
+			mapScale = 6.7;
 		else
-			mapScale = 6.75
+			mapScale = 6.3
 		// update projection
 		projection
 			.translate([width / 2, 6 * height / 10])

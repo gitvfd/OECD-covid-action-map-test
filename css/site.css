@@ -613,7 +613,8 @@ width:150px;
 }
 
 
-.sectionChartContext_title{max-width:250px;
+.sectionChartContext_title{
+    max-width:80%;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 300;
     font-size: 1.5rem;
@@ -637,7 +638,7 @@ width:150px;
 
     text.hover {
       font-size: .7em;
-      font-color: #575757;
+      color: #575757;
       font : 14px Caecilia lt bold; fill:#575757;
     }
 
