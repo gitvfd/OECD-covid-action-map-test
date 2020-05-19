@@ -103,9 +103,7 @@
 			onclick="updateMap(value)"><span class="textbtn">Mandatory shutdown of economic activities</span></button>
 	</div>
 	<div class="flex-container" id="introIndex">
-	The tracker aggregates the policy scores (not the financial scores) into a common index. Note that this
-	index simply records the number and strictness of government policies, and should not be interpreted as ‘scoring’ the
-	appropriateness or effectiveness of a country’s response.
+	This index simply records the strictness of government policies on a scale of 0 (no special policy) to 5 (strictest policies). It doesn't interpret the effectiveness of a country’s response.
 	</div>
 	<div class="flex-container-legend" id="legendChoropleth">
 		<div id="navigHeader">Level:</div>
@@ -312,11 +310,15 @@
 				.attr("x", function (d) { return 5+(d+1)*35; })
 				.attr("width", function (d) { return 30; })
 				.style("fill", function (d) { return quarantinecolor(d); });
-		scalesvg.selectAll("text").data([0, 1, 2, 3, 4, 5])
+		scalesvg.selectAll("text").data(["No data",0, 1, 2, 3, 4, 5])
 				.enter().append("text")
 				.attr("class", function (d) { return "legendtext" + " textvalue"+d;})
 				.attr("y", 35)
-				.attr("x", function (d) { return 17.5 + (d + 1)* 35; })
+				.attr("x", function (d) { 
+					if (d!="No data")
+						return 17.5 + (d + 1)* 35;
+					else
+						return 0 ;})
 				//.attr("width", function (d) { return 10; })
 				.text( function (d) { return d; });
 
@@ -846,7 +848,7 @@
 					var cathighlight=".cat"+i;
 					worldMap
 						.selectAll(cathighlight)
-						.style("opacity", 0.2)
+						.style("opacity", 0.05)
 				}
 				
 			}
@@ -1093,7 +1095,7 @@
 
 	if (window.location !== window.parent.location) {	  
 		// The page is in an iframe	
-		document.getElementById("myDIV").style.display = "none"
+		document.getElementById("toplayer").style.display = "none"
 		} else {	  
 			// The page is not in an iframe	
 		console.log("not an iframe")
