@@ -75,8 +75,24 @@ h1{
   color: #212529;
   max-width:990px;
   margin:auto;
-      margin-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+
+#introIndex{
+
+  font-family: "Noto Sans Display",sans-serif;
+  font-size: 1em;
+  font-weight: 100;
+  color: #212529;
+  max-width:990px;
+  margin:auto;
+      margin-top: 0px;
     margin-bottom: 10px;
+
+      visibility: hidden;   
 
 }
 

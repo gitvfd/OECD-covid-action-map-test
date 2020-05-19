@@ -75,19 +75,20 @@
 	
 	<!--<div id="warning">The country policy tracker will be available here <u>on March 30</u><Br/> <span id="warningtext">In the meantime, you can find OECD information on the impacts and consequences of the coronavirus pandemic on our lives and our societies at <a href="https://www.oecd.org/coronavirus">oecd.org/coronavirus</a></span></div>-->
 
-
-	<a id="OECDLogoLink" href="https://www.oecd.org/coronavirus">
-	<div id="banner">
-		<p><img id="OECDLogo" src="img/OECD_20cm_w.png"></img></p>
-		<p id="bannertext">Tackling <span id="corona">Coronavirus</span> (COVID-19): <span id="keybanner">contributing to a global effort</span><img id="bannerimg" src="img/Coronavirus_Banner.png"></img></p>
+	<div id="toplayer">
+		<a id="OECDLogoLink" href="https://www.oecd.org/coronavirus">
+		<div id="banner">
+			<p><img id="OECDLogo" src="img/OECD_20cm_w.png"></img></p>
+			<p id="bannertext">Tackling <span id="corona">Coronavirus</span> (COVID-19): <span id="keybanner">contributing to a global effort</span><img id="bannerimg" src="img/Coronavirus_Banner.png"></img></p>
+		</div>
+		</a>
+		<div id="introPara">What are countries doing to contain the spread of the coronavirus? How are countries helping people, small businesses and the economy to weather the crisis and beyond? This Country Policy Tracker helps you to navigate the global response.</div>
+		<!--<h1>Country Policy Tracker</h1>-->
 	</div>
-	</a>
-	<div id="introPara">What are countries doing to contain the spread of the coronavirus? How are countries helping people, small businesses and the economy to weather the crisis and beyond? This Country Policy Tracker helps you to navigate the global response.</div>
-	<!--<h1>Country Policy Tracker</h1>-->
 	<div class="flex-container">
 		<button class="button grey" id="Dimension" type="submit"
 			value="Containment-measures__Confinement-and-lock-downs__Level" title="Housing" onclick="updateMap(value)"><span
-				class="textbtn">Confinement and lock downs</span></button>
+				class="textbtn">Confinement and lockdowns</span></button>
 		<button class="button grey" id="Dimension" type="submit"
 			value="Containment-measures__Travel-bans-and-restrictions__Level" title="Housing"
 			onclick="updateMap(value)"><span class="textbtn">Travel bans and restrictions</span></button>
@@ -99,7 +100,12 @@
 				places</span></button>
 		<button class="button grey" id="Dimension" type="submit"
 			value="Containment-measures__Obligatory-shut-down-of-economic-activities__Level" title="Housing"
-			onclick="updateMap(value)"><span class="textbtn">Obligatory shut down of economic activities</span></button>
+			onclick="updateMap(value)"><span class="textbtn">Mandatory shutdown of economic activities</span></button>
+	</div>
+	<div class="flex-container" id="introIndex">
+	The tracker aggregates the policy scores (not the financial scores) into a common index. Note that this
+	index simply records the number and strictness of government policies, and should not be interpreted as ‘scoring’ the
+	appropriateness or effectiveness of a country’s response.
 	</div>
 	<div class="flex-container-legend" id="legendChoropleth">
 		<div id="navigHeader">Level:</div>
@@ -752,7 +758,7 @@
 									
 								}
 							} else if (k.level == "sectionChartContext") {
-							//	console.log(JSON.parse(temp[0][k.code]))
+								
 								var titleChart= k.code+"_title"
 								var unitChart = k.code + "_unit"
 								countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + temp[0][titleChart] + "</b> <br> <i>" + temp[0][unitChart] + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
@@ -762,7 +768,7 @@
 								//	console.log((data.documentElement.getElementsByTagName("ObsValue")))
 									smallMultiples(data,k.code)
 								})
-								console.log(k.code)
+								
 							}
 						})
 					}
@@ -882,8 +888,11 @@
 
 		}) 
 
+	document.getElementById("introIndex").style.visibility = 'visible';
 	document.getElementById("legendChoropleth").style.visibility = 'visible';
 	document.getElementById("resetButton").style.visibility = 'visible';
+
+	
 	
 	worldMap
 		.selectAll("path")
@@ -1030,6 +1039,7 @@
 			.attr('fill', "#c0c7c9")
 			.style("opacity", 0.75)
 
+		document.getElementById("introIndex").style.visibility = 'hidden';
 		document.getElementById("legendChoropleth").style.visibility = 'hidden';
 		document.getElementById("resetButton").style.visibility = 'hidden';
 
@@ -1081,7 +1091,13 @@
 	})
 
 
-
+	if (window.location !== window.parent.location) {	  
+		// The page is in an iframe	
+		document.getElementById("myDIV").style.display = "none"
+		} else {	  
+			// The page is not in an iframe	
+		console.log("not an iframe")
+			}
 
 </script>
 
