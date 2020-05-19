@@ -753,7 +753,9 @@
 								}
 							} else if (k.level == "sectionChartContext") {
 							//	console.log(JSON.parse(temp[0][k.code]))
-								countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + k.title + "</b> - <i>" + k.unit + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
+								var titleChart= k.code+"_title"
+								var unitChart = k.code + "_unit"
+								countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + temp[0][titleChart] + "</b> <br> <i>" + temp[0][unitChart] + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
 							
 								d3.xml(temp[0][k.code],function(data){
 								//	console.log((data))
