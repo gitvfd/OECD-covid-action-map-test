@@ -515,7 +515,9 @@
 				var htmlText = "<b>" + d.data.Country + "</b>";
 				divMap.html(htmlText)
 					.style("left", event.pageX - document.body.scrollLeft + "px")
-					.style("top", event.pageY - document.body.scrollTop + "px");
+					.style("top", event.pageY /*- document.body.scrollTop*/ + "px");
+					
+
 
 				})
 			
@@ -523,7 +525,7 @@
 
 				divMap
 					.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
-					.style("top", event.pageY - document.body.scrollTop + "px");
+					.style("top", event.pageY + "px");
 
 			})
 			.on('mouseout', function (d) {
@@ -865,7 +867,7 @@
 			htmlText="Not available";
 			divMap.html(htmlText)
 				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
-				.style("top", event.pageY - document.body.scrollTop + "px");
+				.style("top", event.pageY /*- document.body.scrollTop*/ + "px");
 
 			divMap.transition()
 				.duration(250)
@@ -876,7 +878,7 @@
 
 			divMap
 				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
-				.style("top", event.pageY - document.body.scrollTop + 20+ "px");
+				.style("top", event.pageY /*- document.body.scrollTop*/ + 20+ "px");
 
 		})
 		.on("mouseout",function(d){
@@ -953,7 +955,7 @@
 
 			divMap.html(htmlText)
 				.style("left", event.pageX - document.body.scrollLeft + "px")
-				.style("top", event.pageY - document.body.scrollTop + "px");
+				.style("top", event.pageY /*- document.body.scrollTop*/ + "px");
 
 		})
 
@@ -961,7 +963,7 @@
 
 			divMap
 				.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
-				.style("top", event.pageY - document.body.scrollTop + "px");
+				.style("top", event.pageY /*- document.body.scrollTop*/ + "px");
 
 		})
 		.on('mouseout', function (d) {
@@ -1065,7 +1067,7 @@
 
 				divMap.html(htmlText)
 					.style("left", event.pageX - document.body.scrollLeft + "px")
-					.style("top", event.pageY - document.body.scrollTop + "px");
+					.style("top", event.pageY /*- document.body.scrollTop*/ + "px");
 
 			})
 
@@ -1073,7 +1075,7 @@
 
 				divMap
 					.style("left", event.pageX - document.body.scrollLeft + 10 + "px")
-					.style("top", event.pageY - document.body.scrollTop + "px");
+					.style("top", event.pageY /*- document.body.scrollTop*/ + "px");
 
 			})
 			.on('mouseout', function (d) {
