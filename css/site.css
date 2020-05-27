@@ -762,8 +762,8 @@ text-decoration: underline;
       margin-right: auto;
       max-width:200px;*/
       /*display: inline-block;*/
-      margin-left: 1.2em;
-      margin-right: 1.2em;
+      margin-left: 5em;
+      margin-right: 5em;
       padding:0.5rem;
       background: #FFFFFF;
       -webkit-border-radius: 2px;
@@ -778,10 +778,10 @@ text-decoration: underline;
       font-weight: 700;
       color: #04629a;
 
-display: flex;
+      display: flex;
 
-     min-width:50%;
-     /** height:100px;*/
+      min-width:50%;
+      /** height:100px;*/
      
 }
 

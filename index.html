@@ -413,6 +413,9 @@
 				var button2update = "." + currentURL.split("?")[1];
 				d3.selectAll(".green").style("background", "#548235")
 				d3.selectAll(button2update).style("background", "#0b1e2d")
+
+				if (currentURL.split("?")[2] != "")
+					updateCard(currentURL.split("?")[2])
 			}
 			else if (currentURL.split("?")[1] == "alltax") {
 
@@ -422,7 +425,23 @@
 				var button2update = "." + currentURL.split("?")[1];
 				d3.selectAll(".green").style("background", "#548235")
 				d3.selectAll(button2update).style("background", "#0b1e2d")
+
+				if (currentURL.split("?")[2] != "")
+					updateCard(currentURL.split("?")[2])
 			
+			}
+			else if (currentURL.split("?")[1] == "allcontext") {
+
+				updateSelector(currentURL.split("?")[1]);
+				//				updateCircle(alltax)
+
+				var button2update = "." + currentURL.split("?")[1];
+				d3.selectAll(".green").style("background", "#548235")
+				d3.selectAll(button2update).style("background", "#0b1e2d")
+
+				if (currentURL.split("?")[2] != "")
+					updateCard(currentURL.split("?")[2])
+
 			}//else{
 				///////////////////////////////
 				///////////////////////////////
