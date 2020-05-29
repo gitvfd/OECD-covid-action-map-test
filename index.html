@@ -135,15 +135,22 @@
 		<!--<button class="button green allhealth" id="" type="submit" value="allhealth" onclick="updateSelector(value),updateCircle(allhealth)"><span class="textbtn"><b>Visualise</b><br />health policy responses</span></button>
 				<button class="button green alltax" id="" type="submit" value="alltax" onclick="updateSelector(value),updateCircle(alltax)"><span class="textbtn"><b>Visualise</b><br />tax policy responses</span></button>-->
 	</div>
-	
-	<div class="flex-container" id="switchtracker">
+	<div class="flex-container" id="Downloadbanner">
+				<div id="source">Download underlying data:</div>
+				<a class="toData" id="toEcoData"
+					href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx"
+					target="_blank">Fiscal and Monetary</a>
+				<a class="toData" id="toElSData"
+					href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx"
+					target="_blank">Employment and Social</a>
+				<a class="toData" id="toHealthData" href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx"
+					target="_blank">Health</a>
+
+</div>	
+<div class="flex-container" id="switchtracker">
 		<div id="trackersNotes">
 			<div id="updateTag">Last database update on <span id="date"></span></div>
-			<div id="source">Download underlying data</div>
-				<a class="toData" id="toEcoData" href="https://oecd.github.io/OECD-covid-action-map/data/CoronavirusUpdate_AllCountries_Public.xlsx" target="_blank">Fiscal and Monetary</a>
-				<a class="toData" id="toElSData" href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx" target="_blank">Employment and Social</a>
-				<a class="toData" id="toHealthData" href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx" target="_blank">Health</a>
-		
+
 	<div id="copyright">© 2020 Organisation for Economic Co-operation and Development</div>
 	</div>
 	
