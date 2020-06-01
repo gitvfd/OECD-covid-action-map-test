@@ -753,15 +753,13 @@
 		selVariables.forEach(function(d){
 				if (d.level== "SectionTitle"){
 					var count = 0; 
-					selVariables.filter(function (k) { return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {
-						
+					selVariables.filter(function (k) { return k.hierarchy.split("-")[0] == d.hierarchy.split("-")[0] && k.hierarchy.split("-")[2]  == "text"}).forEach(function (k) {	
 							if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")) {
 								count++;
 							}						
 					})
 
 					if (count >0){
-						
 						countryText = countryText + "<div class=\"border\" id=\"" + d.title.replace(/ /g, "") + "\" ><span class=\"SectionTitle\">" + d.title + "</span></div><Br/>"
 						navText = navText + "<a class=\"couNav\" href=\"#" + d.title.replace(/ /g, "") + "\">" + d.title + "</a><Br/>"
 						
@@ -770,12 +768,10 @@
 								if(k.level == "choroplethDesc"){
 									if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available")){
 										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b>"+/**"<span class=\"levelValue\">(level: "+ temp[0][k.code.replace("__Description", "__Level")]+")</span>"+**/"<br/>" + temp[0][k.code] + "</div><Br/>";
-
 									}
 								}else{
 									if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available"))
 										countryText = countryText + "<div  class=\"SectionText\"><b>" + k.title + "</b><br/>" + temp[0][k.code] + "</div><Br/>";
-	
 								}
 							}/* else if (k.level == "SectionChart") {
 								if (!(temp[0][k.code] == "" || temp[0][k.code] == "Information not available" ))
@@ -796,8 +792,6 @@
 								countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + temp[0][titleChart] + "</b> <br> <i>" + temp[0][unitChart] + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
 							
 								d3.xml(temp[0][k.code],function(data){
-								//	console.log((data))
-								//	console.log((data.documentElement.getElementsByTagName("ObsValue")))
 									smallMultiples(data,k.code)
 								})
 								

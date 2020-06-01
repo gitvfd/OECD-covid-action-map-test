@@ -1,7 +1,7 @@
 code	level	hierarchy	title	unit
-	SectionTitle	0		
-intro_health	SectionText	0-I-text		
-	SectionTitle	I	Risk factors for complications from COVID-19	
+	SectionTitle	0	Health and social context - OECD indicators	
+intro_health	SectionText	0-I-text	Health systems	
+	SectionTitle	I	Risk factors for COVID-19 complications	
 intro_risk_factor	SectionText	I-0-text		
 share_pop_65	SectionEmbed	I-I-text	Share of population over age 65	%
 share_smoking	SectionEmbed	I-II-text	Share of adult population smoking daily	%
@@ -16,11 +16,11 @@ intro_system_Capacity_beds	SectionText	III-0-text
 hospital_bed	SectionEmbed	III-I-text	Total hospital beds	per 100 000 population
 curative_hos_bed	SectionEmbed	III-II-text	of which curative (or acute) care beds	per 100 000 population
 intensive_hos_bed	SectionTable	III-III-text	Intensive care beds	per 100 000 population
-	SectionTitle	IV	Well-being	
+	SectionTitle	IV	Well-being – OECD indicators	
 intro_wellbeing	SectionText	IV-I-text		
 income_poverty	SectionEmbed	IV-II-chart	Population living in relative income poverty	%
-	SectionTitle	V	Economic impact	
-intro_eco_impact	SectionText	V-I-text		
+	SectionTitle	V	Economic impact – OECD indicators	
+intro_eco_impact	SectionText	V-I-text	Composite Leading indicator component series	
 Manufacturing_Production	sectionChartContext	V-I-text-chart	Manufacturing - Production: tendency	% balance
 Manufacturing_Employment	sectionChartContext	V-II-text-chart	Manufacturing - Employment: future tendency	% balance
 Services_Business	sectionChartContext	V-III-text-chart	Services - Business situation: tendency	% balance
