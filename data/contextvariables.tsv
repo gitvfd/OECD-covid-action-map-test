@@ -1,7 +1,7 @@
 code	level	hierarchy	title	unit
 	SectionTitle	0	Health and social context - OECD indicators	
 intro_health	SectionText	0-I-text	Health systems	
-	SectionTitle	I	Risk factors for COVID-19 complications	
+	SectionTitle	I	Factors putting people at risk of Covid-19	
 intro_risk_factor	SectionText	I-0-text		
 share_pop_65	SectionEmbed	I-I-text	Share of population over age 65	%
 share_smoking	SectionEmbed	I-II-text	Share of adult population smoking daily	%
