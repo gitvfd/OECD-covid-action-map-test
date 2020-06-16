@@ -184,6 +184,7 @@
 				<div id="countrySel"></div>
 				<!--<div id="betaTag">&nbsp;Beta</div>-->
 					<div id="updateTime"></div>
+					<a id="dataportallink" href="https://data.oecd.org" target="_blank">more data</a>
 				<div id="flex-container_comp">
 					
 				</div>
@@ -718,6 +719,8 @@
 
 		document.getElementById("updateTime").innerHTML = "Country initiatives updated on " + temp[0].update;
 		
+
+		
 		var navText="";
 		
 		var countryText="";
@@ -729,10 +732,23 @@
 
 		country4card=couCode;
 		
-		//if(allcontext.find(isPresent)) // replaced as find not read in explorer
-		if (typeof allcontext.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
-			var themenav = "<button class=\"button menuCard allcontext\"  type=\"submit\" value=\"allcontext\" onclick = \"updateSelector(value),/*updateCircle(allcontext),*\/updateCard(country4card)\" >Context<Br>OECD indicators</button >";
+		if(temp[0].Country=="China")
+			document.getElementById("dataportallink").href= "https://data.oecd.org/china-people-s-republic-of.htm";
+		else if(temp[0].Country == "Russia")
+			document.getElementById("dataportallink").href="https://data.oecd.org/russian-federation.htm"
+		else if (temp[0].Country == "South Korea")
+			document.getElementById("dataportallink").href="https://data.oecd.org/korea.htm"
+		else
+			document.getElementById("dataportallink").href = "https://data.oecd.org/" + temp[0].Country.split(" ").join("-").toLowerCase() + ".htm"
+		
 
+		document.getElementById("dataportallink").style.display = 'none';
+		//if(allcontext.find(isPresent)) // replaced as find not read in explorer
+		if (typeof allcontext.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined"){
+			var themenav = "<button class=\"button menuCard allcontext\"  type=\"submit\" value=\"allcontext\" onclick = \"updateSelector(value),/*updateCircle(allcontext),*\/updateCard(country4card)\" >Context<Br>OECD indicators</button >";
+			document.getElementById("dataportallink").style.display = 'block';
+		}
+			
 		//if(allData.find(isPresent))
 		if (typeof allData.filter(function (x) { return x.ISO3 === couCode })[0] !== "undefined")
 			var themenav = themenav + "<button class=\"button menuCard allData\"  type=\"submit\" value=\"allData\" onclick = \"updateSelector(value),/*updateCircle(allData),*\/updateCard(country4card)\" >Fiscal and Monetary<Br>initiatives</button >";

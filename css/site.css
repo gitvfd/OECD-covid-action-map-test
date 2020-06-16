@@ -118,6 +118,26 @@ h3 {
   display:block;
 }
 
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: #F1F3F3;
+  stroke: #8EA4B1;
+  stroke-width: 5px;
+}
+  
+.hover-line {
+  stroke: #8EA4B1;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+
+
 div.tooltip {
     position:absolute;
     width: auto;
@@ -143,7 +163,7 @@ div.tooltip {
       pointer-events: none;
     /*transform: translate(-5%,-5%);*/
 
-    z-index:2;
+    z-index:10;
 }
 /**
 div.tooltip::after {
@@ -878,6 +898,18 @@ text-decoration: underline;
     line-height: 1;
 
   color: #04629a;
+  /*color: #ffffff;*/}
+
+  #dataportallink{
+    display:block;
+    margin-left: 2.0em;
+    margin-top: 0.5em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1;
+    color: #04629a;
   /*color: #ffffff;*/}
 #comp_Country{
  /** max-width:200px;**/
