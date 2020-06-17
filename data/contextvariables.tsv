@@ -19,6 +19,7 @@ intensive_hos_bed	SectionTable	III-III-text	Intensive care beds	per 100 000 popu
 	SectionTitle	IV	Well-being – OECD indicators	
 intro_wellbeing	SectionText	IV-I-text		
 income_poverty	SectionEmbed	IV-II-chart	Population living in relative income poverty	%
+unemployment	SectionEmbed	IV-III-chart	Unemployment Rate	%
 	SectionTitle	V	Economic impact – OECD indicators	
 intro_eco_impact	SectionText	V-I-text	Composite Leading indicator component series	
 Manufacturing_Production	sectionChartContext	V-I-text-chart	Manufacturing - Production: tendency	% balance
