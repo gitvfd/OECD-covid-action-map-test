@@ -169,6 +169,7 @@
 				<div id="trackersText"><b>Find more country policy responses in these policy tracking initiatives:</b><Br />
 					<ul>
 						<li><a href="http://www.oecd.org/education/coronavirus-education-country-notes.htm" target="_blank">Education policy responses by country</a></li>
+						<li><a href="https://oecd-opsi.org/covid-response/" target="_blank">Innovative responses responses by country</a></li>
 						<!--<li><a href="http://www.oecd.org/social/Covid-19-Employment-and-Social-Policy-Responses-by-Country.xlsx" target="_blank">Employment and social policy responses by country</a></li>
 						<li><a href="http://www.oecd.org/health/COVID19-OECD-Health-System-Response-Tracker.xlsx" target="_blank">Health policy responses by country</a></li>-->
 						<li><a href="https://stip.oecd.org/Covid.html" target="_blank">Science and innovation policy responses by country</a></li>
@@ -801,7 +802,8 @@
 								
 								var titleChart= k.code+"_title"
 								var unitChart = k.code + "_unit"
-								countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + temp[0][titleChart] + "</b> <br> <i>" + temp[0][unitChart] + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
+								if (temp[0][titleChart] !="")
+									countryText = countryText + "<div class=\"sectionChartContextFlex\" ><div class=\"sectionChartContext_title\" id =\"" + k.code + "_Label\"><b>" + temp[0][titleChart] + "</b> <br> <i>" + temp[0][unitChart] + "</i></div><br/><div class=\"sectionChartContext_chart\" id=\"" + k.code + "\"></div></div>";
 							
 								d3.xml(temp[0][k.code],function(data){
 									smallMultiples(data,k.code)
